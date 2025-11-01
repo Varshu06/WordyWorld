@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Homepage from './components/Homepage'
 import DifficultySelector from './components/DifficultySelector'
+import Homepage from './components/Homepage'
 
 function App() {
   const [currentScreen, setCurrentScreen] = useState('homepage')
