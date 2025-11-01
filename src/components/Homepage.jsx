@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Homepage = () => {
+const Homepage = ({ onEnterClick }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
 
@@ -138,9 +138,11 @@ const Homepage = () => {
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => {
               setIsClicked(true)
-              // Navigation will be handled later
+              // Trigger navigation after animation
               setTimeout(() => {
-                console.log('Enter WordyWorld clicked!')
+                if (onEnterClick) {
+                  onEnterClick()
+                }
               }, 1000)
             }}
           >
