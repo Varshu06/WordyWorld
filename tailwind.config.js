@@ -17,6 +17,9 @@ export default {
         'grass-green': '#7CB342',
         'brown': '#8B4513',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       animation: {
         'bounce-gentle': 'bounce-gentle 0.6s ease-in-out',
         'float': 'float 3s ease-in-out infinite',

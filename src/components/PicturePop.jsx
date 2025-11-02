@@ -1,0 +1,650 @@
+import React, { useEffect, useState } from 'react'
+
+const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHome }) => {
+  // Game configuration based on difficulty
+  const gameConfig = {
+    easy: { rounds: 5, bubbles: 6, timeLimit: 60, hearts: 3 },
+    medium: { rounds: 7, bubbles: 8, timeLimit: 45, hearts: 3 },
+    hard: { rounds: 10, bubbles: 10, timeLimit: 30, hearts: 2 },
+  }
+
+  const config = gameConfig[difficulty] || gameConfig.easy
+
+  // Word lists for different worlds
+  const worldWords = {
+    jungle: [
+      { word: 'monkey', emoji: '🐵', trickEmojis: ['🍌', '🌳', '🐯'] },
+      { word: 'lion', emoji: '🦁', trickEmojis: ['🐯', '🐻', '🐒'] },
+      { word: 'elephant', emoji: '🐘', trickEmojis: ['🐭', '🐄', '🐕'] },
+      { word: 'tiger', emoji: '🐯', trickEmojis: ['🦁', '🐻', '🐒'] },
+      { word: 'parrot', emoji: '🦜', trickEmojis: ['🐦', '🦅', '🐤'] },
+      { word: 'snake', emoji: '🐍', trickEmojis: ['🐛', '🦎', '🐢'] },
+      { word: 'zebra', emoji: '🦓', trickEmojis: ['🐴', '🦄', '🐷'] },
+      { word: 'frog', emoji: '🐸', trickEmojis: ['🐊', '🦎', '🐢'] },
+      { word: 'tree', emoji: '🌳', trickEmojis: ['🌹', '🍀', '🌻'] },
+      { word: 'banana', emoji: '🍌', trickEmojis: ['🍎', '🥭', '🍇'] },
+    ],
+    space: [
+      { word: 'rocket', emoji: '🚀', trickEmojis: ['🛸', '✈️', '🛰️'] },
+      { word: 'planet', emoji: '🪐', trickEmojis: ['🌙', '⭐', '☀️'] },
+      { word: 'astronaut', emoji: '👨‍🚀', trickEmojis: ['👽', '🤖', '🦸'] },
+      { word: 'star', emoji: '⭐', trickEmojis: ['💫', '🌟', '✨'] },
+      { word: 'comet', emoji: '☄️', trickEmojis: ['💥', '⚡', '🌠'] },
+      { word: 'alien', emoji: '👽', trickEmojis: ['🤖', '👨‍🚀', '🛸'] },
+      { word: 'satellite', emoji: '🛰️', trickEmojis: ['🛸', '🚀', '✈️'] },
+      { word: 'telescope', emoji: '🔭', trickEmojis: ['📷', '📹', '📺'] },
+      { word: 'moon', emoji: '🌙', trickEmojis: ['🌞', '⭐', '🪐'] },
+      { word: 'galaxy', emoji: '🌌', trickEmojis: ['🌈', '☁️', '🌊'] },
+    ],
+    food: [
+      { word: 'pizza', emoji: '🍕', trickEmojis: ['🍔', '🥪', '🌮'] },
+      { word: 'apple', emoji: '🍎', trickEmojis: ['🍌', '🥭', '🍇'] },
+      { word: 'burger', emoji: '🍔', trickEmojis: ['🍕', '🥪', '🌮'] },
+      { word: 'cookie', emoji: '🍪', trickEmojis: ['🍩', '🧁', '🍰'] },
+      { word: 'cupcake', emoji: '🧁', trickEmojis: ['🍰', '🍪', '🍩'] },
+      { word: 'donut', emoji: '🍩', trickEmojis: ['🍰', '🧁', '🍪'] },
+      { word: 'icecream', emoji: '🍦', trickEmojis: ['🍧', '🍨', '🧁'] },
+      { word: 'banana', emoji: '🍌', trickEmojis: ['🍎', '🥭', '🍇'] },
+      { word: 'orange', emoji: '🍊', trickEmojis: ['🍋', '🍎', '🍑'] },
+      { word: 'cake', emoji: '🎂', trickEmojis: ['🍰', '🧁', '🍪'] },
+    ],
+  }
+
+  // World themes
+  const worldThemes = {
+    jungle: {
+      title: '🌴 Picture Pop 🌳',
+      subtitle: 'Pop the bubbles that match the jungle word!',
+      backgroundGradient: 'from-green-800 via-emerald-600 to-green-400',
+      floatingItems: ['🍃', '🌿', '🌾'],
+      hintPrefix: '🦜 Hint:',
+    },
+    space: {
+      title: '⭐ Star Pop 🚀',
+      subtitle: 'Pop the bubbles that match the space word!',
+      backgroundGradient: 'from-blue-950 via-indigo-900 to-purple-950',
+      floatingItems: ['⭐', '🌟', '✨'],
+      hintPrefix: '👨‍🚀 Hint:',
+    },
+    food: {
+      title: '🍕 Food Pop 🍰',
+      subtitle: 'Pop the bubbles that match the food word!',
+      backgroundGradient: 'from-orange-300 via-red-300 to-pink-300',
+      floatingItems: ['🍕', '🍰', '🧁'],
+      hintPrefix: '👨‍🍳 Hint:',
+    },
+  }
+
+  const theme = worldThemes[world] || worldThemes.jungle
+
+  // Initialize game
+  const initializeGame = () => {
+    const wordList = worldWords[world] || worldWords.jungle
+    const shuffled = [...wordList].sort(() => Math.random() - 0.5)
+    const selectedWords = shuffled.slice(0, config.rounds)
+
+    setWords(selectedWords)
+    setCurrentRound(0)
+    setScore(0)
+    setHearts(config.hearts)
+    setGameComplete(false)
+    setIsPaused(false)
+    setTimeRemaining(config.timeLimit)
+    setBubbles([])
+    setRoundComplete(false)
+    setCelebration(false)
+    setWrongPop(false)
+    setShowHint(false)
+  }
+
+  // Game state
+  const [words, setWords] = useState([])
+  const [currentRound, setCurrentRound] = useState(0)
+  const [score, setScore] = useState(0)
+  const [hearts, setHearts] = useState(config.hearts)
+  const [gameComplete, setGameComplete] = useState(false)
+  const [isPaused, setIsPaused] = useState(false)
+  const [timeRemaining, setTimeRemaining] = useState(config.timeLimit)
+  const [bubbles, setBubbles] = useState([])
+  const [roundComplete, setRoundComplete] = useState(false)
+  const [celebration, setCelebration] = useState(false)
+  const [wrongPop, setWrongPop] = useState(false)
+  const [showHint, setShowHint] = useState(false)
+  const [starsEarned, setStarsEarned] = useState(0)
+  const [showVictory, setShowVictory] = useState(false)
+
+  // Initialize on mount or when world/difficulty changes
+  useEffect(() => {
+    initializeGame()
+  }, [difficulty, world])
+
+  // Generate bubbles for current round
+  useEffect(() => {
+    if (words.length === 0 || gameComplete || isPaused) return
+
+    const currentWord = words[currentRound]
+    if (!currentWord) return
+
+    // Create bubbles with correct and trick emojis
+    // Repeat trick emojis if we need more bubbles
+    const trickEmojisNeeded = config.bubbles - 1
+    const trickEmojis = []
+    while (trickEmojis.length < trickEmojisNeeded) {
+      trickEmojis.push(...currentWord.trickEmojis)
+    }
+    const bubbleEmojis = [
+      currentWord.emoji, // Correct one
+      ...trickEmojis.slice(0, trickEmojisNeeded), // Trick ones
+    ]
+      .sort(() => Math.random() - 0.5)
+      .map((emoji, index) => ({
+        id: `bubble-${currentRound}-${index}`,
+        emoji,
+        isCorrect: emoji === currentWord.emoji,
+        position: {
+          x: Math.random() * 80 + 10, // 10% to 90%
+          y: Math.random() * 60 + 20, // 20% to 80%
+        },
+        velocity: {
+          x: (Math.random() - 0.5) * 2,
+          y: (Math.random() - 0.5) * 2,
+        },
+        size: 80 + Math.random() * 40, // 80-120px
+      }))
+
+    setBubbles(bubbleEmojis)
+    setTimeRemaining(config.timeLimit)
+    setRoundComplete(false)
+    setWrongPop(false)
+    setShowHint(false)
+  }, [currentRound, words, difficulty])
+
+  // Timer countdown
+  useEffect(() => {
+    if (isPaused || gameComplete || roundComplete || timeRemaining <= 0) return
+
+    const timer = setInterval(() => {
+      setTimeRemaining((prev) => {
+        if (prev <= 1) {
+          // Time's up - lose a heart
+          setHearts((h) => Math.max(0, h - 1))
+          if (hearts <= 1) {
+            setGameComplete(true)
+            calculateStars()
+            setShowVictory(true)
+          } else {
+            nextRound()
+          }
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [isPaused, gameComplete, roundComplete, timeRemaining, hearts])
+
+  // Move bubbles
+  useEffect(() => {
+    if (isPaused || gameComplete || roundComplete || bubbles.length === 0) return
+
+    const interval = setInterval(() => {
+      setBubbles((prev) =>
+        prev.map((bubble) => {
+          let newX = bubble.position.x + bubble.velocity.x
+          let newY = bubble.position.y + bubble.velocity.y
+
+          // Bounce off edges
+          if (newX <= 0 || newX >= 100) bubble.velocity.x *= -1
+          if (newY <= 0 || newY >= 100) bubble.velocity.y *= -1
+
+          // Keep in bounds
+          newX = Math.max(5, Math.min(95, newX))
+          newY = Math.max(5, Math.min(95, newY))
+
+          return {
+            ...bubble,
+            position: { x: newX, y: newY },
+          }
+        })
+      )
+    }, 50) // Update every 50ms for smooth movement
+
+    return () => clearInterval(interval)
+  }, [isPaused, gameComplete, roundComplete, bubbles.length])
+
+  // Handle bubble pop
+  const handleBubblePop = (bubble) => {
+    if (isPaused || gameComplete || roundComplete) return
+
+    if (bubble.isCorrect) {
+      // Correct pop! 🎉
+      setScore((prev) => prev + 10 * (Math.floor(timeRemaining / 10) + 1))
+      setRoundComplete(true)
+      setCelebration(true)
+
+      setTimeout(() => {
+        setCelebration(false)
+        nextRound()
+      }, 1000)
+    } else {
+      // Wrong pop! 💦
+      setWrongPop(true)
+      setHearts((prev) => {
+        const newHearts = Math.max(0, prev - 1)
+        if (newHearts <= 0) {
+          setGameComplete(true)
+          calculateStars()
+          setShowVictory(true)
+          return 0
+        }
+        return newHearts
+      })
+
+      setTimeout(() => {
+        setWrongPop(false)
+      }, 500)
+    }
+  }
+
+  const nextRound = () => {
+    if (currentRound + 1 < words.length) {
+      setCurrentRound((prev) => prev + 1)
+    } else {
+      // Game complete!
+      calculateStars()
+      setGameComplete(true)
+      setShowVictory(true)
+    }
+  }
+
+  const calculateStars = () => {
+    const accuracy = score / (config.rounds * 50)
+    let stars = 1
+
+    if (hearts === config.hearts && accuracy >= 0.8) stars = 5
+    else if (hearts >= config.hearts - 1 && accuracy >= 0.6) stars = 4
+    else if (hearts >= config.hearts - 2 || accuracy >= 0.4) stars = 3
+    else if (hearts >= 1 || accuracy >= 0.2) stars = 2
+
+    setStarsEarned(stars)
+  }
+
+  const handleHint = () => {
+    if (words.length === 0 || roundComplete) return
+    const currentWord = words[currentRound]
+    const hints = {
+      jungle: {
+        monkey: "It starts with 'M' and swings from trees!",
+        lion: "It's the king of the jungle with a mane!",
+        elephant: "It's big, gray, and has a long trunk!",
+        tiger: "It has stripes and roars loudly!",
+        parrot: "It's colorful and can talk!",
+      },
+      space: {
+        rocket: "It flies to the stars and planets!",
+        planet: "It orbits around a star!",
+        astronaut: "A person who explores space!",
+        star: "It twinkles in the night sky!",
+        comet: "It has a bright tail in space!",
+      },
+      food: {
+        pizza: "It's round, cheesy, and delicious!",
+        apple: "It's a red or green fruit!",
+        burger: "It has a bun and a patty!",
+        cookie: "It's sweet with chocolate chips!",
+        cupcake: "It's a small cake with frosting!",
+      },
+    }
+
+    const hint =
+      hints[world]?.[currentWord.word] || `It's ${currentWord.word}!`
+    setShowHint(true)
+  }
+
+  const handlePlayAgain = () => {
+    initializeGame()
+    setShowVictory(false)
+  }
+
+  const currentWord = words[currentRound]
+
+  // Progress percentage
+  const progress = ((currentRound + (roundComplete ? 1 : 0)) / config.rounds) * 100
+
+  return (
+    <div className="min-h-screen w-full overflow-hidden relative flex flex-col items-center justify-center px-4 py-8">
+      {/* Animated Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <div className={`absolute inset-0 bg-gradient-to-b ${theme.backgroundGradient}`}></div>
+
+        {/* Floating items based on world */}
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={`float-${i}`}
+            className="absolute text-2xl opacity-20 animate-float-bubbles pointer-events-none"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${6 + Math.random() * 4}s`,
+            }}
+          >
+            {theme.floatingItems[Math.floor(Math.random() * theme.floatingItems.length)]}
+          </div>
+        ))}
+      </div>
+
+      {/* Victory Confetti */}
+      {celebration && (
+        <div className="fixed inset-0 pointer-events-none z-50">
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={`confetti-${i}`}
+              className="absolute text-3xl animate-bubble-pop"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 0.5}s`,
+                animationDuration: `${1 + Math.random() * 1}s`,
+              }}
+            >
+              {['🎉', '✨', '⭐', '🎈', '🎊'][Math.floor(Math.random() * 5)]}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Victory Screen */}
+      {showVictory && (
+        <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div
+            className={`relative bg-gradient-to-br ${
+              world === 'jungle'
+                ? 'from-yellow-400 via-green-400 to-emerald-500'
+                : world === 'space'
+                ? 'from-cyan-400 via-blue-500 to-purple-500'
+                : 'from-orange-400 via-red-500 to-pink-500'
+            } rounded-3xl p-8 md:p-12 max-w-2xl w-full mx-4 shadow-2xl border-4 border-white animate-victory-pop`}
+          >
+            <div className="text-center">
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-4 drop-shadow-2xl font-playful">
+                🎉 AWESOME JOB! 🎉
+              </h2>
+              <p className="text-2xl md:text-3xl text-white font-bold mb-6 drop-shadow-lg font-playful">
+                You matched all the right pictures!
+              </p>
+              <p className="text-xl md:text-2xl text-white font-bold mb-4 drop-shadow-lg font-playful">
+                Score: {score} Points 🌟
+              </p>
+              <div className="text-4xl md:text-6xl mb-4">
+                {'⭐'.repeat(starsEarned)}
+              </div>
+              <p className="text-xl md:text-2xl text-white font-bold mb-8 drop-shadow-lg font-playful">
+                {starsEarned} Stars Earned! ✨
+              </p>
+              <div className="flex flex-col md:flex-row gap-4 justify-center">
+                <button
+                  onClick={handlePlayAgain}
+                  className="px-8 py-4 bg-white text-green-600 font-bold text-xl rounded-full hover:scale-110 transition-all duration-300 shadow-xl font-playful"
+                >
+                  🔁 Play Again
+                </button>
+                <button
+                  onClick={onBackToHub}
+                  className="px-8 py-4 bg-white text-green-600 font-bold text-xl rounded-full hover:scale-110 transition-all duration-300 shadow-xl font-playful"
+                >
+                  🏡 Back to Hub
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Pause Overlay */}
+      {isPaused && (
+        <div className="fixed inset-0 z-30 flex items-center justify-center bg-black/60 backdrop-blur-sm">
+          <div className="bg-white/90 rounded-3xl p-8 text-center">
+            <h3 className="text-4xl font-black text-green-600 mb-4 font-playful">
+              GAME PAUSED
+            </h3>
+            <button
+              onClick={() => setIsPaused(false)}
+              className="px-8 py-4 bg-green-500 text-white font-bold text-xl rounded-full hover:scale-110 transition-all duration-300 font-playful"
+            >
+              Continue Playing
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Main Content */}
+      <div className="relative z-10 w-full max-w-6xl">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="text-4xl md:text-6xl font-black mb-2 drop-shadow-2xl font-playful">
+            <span
+              className={`bg-gradient-to-r ${
+                world === 'jungle'
+                  ? 'from-green-400 via-emerald-300 to-yellow-400'
+                  : world === 'space'
+                  ? 'from-cyan-400 via-blue-500 to-purple-500'
+                  : 'from-orange-400 via-red-500 to-pink-500'
+              } bg-clip-text text-transparent`}
+            >
+              {theme.title}
+            </span>
+          </h1>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="text-2xl md:text-3xl">💫</span>
+              <span className="text-white text-lg md:text-xl font-bold drop-shadow-lg">
+                Score: {score}
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              {[...Array(config.hearts)].map((_, i) => (
+                <span
+                  key={`heart-${i}`}
+                  className={`text-2xl md:text-3xl ${
+                    i < hearts ? 'opacity-100' : 'opacity-30'
+                  }`}
+                >
+                  ❤️
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Current Word Display */}
+        {currentWord && (
+          <div className="text-center mb-6">
+            <div className="bg-white/25 backdrop-blur-lg border-4 border-white/40 rounded-3xl p-6 md:p-8 mb-4">
+              <p className="text-white text-2xl md:text-3xl font-bold mb-2 drop-shadow-lg font-playful">
+                Word: {currentWord.emoji} {currentWord.word.toUpperCase()}
+              </p>
+              <p className="text-white text-lg md:text-xl font-bold drop-shadow-lg font-playful mb-2">
+                Pop the correct picture bubble before time runs out! ⏳
+              </p>
+              <div className="flex items-center justify-center gap-4">
+                <span className="text-white text-xl md:text-2xl font-bold drop-shadow-lg">
+                  Time: {timeRemaining}s
+                </span>
+                <span className="text-white text-xl md:text-2xl font-bold drop-shadow-lg">
+                  Round: {currentRound + 1}/{config.rounds}
+                </span>
+              </div>
+              {showHint && (
+                <div className="mt-4 p-4 bg-yellow-400/30 rounded-xl border-2 border-yellow-400">
+                  <p className="text-white text-base md:text-lg font-bold drop-shadow-lg font-playful">
+                    {theme.hintPrefix} "{currentWord.word}" is a {world} word!
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Wrong Pop Message */}
+        {wrongPop && (
+          <div className="text-center mb-4 animate-shake">
+            <p className="text-red-500 text-2xl md:text-3xl font-bold drop-shadow-lg font-playful">
+              ❌ Wrong! Try again! 💦
+            </p>
+          </div>
+        )}
+
+        {/* Bubble Area */}
+        <div className="relative w-full h-[400px] md:h-[500px] mb-6 bg-white/10 backdrop-blur-lg rounded-3xl border-4 border-white/30 overflow-hidden">
+          {bubbles.map((bubble) => (
+            <button
+              key={bubble.id}
+              onClick={() => handleBubblePop(bubble)}
+              disabled={roundComplete || gameComplete}
+              className="absolute transition-all duration-200 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{
+                left: `${bubble.position.x}%`,
+                top: `${bubble.position.y}%`,
+                width: `${bubble.size}px`,
+                height: `${bubble.size}px`,
+                transform: 'translate(-50%, -50%)',
+              }}
+            >
+              <div className="relative w-full h-full flex items-center justify-center">
+                {/* Bubble glow effect */}
+                <div
+                  className={`absolute inset-0 rounded-full ${
+                    bubble.isCorrect ? 'bg-green-400/30' : 'bg-red-400/20'
+                  } blur-xl animate-pulse-slow`}
+                ></div>
+                {/* Bubble */}
+                <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/90 to-white/70 border-4 border-white shadow-2xl flex items-center justify-center backdrop-blur-sm hover:shadow-3xl transition-all duration-200">
+                  <span className="text-4xl md:text-5xl">{bubble.emoji}</span>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+
+        {/* Progress Bar */}
+        <div className="mb-6 mx-auto max-w-2xl">
+          <div className="relative h-6 bg-white/20 rounded-full overflow-hidden border-2 border-white/40">
+            <div
+              className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 via-emerald-400 to-yellow-400 transition-all duration-500 ease-out"
+              style={{ width: `${progress}%` }}
+            ></div>
+            <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm drop-shadow-lg">
+              {Math.round(progress)}%
+            </span>
+          </div>
+        </div>
+
+        {/* Game Controls */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+          <button
+            onClick={handleHint}
+            disabled={roundComplete || gameComplete}
+            className="px-6 py-3 bg-yellow-500 text-white font-bold text-lg rounded-full hover:scale-110 transition-all duration-300 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed font-playful"
+          >
+            💡 Hint
+          </button>
+          <button
+            onClick={() => setIsPaused(!isPaused)}
+            className="px-6 py-3 bg-blue-500 text-white font-bold text-lg rounded-full hover:scale-110 transition-all duration-300 shadow-xl font-playful"
+          >
+            {isPaused ? '▶ Resume' : '⏸ Pause'}
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex justify-center gap-4">
+          <button
+            onClick={onBackToHub}
+            className="px-6 py-3 bg-white/25 backdrop-blur-lg border-2 border-white/40 rounded-full text-white font-bold text-lg transition-all duration-300 hover:scale-110 hover:bg-white/35 hover:shadow-xl font-playful"
+          >
+            ← Back to Hub
+          </button>
+          <button
+            onClick={onGoHome}
+            className="px-6 py-3 bg-white/25 backdrop-blur-lg border-2 border-white/40 rounded-full text-white font-bold text-lg transition-all duration-300 hover:scale-110 hover:bg-white/35 hover:shadow-xl font-playful"
+          >
+            🏠 Home
+          </button>
+        </div>
+      </div>
+
+      {/* Custom Animations */}
+      <style>{`
+        @keyframes float-bubbles {
+          0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+          33% { transform: translateY(-30px) translateX(20px) rotate(10deg); }
+          66% { transform: translateY(-50px) translateX(-10px) rotate(-5deg); }
+        }
+        .animate-float-bubbles {
+          animation: float-bubbles 8s ease-in-out infinite;
+        }
+
+        @keyframes bubble-pop {
+          0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.5) rotate(180deg);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(2) rotate(360deg);
+            opacity: 0;
+          }
+        }
+        .animate-bubble-pop {
+          animation: bubble-pop 2s ease-out forwards;
+        }
+
+        @keyframes victory-pop {
+          0% {
+            transform: scale(0.5) rotate(-10deg);
+            opacity: 0;
+          }
+          50% {
+            transform: scale(1.05) rotate(5deg);
+          }
+          100% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+          }
+        }
+        .animate-victory-pop {
+          animation: victory-pop 0.6s ease-out;
+        }
+
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10% { transform: translateX(-10px); }
+          20% { transform: translateX(10px); }
+          30% { transform: translateX(-10px); }
+          40% { transform: translateX(10px); }
+          50% { transform: translateX(-5px); }
+          60% { transform: translateX(5px); }
+        }
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes pulse-slow {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 2s ease-in-out infinite;
+        }
+      `}</style>
+    </div>
+  )
+}
+
+export default PicturePop
+

@@ -195,399 +195,756 @@ Add a small back button (“← Back to Home 🏠”) below cards with gentle ho
 
 ---
 
-## 🗺️ Screen 3: World Selector
+## 🗺️ Screen 3: 3D Interactive World Map Selector
 
-### Purpose: Show available worlds and let kid pick one!
+### Purpose
+Let kids explore and feel inside each world before entering — an immersive, magical experience! It’s like stepping into a cartoon video game you can poke, prod, and spin around!
 
-### Layout (Phase 1 - 1 World):
+### Layout (3D Map Concept)
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                                                          │
-│                  Choose Your World!                      │
+│                   🌍 Choose Your World!                   │
 │                                                          │
-│        Pick a magical place to explore! 🎉              │
+│           Step into your next word adventure! ✨          │
 │                                                          │
+│   ┌────────────────────────────────────────────────────┐ │
+│   │                                                    │ │
+│   │       🪄 3D Floating Map with Interactive Islands   │ │
+│   │                                                    │ │
+│   │  🌴 Jungle Island    🚀 Space Planet               │ │
+│   │  🍔 Food Town        🏰 Castle Realm               │ │
+│   │  🌊 Ocean World                                   │ │
+│   │                                                    │ │
+│   │  (Hovering rotates the map slightly toward the     │ │
+│   │   hovered world, with depth lighting effects.)      │ │
+│   └────────────────────────────────────────────────────┘ │
 │                                                          │
-│              ┌─────────────────────┐                    │
-│              │                     │                    │
-│              │       🌴           │                    │
-│              │   JUNGLE WORLD     │                    │
-│              │                     │                    │
-│              │   Explore animals   │                    │
-│              │   and nature!       │                    │
-│              │                     │                    │
-│              │    [Enter World]    │                    │
-│              └─────────────────────┘                    │
+│                          [Back]                          │
 │                                                          │
-│              ┌─────────────────────┐                    │
-│              │    🔒               │                    │
-│              │                     │                    │
-│              │  SPACE WORLD        │                    │
-│              │                     │                    │
-│              │  Coming Soon!       │                    │
-│              │  Earn 20 stars      │                    │
-│              │  to unlock!         │                    │
-│              └─────────────────────┘                    │
-│                                                          │
-│                        [Back]                           │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────┘
 ```
 
-### Layout (Phase 2+ - Multiple Worlds):
-```
-┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│                  Choose Your World!                      │
-│                                                          │
-│        Pick a magical place to explore! 🎉              │
-│                                                          │
-│   ┌──────────┐    ┌──────────┐    ┌──────────┐         │
-│   │   🌴     │    │  🔒      │    │  🔒      │         │
-│   │  JUNGLE  │    │  SPACE   │    │  FOOD    │         │
-│   │  WORLD   │    │  WORLD   │    │  TOWN    │         │
-│   │          │    │          │    │          │         │
-│   │ [Enter]  │    │ 20 ⭐    │    │ 40 ⭐    │         │
-│   └──────────┘    └──────────┘    └──────────┘         │
-│                                                          │
-│                        [Back]                           │
-└─────────────────────────────────────────────────────────┘
-```
+### Elements
 
-### Elements:
-- **Title**: "Choose Your World!"
-- **Subtitle**: "Pick a magical place to explore!"
-- **World cards**: Each world gets a card (200x250px minimum)
-- **Locked worlds**: Show lock icon + unlock requirement
-- **Back button**: Return to difficulty selector
+- **Title**: “Choose Your World!”  
+  _(Big and bold, like a friendly giant is yelling it from the sky.)_
 
-### Visual Design:
-- **Card sizes**: Large enough to tap easily
-- **World themes**: 
-  - Jungle: Green tones, plant/tree images
-  - Space: Dark blues with stars, planet/rocket images
-  - Food: Orange/yellow tones, food images
-- **Locked state**: Grayed out, lock icon, show star requirement
-- **Available state**: Colorful, hover effect, enter button
+- **Subtitle**: “Step into your next word adventure!”  
+  _(A twinkle-in-your-eye promise of fun and magic!)_
 
-### Interactions:
-- **Click locked**: Show message "Complete other worlds first!" 🎯
-- **Click available**: Enter the world hub
-- **Animation**: Cards scale on hover/click
-- **Transition**: Smooth fade or slide to world hub
+- **Map**:  
+  - A semi-3D world map with all the worlds perched like rubber ducks on a floating shelf — except, the shelf is spinning in space and those ducks are islands!
 
-### Responsive:
-- One card per row on mobile
-- Two cards per row on tablet
-- Three+ cards per row on desktop (if more worlds added)
+- **Worlds**:
+    - 🌴 **Jungle World:** 3D green canopy, layered leaves moving, soft sunbeams. Might see a monkey's bottom swinging by!
+    - 🚀 **Space World:** Deep starfield in 3D, comets fly by real slow (cosmic snail-race!), distant twinkling planets.
+    - 🍔 **Food Town:** Warm bakery-glow with donuts, pizzas and cupcakes floating past your face (don’t nibble your screen!).
+    - 🏰 **Castle Land:** Pink-gold sky all sparkly, floating castles with sunlight sparkles tickling their towers.
+    - 🌊 **Ocean World:** Deep blue, wobbly underwater 3D, parallax bubbles and sleepy fish silhouettes waving “hi”.
+
+- **Locked Worlds**:  
+  - Semi-transparent, glowing locks pulsing faintly on top. The “Come back soon!” of worlds. If you can’t get in, you’ll wish you could!
+
+- **Back button**:  
+  - One brave tap returns you to the land of difficulty-choosing warriors.
+
+### Visual Design
+
+- **Base Map**:  
+  - Softly tilted 3D look: map has shadows, lights and a little “motion parallax” (that’s when things move at different speeds when you wiggle your mouse – the magic trick that makes stuff seem deep!).
+- **World Islands**:  
+  - All worlds are floating, bobbing up and down like they drank fizzy soda.  
+  - Each has a glowing rim or aura, as if a wizard sprinkled neon sugar on top.
+
+- **Hover Vibes (3D Dynamic Background Change)**:  
+    - 🌴 Jungle: 3D leaf layers swaying, sunrays poking through the canopy.
+    - 🚀 Space: 3D stars “deepen”, comet whooshes by with a “choooooom!”.
+    - 🍔 Food: Bakery-glow, floating donuts/cupcakes all at different depths.
+    - 🏰 Castle: Pink-gold, castles drifting with sunlight shimmers.
+    - 🌊 Ocean: Deep blue underwater, rising bubbles and gliding fish, everything looks wobbly like you’re under a swimming pool.
+
+### Interactions
+
+- **Hover/Tap World**:
+    - The whole map turns a bit toward your pointer/finger (like, “Oh hi there!”).
+    - That world pops up, casting a bigger shadow.
+    - Background morphs into the world’s magical vibe (animated, super wow).
+    - Floating things (like cupcakes or fish) also move at different speeds—so it’s like your eyes grew superpowers.
+- **Click Unlocked World**:  
+    - *Wooooosh!* Smooth 3D zoom into the world’s island, sliding off to the intro with enough magic energy to light a small village.
+- **Click Locked World**:  
+    - “Locked 🔒 — Earn ⭐ to unlock!” pops up with a bouncy, wibbly-wobbly effect, but is still nice about it. “You’ll be back!”
+- **Idle State**:  
+    - While you’re thinking or picking your nose, all the islands gently float and sparkles drift around, like the map never sleeps.
+
+### Responsive
+
+- On **mobile**:  
+    - Worlds turn into mega-bubbles you swipe left/right, easy-peasy with your thumb.
+    - Animations keep going, but chill with the super-fancy depth effects (save that battery, hero).
+    - Giant tappable worlds, tooltips or labels pop up if you long-press (“Hey, what’s that pizza-looking place?!”).
+
+- Everywhere:  
+    - Worlds are easy to tap, can’t miss ‘em.
+    - Tooltips (‘You are here!’ and fun facts) appear under each world.
+
+*(In short: This isn’t a boring menu. It’s a floating, glowing, bouncy, wibbly-wobbly magic map!)*
+
 
 ---
 
-## 🌴 Screen 4: Jungle World Hub
+#### (Short and silly summary for your inner 10-year-old:)
+Instead of picking a world from boring rectangles, you get a big cartoon map. You float your mouse (or finger) over an island—it wiggles! The whole background changes magic colors! You tap the place you want, it zooms you in with fairy dust. Boring worlds are grayed out, and you need stars to unlock those (just like in a videogame). There’s a back button if you chicken out. Every world is like a mini theme park waiting to be explored!
 
-### Purpose: Central hub where kid picks activities!
+## 🌴 Screen 4: Jungle World Hub — “Welcome to Wordy Jungle!”
 
-### Layout:
+### 🧭 Purpose
+Let kids go bananas exploring the jungle and picking their favorite word game! Each game has a super-short, silly description and a giant “Play” button itching to be clicked.
+
+### 🧱 Layout
 ```
-┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│  🌴 JUNGLE WORLD              ⭐⭐⭐  Progress            │
-│                                                          │
-│  Welcome, Explorer! 🦁                                   │
-│                                                          │
-│  ┌─────────────────────────────────────────────────┐    │
-│  │                                                  │    │
-│  │      🦁  "Welcome to the Jungle!" 🦁            │    │
-│  │                                                  │    │
-│  │   Help us learn new words about animals and     │    │
-│  │   nature! Choose an activity below!             │    │
-│  │                                                  │    │
-│  └─────────────────────────────────────────────────┘    │
-│                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐              │
-│  │                 │  │                 │              │
-│  │      🧩         │  │      ⚡         │              │
-│  │  Word Matching  │  │ Flash Cards     │              │
-│  │                 │  │                 │              │
-│  │  Match words    │  │  Flip and learn │              │
-│  │  to pictures!   │  │  new words!     │              │
-│  │                 │  │                 │              │
-│  │   [Play Game]   │  │   [Play Game]   │              │
-│  └─────────────────┘  └─────────────────┘              │
-│                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐              │
-│  │                 │  │                 │              │
-│  │      🎒         │  │      🏆         │              │
-│  │  My Collection  │  │  Achievements   │              │
-│  │                 │  │                 │              │
-│  │  See words      │  │  View badges &  │              │
-│  │  you learned!   │  │  your progress! │              │
-│  │                 │  │                 │              │
-│  │   [View]        │  │   [View]        │              │
-│  └─────────────────┘  └─────────────────┘              │
-│                                                          │
-│              [Back to Worlds]  [Home]                   │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│                 🌴 JUNGLE WORLD 🦁                           │
+│              ⭐⭐⭐  Your Progress                              │
+│                                                              │
+│      🦜 Welcome back, Explorer! Ready for new words? 🌿       │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  🧩 Word Match                                         │  │
+│  │  Match animals to their names — vines drop new words!  │  │
+│  │              [Play Game]                               │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  ⚡ Flash Cards                                         │  │
+│  │  Flip cards on tree branches to learn fun words!       │  │
+│  │              [Play Game]                               │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  🐍 Word Trail                                         │  │
+│  │  Follow glowing vines to spell jungle words!           │  │
+│  │              [Play Game]                               │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  🐦 Sound Safari                                       │  │
+│  │  Listen to animal sounds and guess the correct word!   │  │
+│  │              [Play Game]                               │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  🎒 My Collection                                      │  │
+│  │  See the words you’ve learned and earn badges!         │  │
+│  │              [View]                                   │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  🏆 Achievements                                       │  │
+│  │  Track your progress and unlock new rewards!           │  │
+│  │              [View]                                   │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │  🌿 Daily Jungle Quest                                 │  │
+│  │  Try today’s surprise: “Find 3 new words today!”       │  │
+│  │              [Play]                                   │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│             [← Back to Worlds]    [🏠 Home]                  │
+└──────────────────────────────────────────────────────────────┘
 ```
-
-### Elements:
-- **World title**: "🌴 JUNGLE WORLD" - big and themed
-- **Progress display**: Stars earned (top right)
-- **Guide character**: Friendly animal with speech bubble
-- **Four activity cards**: Games, collection, achievements
-- **Navigation**: Back button, home button
-
-### Visual Design:
-- **Background**: Jungle-themed (trees, vines, colorful)
-- **Cards**: Different colors for each activity
-- **Character**: Animated, friendly (monkey, lion, parrot?)
-- **Progress bar**: Visual stars, maybe a meter
-
-### Interactions:
-- **Click game card**: Go to that game
-- **Click collection**: Show word collection screen
-- **Click achievements**: Show badges/progress
-- **Hover**: Cards lift up slightly
-- **Back button**: Return to world selector
-- **Home button**: Return to homepage
-
-### Responsive:
-- Two cards per row on mobile/tablet
-- Center all cards
-- Stack vertically on very small screens
 
 ---
 
-## 🧩 Game 1: Word Matching Puzzle
-
-### Purpose: Match words to pictures - fun memory game!
-
-### Layout:
-```
-┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│  🌴 Word Matching Puzzle        ⭐⭐⭐                   │
-│                                                          │
-│  Match each word with the correct picture!              │
-│                                                          │
-│  ┌─────────────────────────────────────────────────┐    │
-│  │                  PICTURES                        │    │
-│  │  ┌────┐  ┌────┐  ┌────┐  ┌────┐               │    │
-│  │  │ 🐵 │  │ 🦁 │  │ 🌳 │  │ 🐯 │               │    │
-│  │  │    │  │    │  │    │  │    │               │    │
-│  │  └────┘  └────┘  └────┘  └────┘               │    │
-│  └─────────────────────────────────────────────────┘    │
-│                                                          │
-│  ┌─────────────────────────────────────────────────┐    │
-│  │                  WORDS                           │    │
-│  │  ┌────┐  ┌────┐  ┌────┐  ┌────┐               │    │
-│  │  │ ?? │  │ ?? │  │ ?? │  │ ?? │               │    │
-│  │  │    │  │    │  │    │  │    │               │    │
-│  │  └────┘  └────┘  └────┘  └────┘               │    │
-│  │                                                  │    │
-│  │  Drag a word to match with its picture!         │    │
-│  │                                                  │    │
-│  └─────────────────────────────────────────────────┘    │
-│                                                          │
-│  Matched: 2/4        [Help]  [Pause]                   │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Gameplay Flow:
-
-1. **Start**: Show 4-8 pairs (based on difficulty)
-2. **Display**: Pictures on top row, words below (shuffled)
-3. **Click/Drag**: Kid clicks word, then clicks picture (or drag & drop)
-4. **Match Check**: 
-   - ✅ Correct: Show animation, mark complete, disable both cards
-   - ❌ Wrong: Shake animation, put word back
-5. **Progress**: Show count (2/4 matched)
-6. **Completion**: When all matched, show victory screen!
-
-### Interaction Details:
-
-**Picture Cards:**
-- Size: 150x150px minimum
-- Show colorful image
-- Clickable area
-- No text until matched
-
-**Word Cards:**
-- Size: 150x120px minimum
-- Show word in big font
-- Draggable OR clickable
-- Visually distinct color
-
-**Drag & Drop Logic:**
-- Kid starts dragging word
-- Word follows cursor/finger
-- Drop on picture
-- Check if match
-- If yes: snap into place, success!
-- If no: bounce back, shake
-
-**Click-to-Match Alternative:**
-- Kid clicks word (highlights)
-- Kid clicks picture
-- Check match
-- Same feedback as drag
-
-### Victory Screen:
-```
-┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│                      🎉 AWESOME! 🎉                      │
-│                                                          │
-│              You matched all the words!                  │
-│                                                          │
-│                    ⭐⭐⭐⭐⭐                              │
-│                  5 stars earned!                         │
-│                                                          │
-│              ┌──────────────┐                           │
-│              │  PLAY AGAIN  │                           │
-│              └──────────────┘                           │
-│                                                          │
-│              ┌──────────────┐                           │
-│              │ BACK TO HUB  │                           │
-│              └──────────────┘                           │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Elements:
-- **Celebration**: Confetti animation? 🎊
-- **Stars earned**: Big display
-- **Options**: Play again, or return to hub
-- **Sound**: Victory fanfare!
-
-### Responsive:
-- Grid adapts to screen size
-- 2x2 grid on mobile (4 pairs)
-- 3x3 grid on tablet (6 pairs)
-- 4x4 grid on desktop (8 pairs)
-- Cards scale but stay touchable
+### 🎨 Visual Design:
+- **Background:** 3D animated jungle with trees that wave hello and animals that sneak across the screen when you’re not looking!
+- **Cards:** Glassmorphism (that’s a big word for “see-through and blurry like a superhero’s glasses!”). The cards have a hint of jungle green and gold.
+- **Font:** Big, round, and friendly (think “Baloo 2” or “Poppins”—totally NOT boring).
+- **Buttons:** Leaf-shaped, and they bounce if you even *look* at them too closely.
+- **Icons:** Massive emojis or cute pictures for each game, because everybody loves a good monkey face.
+- **Animations:** Vines wiggle, fireflies blink, and if you let the screen chill, you’ll hear birds and jungle hums.
 
 ---
 
-## ⚡ Game 2: Flash Card Adventures
+### ✨ Interactions:
+- **Hover:** Cards float up a little, and sometimes even glow! “Play” buttons wiggle or grow, like they *really* want to be clicked.
+- **Click:** The card does a mini party (maybe a monkey swings by), then you zoom off to the game.
+- **Idle:** Nature sounds—birds tweet, leaves shake, maybe a frog goes ribbit if you wait long enough.
 
-### Purpose: Flip cards to learn word meanings!
+---
 
-### Layout:
+### 🧠 Learning Flow:
+- Kids PICK the game with their eyeballs and their mouse or finger.
+- Each card shows: a fun emoji/icon, the game name, a sentence that makes you want to play, and a glorious button.
+- One click and—ZAP!—they’re in the game.
+
+---
+
+### 📱 Responsive Design:
+- **Desktop:** Cards are shown two per row (so nobody feels lonely), everything is centered.
+- **Tablet:** One big fat card per row (so your finger has room to dance).
+- **Mobile:** Scroll with your thumb (even if it’s sticky), full-width cards so you can’t miss them.
+
+---
+
+### 💡 Bonus Fun:
+- There’s even a “Daily Jungle Quest” 🌿 card with a surprise activity that swaps every day — like “Try making a monkey noise in your kitchen!” (Don’t tell your parents I said that).
+
+---
+
+## 🧩 Game 1: Word Matching Puzzle — “Match the Jungle Magic!”
+
+### 🧠 Purpose:
+
+A playful drag-and-drop challenge where kids match animal words to pictures — improving memory, vocabulary, and focus through fun! Yup, this is the tasty brain snack you didn’t know you needed.
+
+### 🧱 Layout:
+```
+┌────────────────────────────────────────────────────────────┐
+│                🌴 Word Matching Puzzle 🐒                 │
+│             ⭐ Progress: 2/8 Stars Earned ⭐               │
+│                                                          │
+│        Match the words with the right jungle friends!     │
+│                                                          │
+│  ┌──────────────────────────────┐  ┌────────────────────┐ │
+│  │         PICTURES             │  │        WORDS       │ │
+│  │ 🐵 🦁 🐯 🦜 🐍 🐘 🐸 🦓         │  │ monkey  lion       │ │
+│  │ (animals swing & move gently)│  │ tiger   parrot     │ │
+│  │                              │  │ snake   elephant   │ │
+│  │                              │  │ frog    zebra      │ │
+│  └──────────────────────────────┘  └────────────────────┘ │
+│                                                          │
+│            Drag or Tap to Match the Pairs! 🌟            │
+│                                                          │
+│           Matched: 4/8          [💡 Hint] [⏸ Pause]      │
+│                                                          │
+└────────────────────────────────────────────────────────────┘
+```
+
+#### (Imagine all those animals giving you a high-five as you play! 🖐️)
+
+---
+
+### 🎮 Gameplay Flow:
+
+- **Start:**  
+  4–8 pairs shown depending on how hard you want the brain workout — pick easy, medium or “jungle genius”!
+- **Cute Guide**:  
+  A monkey or parrot pops up and goes,  
+  > “Drag the word to the right animal, little explorer!” 🐒
+
+- **During Play:**  
+  - Pictures on top, words below, but the words are doing a little shuffle dance (shuffled order).
+  - Drag words or just tap-one then tap-the-other to match!
+  - There’s even a twinkly little leaf trail following your drag, because style is important. 🍃
+
+- **Match Check:**
+  - ✅ **Correct:**  
+    - Animal card does a *bouncy-boing!*  
+    - “Yay!” sound plays.  
+    - A star pops and sparkles everywhere.
+  - ❌ **Incorrect:**  
+    - Oops! The card wiggles like a giggly worm.  
+    - You hear a silly jungle “UH-OH!”
+
+- **Progress:**  
+  “Matched: X / Total” (Like a jungle scoreboard!),
+  and your progress bar fills up with shiny stars dangling from a vine.
+
+---
+
+### 🎨 Visual Design:
+
+- **Background:**  
+  3D jungle — trees with wobbly branches, monkeys swinging, and birds that occasionally photobomb your screen.
+- **Cards:**  
+  "Glassmorphism" — which is a fancy way to say “glassy, blurry, superhero specs.” Hints of green and gold, obviously.
+- **Animal Cards:**  
+  Super lively — illustrations that wiggle or bounce if you stare at ‘em long enough.
+- **Word Cards:**  
+  Big, round font (think Baloo 2 or Poppins, NOT your grandma’s typewriter).  
+  Words are inside leaf-shaped or bubbly buttons (squeeze ‘em—they won’t pop!).
+- **Progress Bar:**  
+  Looks like a vine, with stars hanging down like vine-y disco balls.
+
+---
+
+### 💫 Interactions:
+
+| Action               | Feedback                                                             |
+|----------------------|---------------------------------------------------------------------|
+| Hover word card      | It gives a little bounce and glows like you poked it with fairy dust|
+| Drag                 | Magical leaf trail follows your finger or mouse                     |
+| Drop correct         | Animal glows green and goes “ding!”                                 |
+| Drop wrong           | Wiggle-wiggle—card shakes, soft “uh-oh” sound plays                 |
+| Match complete       | Monkey does a happy dance/jump! 🐵                                  |
+| Press Hint           | Parrot pops up: “It starts with L!” or another clue! 🦜             |
+
+---
+
+### 🎉 Victory Screen:
+```
+┌────────────────────────────────────────────────────────────┐
+│                    🎉 AMAZING JOB! 🎉                     │
+│                                                          │
+│           You matched all jungle words perfectly!         │
+│                                                          │
+│                    ⭐⭐⭐⭐⭐ 5 Stars! ⭐⭐⭐⭐⭐                │
+│                                                          │
+│      🐒 “You’re the jungle word champion!” 🦜            │
+│                                                          │
+│        [🔁 Play Again]      [🏡 Back to Jungle Hub]       │
+│                                                          │
+└────────────────────────────────────────────────────────────┘
+```
+
+| Celebration Effects |
+|---------------------|
+| Confetti bursts made of tiny leaves 🌿 |
+| Happy animal sounds (monkey cheers, elephant trumpets, parrot squawks) |
+| Fireflies drift merrily across the screen! |
+
+---
+
+### 🧩 Responsive Design:
+| Device      | Layout                                         |
+|-------------|------------------------------------------------|
+| Mobile      | 2x2 grid (4 pairs), oversized buttons          |
+| Tablet      | 3x3 grid (6 pairs), roomy jungle spacing       |
+| Desktop     | 4x4 grid (8 pairs), smooth scaling, looks epic |
+| Touch & Click | Big tap targets, you can’t miss ‘em—even with banana fingers! |
+
+---
+
+### 💡 Bonus Feature:
+
+#### “Speed Stars”
+If you finish super fast? Bonus stars for “jungle quickness!” ⏱️  
+No pressure—just more reason to replay and become the next Jungle Word Champ!
+
+---
+
+*If you were confused by anything above, imagine a monkey wearing sunglasses teaching you how to play a matching game. That’s basically the vibe.*
+
+## 🍌 Game 2: Banana Scramble
+
+### 🍌 Purpose
+
+Unscramble jumbled jungle words to feed the hungry monkeys and learn new vocabulary! 🐒🍌  
+(If you love bananas or monkeys, you’re gonna go WILD!)
+
+---
+
+### 🌴 UI Layout
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                                                          │
-│  🌴 Flash Card Adventures      Card 3/10  ⭐⭐⭐         │
+│  🌴 Banana Scramble              Words Solved: 2/8 🍌    │
 │                                                          │
+│  The monkeys are hungry! Unscramble the words            │
+│  to win bananas for them! 🐵                             │
 │                                                          │
+│     ┌──────────────────────────────┐                     │
+│     │   _ _ _ _ _ _ _              │                     │
+│     │   Scrambled: LPAEHPNAT 🐘     │                     │
+│     └──────────────────────────────┘                     │
 │                                                          │
-│                   ┌──────────────┐                      │
-│                   │              │                      │
-│                   │              │                      │
-│                   │   HABITAT    │                      │
-│                   │              │                      │
-│                   │              │                      │
-│                   │   [Flip Card]                       │
-│                   └──────────────┘                      │
+│     [E] [A] [L] [P] [H] [N] [A] [T]                     │
 │                                                          │
-│                   Click to flip and see                  │
-│                   the definition!                        │
+│     🐵 Hint: “I have a long trunk!”                      │
 │                                                          │
+│                  [Check Word]                            │
 │                                                          │
-│     [❌ I don't know this]  [✓ Got it!]                 │
+│  🍌 Bananas Earned: 🍌🍌🍌                              │
 │                                                          │
-│                                                          │
-│                        [Help]  [Pause]                  │
+│            [Hint]   [Pause]   [Exit to Hub]              │
 │                                                          │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### After Flip:
+*Yup! Bananas everywhere. All you gotta do is unscramble those silly letters, and you’ll have more bananas than a monkey’s birthday party!*
+
+---
+
+### 🎮 Gameplay Flow
+
+1. **Start:** See a jumbled-up jungle word pop up (for example: “LPAEHPNAT” …that’s ‘elephant’ if you unscramble and you love big gray animals).
+2. **Goal:** Rearrange letter tiles until you spell the correct jungle word.
+3. **Interact:** Drag the letter tiles into the empty slots _OR_ tap the letters in the right order (it’s like alphabet hopscotch!).
+4. **Check:** SMASH that “Check Word” button like you’re high-fiving a gorilla.  
+   - **✅ Correct:** The monkey does a happy dance, the word glows, and a banana drops into the monkey basket. (“Banana shower!”)
+   - **❌ Wrong:** The word box wiggles (like it ate a lemon), and the monkey looks confused. (Monkey shrugs, maybe even goes “Huh?!”)
+5. **Hint:** Need a lil’ help? Hit the Hint button—get a super-easy riddle (“I have stripes and roar!”) or a cute picture, but only one hint per word!
+6. **Progress:** Track how many words you’ve solved and bananas you’ve snagged. (Banana emoji parade!)
+7. **Completion:** When you’ve unscrambled them all, the monkeys go bananas! (Banana rain, monkey party, your screen looks like a fruit salad.)
+
+---
+
+### 🍌 Interaction Details
+
+**Word Box**
+- Shows blanks `_` for each letter you need.
+- Fills in as you pick or drag letters.
+- Shakes when you get it wrong—like it’s burping.
+  
+**Letter Tiles**
+- Each letter is a bright, bouncy tile (green, yellow, orange, jungle colors galore!).
+- Tiles make a funny “pop!” sound when you tap or move them.
+- Tiles can be dragged, dropped, or tapped (your choice—just don’t try to eat them).
+- Tiles rearrange with a springy bounce if you make a mistake.
+
+**Monkeys**
+- Cheering, celebrating, or sometimes being dramatic (“Oh no!” face) depending on your answer.
+- Win a round? The monkey throws bananas or even claps for you like you’re on the jungle Olympics.
+
+**Hint System**
+- One juicy hint per word!  
+- Riddles (“I have a trunk and big ears!”) or jungle pics (like a lion’s face or a zebra’s stripes).
+- No hint spamming—one per word, please! (The monkeys need time to come up with the best hint.)
+
+---
+
+### 🎉 Victory Screen
+
+Yay, you did it! Time to make a big monkey noise and take a bow:
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                                                          │
-│  🌴 Flash Card Adventures      Card 3/10  ⭐⭐⭐         │
+│                   🎉 GREAT JOB! 🎉                       │
 │                                                          │
-│                   ┌──────────────┐                      │
-│                   │              │                      │
-│                   │   HABITAT    │                      │
-│                   │              │                      │
-│                   │  A home for  │                      │
-│                   │  animals and │                      │
-│                   │  plants!     │                      │
-│                   │              │                      │
-│                   │  🦜🦋🌳     │                      │
-│                   └──────────────┘                      │
+│       You fed all the monkeys with bananas! 🐒🍌         │
 │                                                          │
-│     [❌ I don't know this]  [✓ Got it!]                 │
+│               8 words unscrambled correctly!             │
+│                                                          │
+│                    ⭐⭐⭐⭐                               │
+│                4 stars earned! 🌴                      │
+│                                                          │
+│          ┌──────────────┐     ┌──────────────┐           │
+│          │  PLAY AGAIN  │     │ BACK TO HUB  │           │
+│          └──────────────┘     └──────────────┘           │
 │                                                          │
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Gameplay Flow:
+- When all words are solved, monkeys celebrate with a banana rain animation! (Seriously, like confetti…but stickier.)
 
-1. **Start**: Show first card (word side)
-2. **Flip**: Kid clicks "Flip Card" or card itself
-3. **Animation**: Card flips (3D flip effect)
-4. **Show**: Word + definition + picture
-5. **Feedback**: Kid clicks "Got it!" or "I don't know"
-6. **Track**: Keep score of correct answers
-7. **Next**: Show next card
-8. **Completion**: After all cards, show results!
+---
 
-### Interaction Details:
+### 📱 Responsiveness
 
-**Card Design:**
-- Size: 400x300px (tablet)
-- Flip animation: CSS 3D transform
-- Front: Word in BIG font
-- Back: Word + definition + emoji/image
+- On mobile: Letter tiles wrap into rows and never run away off the screen.  
+- Word box always in the middle—easy to spot, even on a banana-sized phone.
+- Monkey animations are simpler (less detail, same silliness).  
+- Tapping and dragging both work—however you like to jungle!
 
-**Flip Animation:**
-- Smooth 3D rotation
-- Takes 0.6 seconds
-- Looks cool! 🎬
+---
+
+*So, little banana, get unscrambling! The monkeys are waiting and those bananas are NOT going to win themselves.*
+
+---
+
+**(If you didn't giggle at least once, try saying "Banana Scramble" three times fast and wiggling your eyebrows!)**
+
+---
+
+## 🎈 Game 3: Picture Pop
+
+### 🎈 Purpose
+
+Pop the bubbles that show the right picture for each word! A fun way to build word recognition and visual association skills through playful popping action! 🎈
+
+*(Think of it like a bubble wrap party, but with words and pictures - super satisfying!)*
+
+---
+
+### 🌈 UI Layout
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│      🌈 PICTURE POP                   Score: 💫💫💫          │
+│                                                              │
+│      Word: 🐘 ELEPHANT                                       │
+│      Pop the correct picture bubble before time runs out! ⏳  │
+│                                                              │
+│   ┌──────────────────────────────────────────────────────┐    │
+│   │                                                      │    │
+│   │   ○ 🐘   ○ 🍌   ○ 🦁   ○ 🌳   ○ 🐘   ○ 🍎             │    │
+│   │                                                      │    │
+│   │   (Floating bubbles moving randomly)                 │    │
+│   │                                                      │    │
+│   └──────────────────────────────────────────────────────┘    │
+│                                                              │
+│                💡 Hint: "It's big and has a trunk!" 🐘       │
+│                                                              │
+│                [Play Again]   [Hint]   [Back to Hub]         │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+*It's like popping bubble wrap, but you're learning words while doing it! Pop-pop-pop! 🎉*
+
+---
+
+### 🎮 Gameplay Flow
+
+1. **Start:** The player sees a word displayed at the top (e.g., ELEPHANT with an emoji).
+2. **Bubbles Appear:** Multiple colorful bubbles float up with pictures (some correct, some wrong).
+3. **Action:**
+   - Tap or click on the correct picture bubble!
+   - Each pop gives points and a fun "pop" sound 🎈.
+   - Bubbles disappear with a satisfying burst animation!
+4. **Wrong Pop:**
+   - If tapped incorrectly, bubble splashes in a funny way 💦 and you lose 1 heart ❤️.
+   - The wrong bubble does a silly "boing" animation (like it's laughing at you!).
+5. **Next Round:**
+   - A new word appears with new floating pictures.
+   - Bubbles get faster as you progress! ⚡
+6. **Speed Up:**
+   - As levels go on, bubbles move faster and faster!
+   - More bubbles appear at once (chaos mode, but fun chaos!).
+7. **Completion:**
+   - After all rounds, a score screen appears with stars and fun sounds.
+   - Celebrate with confetti and bubble animations! 🎊
+
+---
+
+### 🎈 Interaction Details
+
+**Bubbles:**
+- **Size:** 80–120px (scales with device - bigger on tablets so your thumb can't miss!).
+- **Movement:** Smooth floating animation with random directions (like they're floating in a bubble bath!).
+- **Pop animation:** Shrinks + burst particles + sound "pop!" 🎉
+- **Glossy look:** Each bubble has a shiny, see-through effect (like real soap bubbles!).
+
+**Visuals:**
+- **Background:** Soft gradient sky with floating clouds ☁️ (jungle version has green sky, space has stars, food has yummy colors!).
+- **Word displayed:** Bold, colorful jungle-themed font (big enough that even a sleepy elephant could read it!).
+- **Each picture icon:** Emoji/image appears inside a glossy, colorful bubble.
+- **Hearts/Lives:** Display in top corner (❤️❤️❤️ - lose one for each wrong pop!).
+
+**Sound Effects:**
+- 🎈 **Pop:** Satisfying bubble burst sound (like popping a real bubble!).
+- 🎵 **Correct pop:** Ding! or sparkle sound (success music!).
+- ❌ **Wrong pop:** Funny "boing" noise (like a cartoon spring!).
+- 🧠 **Level complete:** Cheerful melody (your victory song!).
+
+---
+
+### 📊 Levels Example
+
+| Level | Word | Correct Bubble | Trick Bubbles |
+|-------|------|----------------|---------------|
+| 1 | 🍎 APPLE | 🍎 | 🍌 🥭 🍇 |
+| 2 | 🦁 LION | 🦁 | 🐯 🐻 🐒 |
+| 3 | 🌳 TREE | 🌳 | 🌹 🍀 🌻 |
+| 4 | 🐘 ELEPHANT | 🐘 | 🐭 🐄 🐕 |
+| 5 | 🍌 BANANA | 🍌 | 🍎 🥭 🍇 |
+
+*The trick bubbles are like sneaky imposters - they're trying to fool you, but you're too smart! 🕵️*
+
+---
+
+### 🎉 Results Screen
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│                  🎉 AWESOME JOB! 🎉                          │
+│                                                              │
+│              You matched all the right pictures!             │
+│                                                              │
+│                Score: 450 Points 🌟                          │
+│                Stars Earned: ⭐⭐⭐                            │
+│                                                              │
+│              ┌────────────┐     ┌────────────┐               │
+│              │  PLAY AGAIN│     │ BACK TO HUB│               │
+│              └────────────┘     └────────────┘               │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+- When you finish, bubbles explode everywhere like a bubble party! 🎊
+- Score is based on accuracy and speed (pop fast, pop right = more points!).
+
+---
+
+### 📱 Responsive Design
+
+- **On mobile/tablet:** Bubbles are larger (120px+) and slower for touch (easier to tap with sticky fingers!).
+- **On desktop:** Smaller bubbles (80px), faster motion (because you have a mouse - show off!).
+- **Word + hint always remain fixed at the top** (so you never forget what you're looking for!).
+- **Bubbles wrap around screen edges** (they bounce like they're in a pinball machine!).
+
+---
+
+### 🧠 Learning Value
+
+- **Strengthens word–image association** (your brain connects words to pictures like a superhero!).
+- **Enhances reaction time and attention** (pop-pop-pop = super-fast thinking!).
+- **Fun, fast, and educational** 🎨 (learning that doesn't feel like learning - the best kind!).
+
+---
+
+### 💡 Bonus Features
+
+- **Power-ups:** Sometimes special bubbles appear with bonuses (extra time, double points, freeze time!).
+- **Combo system:** Pop multiple correct bubbles in a row for bonus points! 🔥
+- **Daily challenges:** "Pop 10 elephants in a row!" (becomes a mini achievement!).
+- **Themed rounds:** Special rounds with only animals, only fruits, etc. (mix it up!).
+
+---
+
+*So grab your virtual bubble wand and start popping! Remember - the right bubble is your best friend, and wrong bubbles are just trying to trick you (but you're too smart for them!). Pop on, word explorer! 🎈✨*
+
+---
+
+## 🐦 Game 4: Sound Safari (Audio Recognition Game)
+
+### 🧠 Purpose:
+
+Listen carefully to the animal sounds — roars, chirps, growls, and hisses — and pick the correct animal word!
+Builds kids' listening skills, audio memory, and word recognition through fun, animated reactions. 🎶🐘
+
+*(Think of it like being a sound detective! You hear a noise, and you have to figure out who made it - just like a real jungle explorer! 🕵️🎧)*
+
+---
+
+### 🌈 UI Layout
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│     🐦 SOUND SAFARI                    Score: 🌟🌟🌟         │
+│                                                              │
+│     🔊 Listen Carefully!                                      │
+│     (Roar sound plays) 🦁  "ROARRR!"                         │
+│                                                              │
+│      Which animal makes this sound? 👂                       │
+│                                                              │
+│   ┌──────────────────────────────────────────────────────┐    │
+│   │  [ 🦁 LION ]    [ 🐍 SNAKE ]    [ 🐘 ELEPHANT ]     │    │
+│   │                                                      │    │
+│   │  [ 🐦 BIRD ]    [ 🐵 MONKEY ]   [ 🐯 TIGER ]         │    │
+│   └──────────────────────────────────────────────────────┘    │
+│                                                              │
+│                 💡 Hint: "It's the king of the jungle!" 👑   │
+│                                                              │
+│                   [Replay Sound 🔁]  [Help]                  │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 🎮 Gameplay Flow:
+
+1. **Start:**
+   The game begins with a jungle-themed intro — monkeys swinging, birds chirping, and drums playing softly 🎶
+
+2. **Sound Plays:**
+   A random animal sound plays (e.g., lion roar 🦁, snake hiss 🐍, bird chirp 🐦).
+
+3. **Question Appears:**
+   The player sees the question: "Which animal makes this sound?"
+
+4. **Choose an Answer:**
+   Six buttons with different animal names (and emojis/pictures) appear.
+
+5. **Feedback Reaction:**
+   - ✅ **Correct:** The animal dances, jumps, or spins happily! 🎉
+   - ❌ **Wrong:** The animal makes a funny face or a comical sound effect (like a banana slip sound 🍌😂).
+
+6. **Next Round:**
+   A new sound plays, and the question repeats.
+
+7. **Completion:**
+   After all rounds (e.g., 10 sounds), a result screen appears showing stars, points, and total correct answers! 🌟
+
+---
+
+### 🎵 Interaction Details:
+
+**Audio:**
+- Realistic, kid-friendly animal sounds.
+- Duration: 2–3 seconds per sound.
+- Replay button allows replay of the sound once per round.
 
 **Buttons:**
-- "Got it!" - green, positive
-- "I don't know" - red, but friendly
-- Both BIG and touchable
+- Each option button has:
+  - Animal emoji 🐘 or cute image 🐯
+  - Bold word label (LION, BIRD, etc.)
+  - Smooth hover/tap animation (bounces slightly).
 
-### Results Screen:
-```
-┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│                    🎉 GREAT JOB! 🎉                      │
-│                                                          │
-│              You reviewed 10 words!                      │
-│                                                          │
-│                 8 out of 10 correct!                     │
-│                                                          │
-│                    ⭐⭐⭐                                │
-│                  3 stars earned!                         │
-│                                                          │
-│              ┌──────────────┐                           │
-│              │  PLAY AGAIN  │                           │
-│              └──────────────┘                           │
-│                                                          │
-│              ┌──────────────┐                           │
-│              │ BACK TO HUB  │                           │
-│              └──────────────┘                           │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Responsive:
-- Card scales to screen size
-- Always centered
-- Buttons stack on mobile
-- Full-screen experience
+**Feedback Animation:**
+- **Correct answer:**
+  - Animal bounces, spins, or does a dance move! 🕺
+  - "Yay!" sound and confetti burst. 🎊
+- **Wrong answer:**
+  - Funny sound effect (boing, oops, etc.)
+  - Animal makes a goofy face or shakes head. 🙈
 
 ---
 
-## 🎒 Game 3: Word Collection
+### 📊 Sample Rounds:
+
+| Round | Sound | Correct Word | Wrong Options | Animation |
+|-------|-------|-------------|---------------|-----------|
+| 1 | 🦁 Roar | LION | ELEPHANT, MONKEY, BIRD | Lion roars and waves |
+| 2 | 🐍 Hiss | SNAKE | TIGER, FROG, CAT | Snake slithers |
+| 3 | 🐦 Chirp | BIRD | LION, ELEPHANT, FROG | Bird flaps wings |
+| 4 | 🐘 Trumpet | ELEPHANT | LION, BEAR, TIGER | Elephant sprays water |
+| 5 | 🐵 Screech | MONKEY | BIRD, SNAKE, LION | Monkey jumps excitedly |
+
+---
+
+### 🎉 Results Screen:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│                 🎉 SOUND SAFARI RESULTS 🎉                   │
+│                                                              │
+│                You guessed 8 out of 10 correctly!            │
+│                                                              │
+│                    ⭐⭐⭐   (Great Listener!)                  │
+│                                                              │
+│              ┌──────────────┐     ┌──────────────┐           │
+│              │  PLAY AGAIN  │     │ BACK TO HUB  │           │
+│              └──────────────┘     └──────────────┘           │
+│                                                              │
+│         🐘 "You have amazing ears!" – Elephant               │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📱 Responsive Design:
+
+- **Tablet/Mobile:** Big animal buttons for touch
+- **Desktop:** Wider layout, sound auto-plays on load
+- Always keeps jungle theme — animated background with moving leaves, birds, and light sun rays 🌿☀️
+
+---
+
+### 🧠 Learning Value:
+
+- Improves listening comprehension and audio-word association
+- Encourages quick decision-making and focus
+- Makes learning interactive and sensory-rich 🌈
+
+---
+
+*So put on your listening ears and get ready for a sound adventure! Can you guess all the animals just by their sounds? 🐘👂✨*
+
+---
+
+## 🎒 Game 5: Word Collection
 
 ### Purpose: Show all words kid has learned!
 
