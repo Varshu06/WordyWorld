@@ -14,14 +14,38 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
   const worldWordsByDifficulty = {
     easy: {
       jungle: [
+        // Animals
         { word: 'cat', emoji: '🐱', trickEmojis: ['🐶', '🐭', '🐹'] },
         { word: 'dog', emoji: '🐶', trickEmojis: ['🐱', '🐻', '🐼'] },
+        { word: 'bat', emoji: '🦇', trickEmojis: ['🦉', '🐦', '🕊️'] },
+        { word: 'fox', emoji: '🦊', trickEmojis: ['🐺', '🐻', '🐯'] },
+        { word: 'bee', emoji: '🐝', trickEmojis: ['🦋', '🐛', '🪲'] },
+        { word: 'ant', emoji: '🐜', trickEmojis: ['🐝', '🦟', '🕷️'] },
+        { word: 'owl', emoji: '🦉', trickEmojis: ['🦇', '🐦', '🦅'] },
+        { word: 'bear', emoji: '🐻', trickEmojis: ['🐼', '🐨', '🐯'] },
+        { word: 'duck', emoji: '🦆', trickEmojis: ['🦢', '🐧', '🦩'] },
+        { word: 'deer', emoji: '🦌', trickEmojis: ['🦙', '🐴', '🦓'] },
+        // Birds
         { word: 'bird', emoji: '🐦', trickEmojis: ['🐤', '🐥', '🦅'] },
+        { word: 'crow', emoji: '🐦‍⬛', trickEmojis: ['🐦', '🦅', '🦉'] },
+        { word: 'eagle', emoji: '🦅', trickEmojis: ['🐦', '🦉', '🦆'] },
+        { word: 'robin', emoji: '🐦', trickEmojis: ['🐤', '🦆', '🦢'] },
+        // Trees and Plants
         { word: 'tree', emoji: '🌳', trickEmojis: ['🌲', '🌴', '🌵'] },
         { word: 'leaf', emoji: '🍃', trickEmojis: ['🍂', '🍁', '🌿'] },
-        { word: 'fish', emoji: '🐠', trickEmojis: ['🐟', '🐡', '🦈'] },
+        { word: 'oak', emoji: '🌳', trickEmojis: ['🌲', '🌴', '🎄'] },
+        { word: 'pine', emoji: '🌲', trickEmojis: ['🌳', '🎄', '🌴'] },
+        { word: 'palm', emoji: '🌴', trickEmojis: ['🌳', '🌲', '🎋'] },
+        { word: 'fern', emoji: '🌿', trickEmojis: ['🍃', '🍂', '🍁'] },
+        { word: 'moss', emoji: '🟢', trickEmojis: ['🌿', '🍃', '🟩'] },
+        { word: 'vine', emoji: '🌿', trickEmojis: ['🍃', '🌱', '🌾'] },
+        // Nature
         { word: 'rock', emoji: '🪨', trickEmojis: ['💎', '🔷', '🔹'] },
         { word: 'hill', emoji: '⛰️', trickEmojis: ['🏔️', '🌄', '🌅'] },
+        { word: 'nest', emoji: '🪺', trickEmojis: ['🥚', '🪹', '🏠'] },
+        { word: 'cave', emoji: '🕳️', trickEmojis: ['🏔️', '⛰️', '🪨'] },
+        { word: 'lake', emoji: '🌊', trickEmojis: ['🏞️', '🌊', '💧'] },
+        { word: 'river', emoji: '🌊', trickEmojis: ['🌊', '🏞️', '💧'] },
       ],
       space: [
         { word: 'moon', emoji: '🌙', trickEmojis: ['⭐', '✨', '🌟'] },
@@ -40,14 +64,35 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     },
     medium: {
       jungle: [
+        // Medium Animals
         { word: 'monkey', emoji: '🐵', trickEmojis: ['🍌', '🌳', '🐯'] },
         { word: 'tiger', emoji: '🐯', trickEmojis: ['🦁', '🐻', '🐒'] },
-        { word: 'parrot', emoji: '🦜', trickEmojis: ['🐦', '🦅', '🐤'] },
+        { word: 'lion', emoji: '🦁', trickEmojis: ['🐯', '🐻', '🐼'] },
         { word: 'snake', emoji: '🐍', trickEmojis: ['🐛', '🦎', '🐢'] },
         { word: 'zebra', emoji: '🦓', trickEmojis: ['🐴', '🦄', '🐷'] },
         { word: 'frog', emoji: '🐸', trickEmojis: ['🐊', '🦎', '🐢'] },
         { word: 'leopard', emoji: '🐆', trickEmojis: ['🐯', '🦁', '🐻'] },
         { word: 'giraffe', emoji: '🦒', trickEmojis: ['🐘', '🦛', '🐄'] },
+        { word: 'panda', emoji: '🐼', trickEmojis: ['🐻', '🐨', '🐰'] },
+        { word: 'koala', emoji: '🐨', trickEmojis: ['🐼', '🐻', '🐰'] },
+        { word: 'rabbit', emoji: '🐰', trickEmojis: ['🐭', '🐹', '🐻'] },
+        { word: 'squirrel', emoji: '🐿️', trickEmojis: ['🐭', '🐹', '🐰'] },
+        { word: 'raccoon', emoji: '🦝', trickEmojis: ['🐱', '🐻', '🦊'] },
+        { word: 'wolf', emoji: '🐺', trickEmojis: ['🐕', '🦊', '🐻'] },
+        { word: 'otter', emoji: '🦦', trickEmojis: ['🦆', '🐧', '🦢'] },
+        // Medium Birds
+        { word: 'parrot', emoji: '🦜', trickEmojis: ['🐦', '🦅', '🐤'] },
+        { word: 'toucan', emoji: '🦜', trickEmojis: ['🐦', '🦅', '🦚'] },
+        { word: 'hawk', emoji: '🦅', trickEmojis: ['🦉', '🐦', '🦆'] },
+        { word: 'woodpecker', emoji: '🐦', trickEmojis: ['🦅', '🦆', '🦢'] },
+        { word: 'penguin', emoji: '🐧', trickEmojis: ['🐦', '🦆', '🦢'] },
+        { word: 'flamingo', emoji: '🦩', trickEmojis: ['🦢', '🦆', '🐧'] },
+        { word: 'peacock', emoji: '🦚', trickEmojis: ['🦜', '🦅', '🦩'] },
+        // Medium Nature
+        { word: 'bamboo', emoji: '🎋', trickEmojis: ['🌳', '🌴', '🌲'] },
+        { word: 'jungle', emoji: '🌳', trickEmojis: ['🌲', '🌴', '🌿'] },
+        { word: 'forest', emoji: '🌲', trickEmojis: ['🌳', '🌴', '🎋'] },
+        { word: 'waterfall', emoji: '🌊', trickEmojis: ['🏞️', '🌊', '💧'] },
       ],
       space: [
         { word: 'rocket', emoji: '🚀', trickEmojis: ['🛸', '✈️', '🛰️'] },
@@ -72,14 +117,32 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     },
     hard: {
       jungle: [
+        // Large Animals
         { word: 'elephant', emoji: '🐘', trickEmojis: ['🐭', '🐄', '🐕'] },
         { word: 'rhinoceros', emoji: '🦏', trickEmojis: ['🐘', '🦛', '🐄'] },
-        { word: 'chameleon', emoji: '🦎', trickEmojis: ['🐍', '🐢', '🐊'] },
         { word: 'hippopotamus', emoji: '🦛', trickEmojis: ['🐘', '🦏', '🐄'] },
         { word: 'chimpanzee', emoji: '🦧', trickEmojis: ['🐵', '🐒', '🦍'] },
+        { word: 'gorilla', emoji: '🦍', trickEmojis: ['🐵', '🦧', '🐻'] },
+        { word: 'orangutan', emoji: '🦧', trickEmojis: ['🐵', '🦍', '🐒'] },
+        // Reptiles
         { word: 'crocodile', emoji: '🐊', trickEmojis: ['🐍', '🦎', '🐢'] },
+        { word: 'alligator', emoji: '🐊', trickEmojis: ['🐍', '🦎', '🐊'] },
+        { word: 'chameleon', emoji: '🦎', trickEmojis: ['🐍', '🐢', '🐊'] },
+        { word: 'iguana', emoji: '🦎', trickEmojis: ['🐍', '🐊', '🐢'] },
+        { word: 'python', emoji: '🐍', trickEmojis: ['🐛', '🦎', '🐢'] },
+        { word: 'anaconda', emoji: '🐍', trickEmojis: ['🐍', '🐊', '🦎'] },
+        { word: 'cobra', emoji: '🐍', trickEmojis: ['🐍', '🐛', '🦎'] },
+        { word: 'komodo', emoji: '🦎', trickEmojis: ['🐍', '🐊', '🐢'] },
+        // Insects
+        { word: 'tarantula', emoji: '🕷️', trickEmojis: ['🐝', '🐛', '🦂'] },
+        { word: 'scorpion', emoji: '🦂', trickEmojis: ['🕷️', '🐝', '🪲'] },
         { word: 'butterfly', emoji: '🦋', trickEmojis: ['🐝', '🐛', '🦟'] },
+        { word: 'dragonfly', emoji: '🦋', trickEmojis: ['🦋', '🐝', '🦟'] },
+        // Birds
         { word: 'hummingbird', emoji: '🐦', trickEmojis: ['🦅', '🦉', '🦜'] },
+        { word: 'albatross', emoji: '🪽', trickEmojis: ['🦅', '🦆', '🦢'] },
+        { word: 'pelican', emoji: '🦢', trickEmojis: ['🦆', '🐧', '🦩'] },
+        { word: 'vulture', emoji: '🦅', trickEmojis: ['🦉', '🐦', '🦆'] },
       ],
       space: [
         { word: 'constellation', emoji: '⭐', trickEmojis: ['💫', '🌟', '✨'] },

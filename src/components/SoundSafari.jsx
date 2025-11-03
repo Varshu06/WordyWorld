@@ -81,11 +81,25 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
   const fallbackWordsByDifficulty = {
     easy: {
       jungle: [
+        // Animals
         { word: 'cat', emoji: '🐱', soundText: 'MEOW!', hint: 'I am a furry pet that meows!', description: 'A friendly meow sound!' },
         { word: 'dog', emoji: '🐶', soundText: 'WOOF!', hint: 'I am a friendly pet that barks!', description: 'A happy bark sound!' },
+        { word: 'bat', emoji: '🦇', soundText: 'SQUEAK!', hint: 'I fly at night and sleep upside down!', description: 'A high-pitched squeak!' },
+        { word: 'fox', emoji: '🦊', soundText: 'YELP!', hint: 'I am orange and very clever!', description: 'A quick yelping sound!' },
+        { word: 'bee', emoji: '🐝', soundText: 'BUZZ!', hint: 'I make honey and buzz around flowers!', description: 'A buzzing sound!' },
+        { word: 'ant', emoji: '🐜', soundText: 'TAP!', hint: 'I am tiny and work in groups!', description: 'Tiny tapping sounds!' },
+        { word: 'owl', emoji: '🦉', soundText: 'HOOT!', hint: 'I am a wise bird that hoots at night!', description: 'A hooting sound!' },
+        { word: 'bear', emoji: '🐻', soundText: 'GROWL!', hint: 'I am big and furry with sharp claws!', description: 'A deep growl!' },
+        { word: 'duck', emoji: '🦆', soundText: 'QUACK!', hint: 'I swim in water and say quack!', description: 'A quacking sound!' },
+        { word: 'deer', emoji: '🦌', soundText: 'BLEAT!', hint: 'I have antlers and run very fast!', description: 'A bleating sound!' },
+        // Birds
         { word: 'bird', emoji: '🐦', soundText: 'CHIRP!', hint: 'I fly and sing beautiful songs!', description: 'A cheerful chirp from the trees!' },
-        { word: 'fish', emoji: '🐠', soundText: 'BUBBLE!', hint: 'I swim in water all day!', description: 'Bubbling water sounds!' },
+        { word: 'crow', emoji: '🐦‍⬛', soundText: 'CAW!', hint: 'I am black and say caw caw!', description: 'A loud caw sound!' },
+        { word: 'eagle', emoji: '🦅', soundText: 'SCREECH!', hint: 'I am a big bird with sharp talons!', description: 'A sharp screech!' },
+        { word: 'robin', emoji: '🐦', soundText: 'TWEET!', hint: 'I have a red chest and sing sweetly!', description: 'A sweet tweet!' },
+        // Trees and Nature
         { word: 'tree', emoji: '🌳', soundText: 'SWAY!', hint: 'I am tall with green leaves!', description: 'Leaves rustling in the wind!' },
+        { word: 'wind', emoji: '💨', soundText: 'WHOOSH!', hint: 'I blow through the trees!', description: 'Wind whooshing sound!' },
       ],
       space: [
         { word: 'moon', emoji: '🌙', soundText: 'GLOW!', hint: 'I shine bright in the night sky!', description: 'A magical moon glow!' },
@@ -102,13 +116,24 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
     },
     medium: {
       jungle: [
+        // Medium Animals
         { word: 'lion', emoji: '🦁', soundText: 'ROARRR!', hint: "It's the king of the jungle!", description: 'A mighty roar that shakes the trees!' },
-        { word: 'snake', emoji: '🐍', soundText: 'HISSSS!', hint: 'It slithers through the grass!', description: 'A slithering hiss in the leaves!' },
-        { word: 'monkey', emoji: '🐵', soundText: 'OOH OOH!', hint: 'It swings from tree to tree!', description: 'Playful chattering sounds!' },
         { word: 'tiger', emoji: '🐯', soundText: 'GROWL!', hint: 'It has stripes and is fierce!', description: 'A deep, powerful growl!' },
+        { word: 'monkey', emoji: '🐵', soundText: 'OOH OOH!', hint: 'It swings from tree to tree!', description: 'Playful chattering sounds!' },
+        { word: 'snake', emoji: '🐍', soundText: 'HISSSS!', hint: 'It slithers through the grass!', description: 'A slithering hiss in the leaves!' },
         { word: 'frog', emoji: '🐸', soundText: 'RIBBIT!', hint: 'It jumps and lives near water!', description: 'A croaky ribbit sound!' },
-        { word: 'parrot', emoji: '🦜', soundText: 'SQUAWK!', hint: 'It can talk and is colorful!', description: 'A colorful squawk!' },
         { word: 'zebra', emoji: '🦓', soundText: 'NEIGH!', hint: 'It has black and white stripes!', description: 'A zebra neighing sound!' },
+        { word: 'panda', emoji: '🐼', soundText: 'BLEAT!', hint: 'I am black and white and love bamboo!', description: 'A gentle bleat!' },
+        { word: 'koala', emoji: '🐨', soundText: 'GRUNT!', hint: 'I am fuzzy and love eucalyptus leaves!', description: 'A soft grunt!' },
+        { word: 'rabbit', emoji: '🐰', soundText: 'THUMP!', hint: 'I have long ears and hop very fast!', description: 'A thumping sound!' },
+        { word: 'wolf', emoji: '🐺', soundText: 'HOWL!', hint: 'I howl at the moon and live in packs!', description: 'A long howl!' },
+        { word: 'otter', emoji: '🦦', soundText: 'CHIRP!', hint: 'I swim and play in the water!', description: 'A playful chirp!' },
+        // Medium Birds
+        { word: 'parrot', emoji: '🦜', soundText: 'SQUAWK!', hint: 'It can talk and is colorful!', description: 'A colorful squawk!' },
+        { word: 'toucan', emoji: '🦜', soundText: 'CROAK!', hint: 'I am a colorful bird with a big beak!', description: 'A croaking sound!' },
+        { word: 'hawk', emoji: '🦅', soundText: 'SCREECH!', hint: 'I am a bird of prey with sharp eyes!', description: 'A sharp screech!' },
+        { word: 'woodpecker', emoji: '🐦', soundText: 'TAP TAP!', hint: 'I peck on trees to find insects!', description: 'Tapping sounds!' },
+        { word: 'peacock', emoji: '🦚', soundText: 'CALL!', hint: 'I have beautiful colorful feathers!', description: 'A loud call!' },
       ],
       space: [
         { word: 'rocket', emoji: '🚀', soundText: 'WHOOSH!', hint: 'It flies to the stars!', description: 'A powerful rocket engine sound!' },
@@ -129,12 +154,27 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
     },
     hard: {
       jungle: [
+        // Large Animals
         { word: 'elephant', emoji: '🐘', soundText: 'TRUMPET!', hint: "It's huge with a long trunk!", description: 'A loud trumpet call!' },
         { word: 'rhinoceros', emoji: '🦏', soundText: 'GRUNT!', hint: 'It is large and gray with a horn!', description: 'A deep rhino grunt!' },
-        { word: 'chameleon', emoji: '🦎', soundText: 'HISS!', hint: 'It can change colors to hide!', description: 'A chameleon hissing sound!' },
         { word: 'hippopotamus', emoji: '🦛', soundText: 'GRUNT!', hint: 'It is huge and loves water!', description: 'A hippo grunting loudly!' },
         { word: 'chimpanzee', emoji: '🦧', soundText: 'HOOT!', hint: 'It is a smart ape like humans!', description: 'Chimp hooting sounds!' },
+        { word: 'gorilla', emoji: '🦍', soundText: 'BEAT CHEST!', hint: 'I am a big strong ape with black fur!', description: 'Chest beating sounds!' },
+        { word: 'orangutan', emoji: '🦧', soundText: 'HOOT!', hint: 'I am a red-haired ape that swings!', description: 'Long hooting sounds!' },
+        // Reptiles
         { word: 'crocodile', emoji: '🐊', soundText: 'ROAR!', hint: 'It is a large reptile with sharp teeth!', description: 'A crocodile roar!' },
+        { word: 'alligator', emoji: '🐊', soundText: 'BELLOW!', hint: 'I am like a crocodile but live in swamps!', description: 'A deep bellow!' },
+        { word: 'chameleon', emoji: '🦎', soundText: 'HISS!', hint: 'It can change colors to hide!', description: 'A chameleon hissing sound!' },
+        { word: 'python', emoji: '🐍', soundText: 'HISS!', hint: 'I am a huge snake that can squeeze!', description: 'A long hiss!' },
+        { word: 'anaconda', emoji: '🐍', soundText: 'HISS!', hint: 'I am the biggest snake in the jungle!', description: 'A powerful hiss!' },
+        { word: 'cobra', emoji: '🐍', soundText: 'HISS!', hint: 'I am a dangerous snake that can spread my hood!', description: 'A threatening hiss!' },
+        // Insects
+        { word: 'tarantula', emoji: '🕷️', soundText: 'HISS!', hint: 'I am a big hairy spider!', description: 'A spider hissing sound!' },
+        { word: 'scorpion', emoji: '🦂', soundText: 'CLICK!', hint: 'I have a stinger on my tail!', description: 'Clicking sounds!' },
+        // Birds
+        { word: 'hummingbird', emoji: '🐦', soundText: 'BUZZ!', hint: 'I am tiny and fly very fast!', description: 'A buzzing wing sound!' },
+        { word: 'albatross', emoji: '🪽', soundText: 'SQUEAK!', hint: 'I am a large sea bird that glides!', description: 'A squeaking sound!' },
+        { word: 'vulture', emoji: '🦅', soundText: 'HISS!', hint: 'I am a bird that eats dead animals!', description: 'A hissing sound!' },
       ],
       space: [
         { word: 'constellation', emoji: '⭐', soundText: 'SPARKLE!', hint: 'It is a pattern of stars in the sky!', description: 'Sparkling constellation sounds!' },
@@ -318,8 +358,8 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
       playSound('Oops! Try again!')
     }
 
-    setTimeout(() => {
-      nextRound()
+      setTimeout(() => {
+        nextRound()
     }, 2500)
   }
 
@@ -353,10 +393,10 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
       else if (accuracy >= 0.2) stars = 2
     } else {
       // Medium/Hard: Time-based bonus still applies
-      if (accuracy >= 0.9 && timeElapsed < config.timeBonus * 0.7) stars = 5
-      else if (accuracy >= 0.8) stars = 4
-      else if (accuracy >= 0.6) stars = 3
-      else if (accuracy >= 0.4) stars = 2
+    if (accuracy >= 0.9 && timeElapsed < config.timeBonus * 0.7) stars = 5
+    else if (accuracy >= 0.8) stars = 4
+    else if (accuracy >= 0.6) stars = 3
+    else if (accuracy >= 0.4) stars = 2
     }
 
     setStarsEarned(stars)
@@ -586,27 +626,27 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
               <div className="relative z-10">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
                   <div className={`text-6xl md:text-8xl ${soundWave ? 'animate-pulse' : ''}`}>
-                    {currentWord.emoji}
+                  {currentWord.emoji}
                   </div>
-                  <div>
-                    <p className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg font-playful mb-2">
-                      🔊 {currentWord.soundText}
-                    </p>
-                    <p className="text-white text-lg md:text-xl font-bold drop-shadow-lg font-playful">
-                      {currentWord.description}
-                    </p>
-                  </div>
+                <div>
+                  <p className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg font-playful mb-2">
+                    🔊 {currentWord.soundText}
+                  </p>
+                  <p className="text-white text-lg md:text-xl font-bold drop-shadow-lg font-playful">
+                    {currentWord.description}
+                  </p>
                 </div>
-                <p className="text-white text-xl md:text-2xl font-bold drop-shadow-lg font-playful mb-4">
+              </div>
+              <p className="text-white text-xl md:text-2xl font-bold drop-shadow-lg font-playful mb-4">
                   Which {theme.questionType} makes this sound? 👂
-                </p>
-                {showHint && (
+              </p>
+              {showHint && (
                   <div className="mt-4 p-4 bg-yellow-400/30 rounded-xl border-2 border-yellow-400 animate-fade-in">
-                    <p className="text-white text-base md:text-lg font-bold drop-shadow-lg font-playful">
-                      💡 {theme.characterEmoji} Hint: "{currentWord.hint}" 👑
-                    </p>
-                  </div>
-                )}
+                  <p className="text-white text-base md:text-lg font-bold drop-shadow-lg font-playful">
+                    💡 {theme.characterEmoji} Hint: "{currentWord.hint}" 👑
+                  </p>
+                </div>
+              )}
               </div>
             </div>
           </div>

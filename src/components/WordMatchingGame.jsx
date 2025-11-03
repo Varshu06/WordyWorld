@@ -14,14 +14,38 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
   const wordLists = {
     easy: {
       jungle: [
+        // Animals
         { word: 'cat', emoji: '🐱', definition: 'A furry pet that meows' },
         { word: 'dog', emoji: '🐶', definition: 'A friendly pet that barks' },
+        { word: 'bat', emoji: '🦇', definition: 'A flying mammal that sleeps upside down' },
+        { word: 'fox', emoji: '🦊', definition: 'An orange clever wild animal' },
+        { word: 'bee', emoji: '🐝', definition: 'An insect that makes honey' },
+        { word: 'ant', emoji: '🐜', definition: 'A tiny hardworking insect' },
+        { word: 'owl', emoji: '🦉', definition: 'A wise bird that hoots at night' },
+        { word: 'bear', emoji: '🐻', definition: 'A big furry animal with claws' },
+        { word: 'duck', emoji: '🦆', definition: 'A water bird that quacks' },
+        { word: 'deer', emoji: '🦌', definition: 'An animal with antlers' },
+        // Birds
         { word: 'bird', emoji: '🐦', definition: 'An animal that flies and sings' },
-        { word: 'fish', emoji: '🐠', definition: 'An animal that swims in water' },
+        { word: 'crow', emoji: '🐦‍⬛', definition: 'A black bird that says caw' },
+        { word: 'eagle', emoji: '🦅', definition: 'A big bird with sharp talons' },
+        { word: 'robin', emoji: '🐦', definition: 'A bird with a red chest' },
+        // Trees and Plants
         { word: 'tree', emoji: '🌳', definition: 'A tall plant with branches' },
         { word: 'leaf', emoji: '🍃', definition: 'A green part of a tree' },
-        { word: 'rock', emoji: '🪨', definition: 'A hard stone on the ground' },
-        { word: 'hill', emoji: '⛰️', definition: 'A small mountain or raised land' },
+        { word: 'oak', emoji: '🌳', definition: 'A strong tree with acorns' },
+        { word: 'pine', emoji: '🌲', definition: 'A tree with needles' },
+        { word: 'palm', emoji: '🌴', definition: 'A tropical tree with coconuts' },
+        { word: 'fern', emoji: '🌿', definition: 'A green plant with fronds' },
+        { word: 'moss', emoji: '🟢', definition: 'Soft green growth on rocks' },
+        { word: 'vine', emoji: '🌿', definition: 'A plant that climbs' },
+        // Nature
+        { word: 'rock', emoji: '🪨', definition: 'A hard stone' },
+        { word: 'hill', emoji: '⛰️', definition: 'A small mountain' },
+        { word: 'nest', emoji: '🪺', definition: 'Where birds lay eggs' },
+        { word: 'cave', emoji: '🕳️', definition: 'A dark hole in a mountain' },
+        { word: 'lake', emoji: '🌊', definition: 'A big body of water' },
+        { word: 'river', emoji: '🌊', definition: 'Flowing water from mountains' },
       ],
       space: [
         { word: 'moon', emoji: '🌙', definition: 'The bright light in the night sky' },
@@ -46,14 +70,37 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
     },
     medium: {
       jungle: [
+        // Medium Animals
         { word: 'monkey', emoji: '🐵', definition: 'A playful jungle animal that swings on trees' },
         { word: 'tiger', emoji: '🐯', definition: 'A striped big cat that roams the jungle' },
-        { word: 'parrot', emoji: '🦜', definition: 'A colorful bird that can talk and fly' },
+        { word: 'lion', emoji: '🦁', definition: 'The king of the jungle with a golden mane' },
         { word: 'snake', emoji: '🐍', definition: 'A slithering reptile in the jungle' },
         { word: 'zebra', emoji: '🦓', definition: 'A striped horse-like animal' },
         { word: 'leopard', emoji: '🐆', definition: 'A spotted wild cat' },
         { word: 'giraffe', emoji: '🦒', definition: 'A tall animal with a long neck' },
+        { word: 'panda', emoji: '🐼', definition: 'A black and white bear that loves bamboo' },
+        { word: 'koala', emoji: '🐨', definition: 'A fuzzy animal that loves eucalyptus' },
+        { word: 'rabbit', emoji: '🐰', definition: 'A fast-hopping animal with long ears' },
+        { word: 'squirrel', emoji: '🐿️', definition: 'A small animal that collects nuts' },
+        { word: 'raccoon', emoji: '🦝', definition: 'A clever animal with a mask' },
+        { word: 'wolf', emoji: '🐺', definition: 'A wild dog that howls' },
+        { word: 'otter', emoji: '🦦', definition: 'A playful water animal' },
+        // Medium Birds
+        { word: 'parrot', emoji: '🦜', definition: 'A colorful bird that can talk' },
         { word: 'toucan', emoji: '🦜', definition: 'A colorful bird with a big beak' },
+        { word: 'hawk', emoji: '🦅', definition: 'A bird of prey with sharp eyes' },
+        { word: 'woodpecker', emoji: '🐦', definition: 'A bird that pecks trees' },
+        { word: 'penguin', emoji: '🐧', definition: 'A bird that cannot fly but swims' },
+        { word: 'flamingo', emoji: '🦩', definition: 'A pink bird that stands on one leg' },
+        { word: 'peacock', emoji: '🦚', definition: 'A bird with beautiful feathers' },
+        // Medium Nature
+        { word: 'bamboo', emoji: '🎋', definition: 'A fast-growing plant pandas love' },
+        { word: 'jungle', emoji: '🌳', definition: 'A dense tropical forest' },
+        { word: 'forest', emoji: '🌲', definition: 'A big area full of trees' },
+        { word: 'waterfall', emoji: '🌊', definition: 'Water falling from high rocks' },
+        { word: 'valley', emoji: '🏔️', definition: 'A low area between mountains' },
+        { word: 'canyon', emoji: '⛰️', definition: 'A deep valley with steep sides' },
+        { word: 'mountain', emoji: '⛰️', definition: 'A very tall landform' },
       ],
       space: [
         { word: 'rocket', emoji: '🚀', definition: 'A vehicle that flies through space' },
@@ -78,14 +125,38 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
     },
     hard: {
       jungle: [
+        // Large Animals
         { word: 'elephant', emoji: '🐘', definition: 'A huge animal with a long trunk and big ears' },
         { word: 'rhinoceros', emoji: '🦏', definition: 'A large gray animal with a horn' },
-        { word: 'chameleon', emoji: '🦎', definition: 'A lizard that changes colors' },
         { word: 'hippopotamus', emoji: '🦛', definition: 'A huge water-loving animal' },
         { word: 'chimpanzee', emoji: '🦧', definition: 'A smart ape similar to humans' },
+        { word: 'gorilla', emoji: '🦍', definition: 'A big strong ape with black fur' },
+        { word: 'orangutan', emoji: '🦧', definition: 'A red-haired ape that swings' },
+        // Reptiles
         { word: 'crocodile', emoji: '🐊', definition: 'A large reptile with sharp teeth' },
+        { word: 'alligator', emoji: '🐊', definition: 'A reptile like a crocodile' },
+        { word: 'chameleon', emoji: '🦎', definition: 'A lizard that changes colors' },
+        { word: 'iguana', emoji: '🦎', definition: 'A big green lizard' },
+        { word: 'python', emoji: '🐍', definition: 'A huge snake that can squeeze' },
+        { word: 'anaconda', emoji: '🐍', definition: 'The biggest snake in the jungle' },
+        { word: 'cobra', emoji: '🐍', definition: 'A dangerous snake with a hood' },
+        { word: 'komodo', emoji: '🦎', definition: 'A giant dangerous lizard' },
+        // Insects
+        { word: 'tarantula', emoji: '🕷️', definition: 'A big hairy spider' },
+        { word: 'scorpion', emoji: '🦂', definition: 'An arachnid with a stinger' },
         { word: 'butterfly', emoji: '🦋', definition: 'A colorful flying insect with wings' },
+        { word: 'dragonfly', emoji: '🦋', definition: 'An insect with transparent wings' },
+        // Birds
         { word: 'hummingbird', emoji: '🐦', definition: 'A tiny fast-flying bird' },
+        { word: 'albatross', emoji: '🪽', definition: 'A large sea bird that glides' },
+        { word: 'pelican', emoji: '🦢', definition: 'A bird with a big beak' },
+        { word: 'vulture', emoji: '🦅', definition: 'A bird that eats dead animals' },
+        // Nature
+        { word: 'ecosystem', emoji: '🌍', definition: 'Where all living things work together' },
+        { word: 'rainforest', emoji: '🌳', definition: 'A dense forest with lots of rain' },
+        { word: 'tropical', emoji: '🌴', definition: 'A warm climate near the equator' },
+        { word: 'mangrove', emoji: '🌊', definition: 'A tree that grows in water' },
+        { word: 'habitat', emoji: '🏡', definition: 'Where animals live naturally' },
       ],
       space: [
         { word: 'constellation', emoji: '⭐', definition: 'A pattern of stars in the sky' },

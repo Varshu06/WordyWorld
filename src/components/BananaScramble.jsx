@@ -15,46 +15,107 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
   const worldWordsByDifficulty = {
     easy: {
       jungle: [
+        // Animals
         { word: 'cat', hint: 'I am a furry pet that meows!', emoji: '🐱' },
         { word: 'dog', hint: 'I am a friendly pet that barks!', emoji: '🐶' },
+        { word: 'bat', hint: 'I fly at night and sleep upside down!', emoji: '🦇' },
+        { word: 'fox', hint: 'I am orange and very clever!', emoji: '🦊' },
+        { word: 'bee', hint: 'I make honey and buzz around flowers!', emoji: '🐝' },
+        { word: 'ant', hint: 'I am tiny and work in groups!', emoji: '🐜' },
+        { word: 'owl', hint: 'I am a wise bird that hoots at night!', emoji: '🦉' },
+        { word: 'bear', hint: 'I am big and furry with sharp claws!', emoji: '🐻' },
+        { word: 'duck', hint: 'I swim in water and say quack!', emoji: '🦆' },
+        { word: 'deer', hint: 'I have antlers and run very fast!', emoji: '🦌' },
+        // Birds
         { word: 'bird', hint: 'I fly and sing beautiful songs!', emoji: '🐦' },
+        { word: 'crow', hint: 'I am black and say caw caw!', emoji: '🐦‍⬛' },
+        { word: 'eagle', hint: 'I am a big bird with sharp talons!', emoji: '🦅' },
+        { word: 'robin', hint: 'I have a red chest and sing sweetly!', emoji: '🐦' },
+        // Trees and Plants
         { word: 'tree', hint: 'I am tall with green leaves!', emoji: '🌳' },
         { word: 'leaf', hint: 'I am green and fall from trees!', emoji: '🍃' },
-        { word: 'fish', hint: 'I swim in water all day!', emoji: '🐠' },
+        { word: 'oak', hint: 'I am a strong tree with acorns!', emoji: '🌳' },
+        { word: 'pine', hint: 'I have needles and stay green all year!', emoji: '🌲' },
+        { word: 'palm', hint: 'I am a tropical tree with coconuts!', emoji: '🌴' },
+        { word: 'fern', hint: 'I am a green plant with fronds!', emoji: '🌿' },
+        { word: 'moss', hint: 'I am soft and green on rocks!', emoji: '🟢' },
+        { word: 'vine', hint: 'I climb and wrap around trees!', emoji: '🌿' },
+        // Nature
         { word: 'rock', hint: 'I am hard and gray!', emoji: '🪨' },
         { word: 'hill', hint: 'I am a small mountain!', emoji: '⛰️' },
+        { word: 'nest', hint: 'Birds build me to lay eggs!', emoji: '🪺' },
+        { word: 'cave', hint: 'I am a dark hole in the mountain!', emoji: '🕳️' },
+        { word: 'lake', hint: 'I am a big body of water!', emoji: '🌊' },
+        { word: 'river', hint: 'I flow from mountains to the sea!', emoji: '🌊' },
       ],
       space: [
         { word: 'moon', hint: 'I shine bright in the night sky!', emoji: '🌙' },
         { word: 'star', hint: 'I twinkle way up high!', emoji: '⭐' },
         { word: 'sun', hint: 'I give light to everyone!', emoji: '☀️' },
+        { word: 'earth', hint: 'I am the planet we live on!', emoji: '🌍' },
         { word: 'rock', hint: 'I float in outer space!', emoji: '🪨' },
         { word: 'ship', hint: 'I travel through space!', emoji: '🚢' },
         { word: 'flag', hint: 'I was on the moon!', emoji: '🚩' },
         { word: 'suit', hint: 'People wear me in space!', emoji: '👔' },
         { word: 'mask', hint: 'I help you breathe in space!', emoji: '😷' },
+        { word: 'mars', hint: 'I am the red planet!', emoji: '🪐' },
+        { word: 'jupiter', hint: 'I am the biggest planet!', emoji: '🪐' },
+        { word: 'neptune', hint: 'I am a blue planet far away!', emoji: '🪐' },
       ],
       food: [
+        // Fruits
         { word: 'apple', hint: 'I am red or green and crunchy!', emoji: '🍎' },
+        { word: 'banana', hint: 'I am yellow and curved!', emoji: '🍌' },
+        { word: 'orange', hint: 'I am round and orange!', emoji: '🍊' },
+        { word: 'grape', hint: 'I grow in bunches and are purple or green!', emoji: '🍇' },
+        { word: 'berry', hint: 'I am small and sweet!', emoji: '🫐' },
+        // Basic Foods
         { word: 'bread', hint: 'I am made from flour and yummy!', emoji: '🍞' },
         { word: 'milk', hint: 'I am white and come from cows!', emoji: '🥛' },
         { word: 'egg', hint: 'I am round and come from chickens!', emoji: '🥚' },
         { word: 'rice', hint: 'I am small white grains!', emoji: '🍚' },
+        { word: 'corn', hint: 'I am yellow on a cob!', emoji: '🌽' },
         { word: 'meat', hint: 'I come from animals and taste good!', emoji: '🥩' },
         { word: 'fish', hint: 'I live in water and you can eat me!', emoji: '🐟' },
-        { word: 'corn', hint: 'I am yellow on a cob!', emoji: '🌽' },
+        { word: 'cheese', hint: 'I am made from milk and delicious!', emoji: '🧀' },
+        { word: 'butter', hint: 'I am yellow and spread on bread!', emoji: '🧈' },
       ],
     },
     medium: {
       jungle: [
+        // Medium Animals
         { word: 'monkey', hint: 'I swing from tree to tree and love bananas!', emoji: '🐵' },
         { word: 'tiger', hint: 'I have stripes and roar loudly!', emoji: '🐯' },
-        { word: 'parrot', hint: 'I am colorful and can talk!', emoji: '🦜' },
+        { word: 'lion', hint: 'I am the king of the jungle with a golden mane!', emoji: '🦁' },
         { word: 'snake', hint: 'I slither through the jungle grass!', emoji: '🐍' },
         { word: 'zebra', hint: 'I have black and white stripes!', emoji: '🦓' },
         { word: 'leopard', hint: 'I have spots and am very fast!', emoji: '🐆' },
         { word: 'giraffe', hint: 'I am tall with a long neck!', emoji: '🦒' },
+        { word: 'panda', hint: 'I am black and white and love bamboo!', emoji: '🐼' },
+        { word: 'koala', hint: 'I am fuzzy and love eucalyptus leaves!', emoji: '🐨' },
+        { word: 'rabbit', hint: 'I have long ears and hop very fast!', emoji: '🐰' },
+        { word: 'squirrel', hint: 'I am small and collect nuts!', emoji: '🐿️' },
+        { word: 'raccoon', hint: 'I have a mask and am very clever!', emoji: '🦝' },
+        { word: 'wolf', hint: 'I howl at the moon and live in packs!', emoji: '🐺' },
+        { word: 'otter', hint: 'I swim and play in the water!', emoji: '🦦' },
+        { word: 'hedgehog', hint: 'I am small and covered in spines!', emoji: '🦔' },
+        // Medium Birds
+        { word: 'parrot', hint: 'I am colorful and can talk!', emoji: '🦜' },
         { word: 'toucan', hint: 'I am a colorful bird with a big beak!', emoji: '🦜' },
+        { word: 'hawk', hint: 'I am a bird of prey with sharp eyes!', emoji: '🦅' },
+        { word: 'woodpecker', hint: 'I peck on trees to find insects!', emoji: '🐦' },
+        { word: 'penguin', hint: 'I cannot fly but I swim very well!', emoji: '🐧' },
+        { word: 'flamingo', hint: 'I am pink and stand on one leg!', emoji: '🦩' },
+        { word: 'peacock', hint: 'I have beautiful colorful feathers!', emoji: '🦚' },
+        { word: 'sparrow', hint: 'I am a small brown bird that chirps!', emoji: '🐦' },
+        // Medium Plants & Nature
+        { word: 'bamboo', hint: 'I am a fast-growing plant pandas love!', emoji: '🎋' },
+        { word: 'jungle', hint: 'I am a dense tropical forest!', emoji: '🌳' },
+        { word: 'forest', hint: 'I am a big area full of trees!', emoji: '🌲' },
+        { word: 'waterfall', hint: 'I am water falling from high rocks!', emoji: '🌊' },
+        { word: 'valley', hint: 'I am a low area between mountains!', emoji: '🏔️' },
+        { word: 'canyon', hint: 'I am a deep valley with steep sides!', emoji: '⛰️' },
+        { word: 'mountain', hint: 'I am very tall and reach the clouds!', emoji: '⛰️' },
       ],
       space: [
         { word: 'rocket', hint: 'I fly through space and reach the stars!', emoji: '🚀' },
@@ -79,14 +140,41 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
     },
     hard: {
       jungle: [
+        // Large Animals
         { word: 'elephant', hint: 'I have a long trunk and big ears!', emoji: '🐘' },
         { word: 'rhinoceros', hint: 'I am large and gray with a horn!', emoji: '🦏' },
-        { word: 'chameleon', hint: 'I can change my colors to hide!', emoji: '🦎' },
         { word: 'hippopotamus', hint: 'I am huge and love water!', emoji: '🦛' },
         { word: 'chimpanzee', hint: 'I am a smart ape like humans!', emoji: '🦧' },
+        { word: 'gorilla', hint: 'I am a big strong ape with black fur!', emoji: '🦍' },
+        { word: 'orangutan', hint: 'I am a red-haired ape that swings!', emoji: '🦧' },
+        // Reptiles
         { word: 'crocodile', hint: 'I am a large reptile with sharp teeth!', emoji: '🐊' },
+        { word: 'alligator', hint: 'I am like a crocodile but live in swamps!', emoji: '🐊' },
+        { word: 'chameleon', hint: 'I can change my colors to hide!', emoji: '🦎' },
+        { word: 'iguana', hint: 'I am a big green lizard!', emoji: '🦎' },
+        { word: 'python', hint: 'I am a huge snake that can squeeze!', emoji: '🐍' },
+        { word: 'anaconda', hint: 'I am the biggest snake in the jungle!', emoji: '🐍' },
+        { word: 'cobra', hint: 'I am a dangerous snake that can spread my hood!', emoji: '🐍' },
+        { word: 'komodo', hint: 'I am a giant lizard and very dangerous!', emoji: '🦎' },
+        // Insects & Small Creatures
+        { word: 'tarantula', hint: 'I am a big hairy spider!', emoji: '🕷️' },
+        { word: 'scorpion', hint: 'I have a stinger on my tail!', emoji: '🦂' },
         { word: 'butterfly', hint: 'I have colorful wings and fly!', emoji: '🦋' },
+        { word: 'dragonfly', hint: 'I have transparent wings and fly fast!', emoji: '🦋' },
+        { word: 'caterpillar', hint: 'I turn into a butterfly one day!', emoji: '🐛' },
+        { word: 'beetle', hint: 'I am an insect with a hard shell!', emoji: '🪲' },
+        // Birds
         { word: 'hummingbird', hint: 'I am tiny and fly very fast!', emoji: '🐦' },
+        { word: 'albatross', hint: 'I am a large sea bird that glides!', emoji: '🪽' },
+        { word: 'pelican', hint: 'I have a big beak to catch fish!', emoji: '🦢' },
+        { word: 'vulture', hint: 'I am a bird that eats dead animals!', emoji: '🦅' },
+        { word: 'stork', hint: 'I have long legs and deliver babies!', emoji: '🦩' },
+        // Plants & Nature
+        { word: 'ecosystem', hint: 'I am where all living things work together!', emoji: '🌍' },
+        { word: 'rainforest', hint: 'I am a dense forest with lots of rain!', emoji: '🌳' },
+        { word: 'tropical', hint: 'I am a warm climate near the equator!', emoji: '🌴' },
+        { word: 'mangrove', hint: 'I am a tree that grows in water!', emoji: '🌊' },
+        { word: 'habitat', hint: 'I am where animals live naturally!', emoji: '🏡' },
       ],
       space: [
         { word: 'constellation', hint: 'I am a pattern of stars in the sky!', emoji: '⭐' },
@@ -158,7 +246,7 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
 
   // Initialize game
   const initializeGame = () => {
-    const wordList = worldWords[world] || worldWords.jungle
+    const wordList = worldWords
     const selectedWords = [...wordList]
       .sort(() => Math.random() - 0.5)
       .slice(0, config.words)
