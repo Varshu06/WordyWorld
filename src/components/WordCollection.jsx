@@ -5,7 +5,7 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
   const worldConfigs = {
     jungle: {
       title: '🌴 My Word Collection',
-      subtitle: 'Look at all the amazing words you've discovered!',
+      subtitle: "Look at all the amazing words you've discovered!",
       gradient: 'from-green-400 via-emerald-300 to-yellow-400',
       backgroundGradient: 'from-green-800 via-emerald-600 to-green-400',
       floatingItems: ['🍃', '🌿', '🌾', '🦋'],
@@ -13,7 +13,7 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
     },
     space: {
       title: '🚀 My Word Collection',
-      subtitle: 'Look at all the cosmic words you've discovered!',
+      subtitle: "Look at all the cosmic words you've discovered!",
       gradient: 'from-cyan-400 via-blue-500 to-purple-500',
       backgroundGradient: 'from-blue-950 via-indigo-900 to-purple-950',
       floatingItems: ['⭐', '🌟', '✨', '☄️'],
@@ -21,7 +21,7 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
     },
     food: {
       title: '🍕 My Word Collection',
-      subtitle: 'Look at all the yummy words you've discovered!',
+      subtitle: "Look at all the yummy words you've discovered!",
       gradient: 'from-orange-400 via-red-500 to-pink-500',
       backgroundGradient: 'from-orange-300 via-red-300 to-pink-300',
       floatingItems: ['🍕', '🍰', '🧁', '🎂'],
