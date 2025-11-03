@@ -262,11 +262,13 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     const currentWord = words[currentRound]
     if (!currentWord) return
 
-    // Helper function to check if position is too close to existing bubbles
-    const isTooClose = (newPos, existingBubbles, minDistance) => {
-      return existingBubbles.some(bubble => {
-        const dx = newPos.x - bubble.position.x
-        const dy = newPos.y - bubble.position.y
+    // Helper function to check if position is too close to existing positions
+    const isTooClose = (newPos, existingPositions, minDistance) => {
+      return existingPositions.some(pos => {
+        if (!pos) return false
+        const posToCheck = pos.position || pos // Handle both bubbles and positions
+        const dx = newPos.x - posToCheck.x
+        const dy = newPos.y - posToCheck.y
         const distance = Math.sqrt(dx * dx + dy * dy)
         return distance < minDistance
       })
@@ -381,33 +383,41 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
       }
     }
     
-    const bubbleEmojis = verifiedUnique.slice(0, config.bubbles)
+    // Shuffle emojis first
+    const shuffledEmojis = verifiedUnique.slice(0, config.bubbles)
       .sort(() => Math.random() - 0.5)
-      .map((emoji, index) => {
-        let position
-        let attempts = 0
-        const minDistance = 15 // Minimum distance between bubble centers (in %)
-        
-        do {
-          position = {
-            x: Math.random() * 80 + 10, // 10% to 90% - within bounds
-            y: Math.random() * 70 + 15, // 15% to 85% - within bounds
-          }
-          attempts++
-        } while (isTooClose(position, bubbleEmojis.slice(0, index), minDistance) && attempts < 50)
-        
-        return {
-          id: `bubble-${currentRound}-${index}`,
-          emoji,
-          isCorrect: emoji === currentWord.emoji,
-          position,
-          velocity: {
-            x: (Math.random() - 0.5) * 1.5, // Slower initial velocity
-            y: (Math.random() - 0.5) * 1.5,
-          },
-          size: 80 + Math.random() * 40, // 80-120px
+    
+    // First, generate all positions ensuring they're not too close to each other
+    const positions = []
+    const minDistance = 15 // Minimum distance between bubble centers (in %)
+    
+    for (let i = 0; i < shuffledEmojis.length; i++) {
+      let position
+      let attempts = 0
+      
+      do {
+        position = {
+          x: Math.random() * 80 + 10, // 10% to 90% - within bounds
+          y: Math.random() * 70 + 15, // 15% to 85% - within bounds
         }
-      })
+        attempts++
+      } while (isTooClose(position, positions, minDistance) && attempts < 50)
+      
+      positions.push(position)
+    }
+    
+    // Now combine emojis with positions to create bubble objects
+    const bubbleEmojis = shuffledEmojis.map((emoji, index) => ({
+      id: `bubble-${currentRound}-${index}`,
+      emoji,
+      isCorrect: emoji === currentWord.emoji,
+      position: positions[index],
+      velocity: {
+        x: (Math.random() - 0.5) * 1.5, // Slower initial velocity
+        y: (Math.random() - 0.5) * 1.5,
+      },
+      size: 80 + Math.random() * 40, // 80-120px
+    }))
 
     setBubbles(bubbleEmojis)
     setTimeRemaining(config.timeLimit)
