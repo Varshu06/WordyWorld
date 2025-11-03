@@ -4,9 +4,11 @@ import BananaScramble from './components/BananaScramble'
 import DailyQuest from './components/DailyQuest'
 import DifficultySelector from './components/DifficultySelector'
 import FoodWorldHub from './components/FoodWorldHub'
+import HelpScreen from './components/HelpScreen'
 import Homepage from './components/Homepage'
 import JungleWorldHub from './components/JungleWorldHub'
 import PicturePop from './components/PicturePop'
+import SettingsScreen from './components/SettingsScreen'
 import SoundSafari from './components/SoundSafari'
 import SpaceWorldHub from './components/SpaceWorldHub'
 import WordCollection from './components/WordCollection'
@@ -54,7 +56,11 @@ function App() {
   return (
     <div className="App">
       {currentScreen === 'homepage' && (
-        <Homepage onEnterClick={handleEnterWordyWorld} />
+        <Homepage 
+          onEnterClick={handleEnterWordyWorld}
+          onSettingsClick={() => setCurrentScreen('settings')}
+          onHelpClick={() => setCurrentScreen('help')}
+        />
       )}
       {currentScreen === 'difficulty-selector' && (
         <DifficultySelector
@@ -236,6 +242,12 @@ function App() {
           onBackToHub={() => setCurrentScreen('food-hub')}
           onGoHome={handleBackToHome}
         />
+      )}
+      {currentScreen === 'help' && (
+        <HelpScreen onBack={() => setCurrentScreen('homepage')} />
+      )}
+      {currentScreen === 'settings' && (
+        <SettingsScreen onBack={() => setCurrentScreen('homepage')} />
       )}
     </div>
   )

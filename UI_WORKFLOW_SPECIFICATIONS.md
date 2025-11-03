@@ -1423,45 +1423,45 @@ Desktop:
 
 ## 📋 Feature Checklist (Phase by Phase)
 
-### Phase 0 UI:
+### Phase 0 – Core UI Setup
 - [ ] Homepage layout
-- [ ] Difficulty selector layout
-- [ ] World selector layout (with locked states)
-- [ ] Navigation system
-- [ ] Responsive breakpoints
-- [ ] Color scheme defined
-- [ ] Typography defined
+- [ ] Daily Jungle Quest card (with “Play Game” button)
+- [ ] Navigation system (Home, Collection, Achievements)
+- [ ] Responsive layout breakpoints
+- [ ] Color palette + gradients defined
+- [ ] Typography + icon style defined
 
-### Phase 1 UI (Jungle World):
-- [ ] Jungle World hub
-- [ ] Word matching game UI
-- [ ] Flash card game UI
-- [ ] Word collection screen
-- [ ] Achievements screen
-- [ ] Victory screens for games
-- [ ] Progress bars
-- [ ] Star animations
-- [ ] Badge display
+### Phase 1 – Jungle World (Main Release)
+- [ ] Jungle World hub screen
+- [ ] Picture Pop game UI (bubble popping interaction)
+- [ ] Daily Quest flow (find 3 new words)
+- [ ] Help Screen (how to play guide)
+- [ ] Word Collection screen (shows learned words + images)
+- [ ] Achievements & Badges screen
+- [ ] Victory/Reward popup (with stars earned)
+- [ ] Progress tracker (daily streak or word count)
+- [ ] Star + confetti animations
 
-### Phase 2 UI (Space World):
-- [ ] Space World hub (different theme)
-- [ ] Same games but space-themed
-- [ ] World unlocking animation
-- [ ] Cross-world progress display
+### Phase 2 – Space World Expansion
+- [ ] Space World hub (galactic theme)
+- [ ] Picture Pop + Daily Quest with space visuals
+- [ ] Unlock animation for Space World
+- [ ] Cross-world progress tracker (switch between worlds)
+- [ ] “Galaxy Explorer” achievement badges
 
-### Phase 2 Polish:
-- [ ] Sound effects UI (volume slider?)
-- [ ] Enhanced animations
-- [ ] Loading screens
-- [ ] Error states
-- [ ] Help/instructions screens
+### Phase 3 – Polish & Enhancements
+- [ ] Sound effects & music toggle
+- [ ] Volume slider + mute button
+- [ ] Enhanced animations (bubble pop, unlock, rewards)
+- [ ] Loading + transition screens
+- [ ] Error/empty state screens
+- [ ] UI hints or tooltips
 
-### Phase 3 UI (Food Town):
-- [ ] Food Town hub
-- [ ] Same games but food-themed
-- [ ] Final polish
-
----
+### Phase 4 – Food Town World (Final Expansion)
+- [ ] Food Town hub (colorful food-themed visuals)
+- [ ] Picture Pop + Daily Quest adapted to Food Town
+- [ ] Final polish pass (microinteractions, shadows, hover effects)
+- [ ] End-of-journey reward animation (“Word Master” badge)
 
 ## 🎯 User Journey (Complete Flow)
 

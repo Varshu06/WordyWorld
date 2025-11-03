@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Homepage = ({ onEnterClick }) => {
+const Homepage = ({ onEnterClick, onSettingsClick, onHelpClick }) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
 
@@ -210,6 +210,28 @@ const Homepage = ({ onEnterClick }) => {
         <p className="mt-6 md:mt-8 text-sm md:text-base lg:text-lg text-gray-700 font-medium drop-shadow-md font-playful">
           No signup needed! Just play! 🎮
         </p>
+
+        {/* Settings and Help Buttons */}
+        <div className="absolute top-4 right-4 md:top-8 md:right-8 flex gap-3 z-40">
+          {onSettingsClick && (
+            <button
+              onClick={onSettingsClick}
+              className="w-12 h-12 md:w-16 md:h-16 bg-white/80 backdrop-blur-lg border-2 border-white/40 rounded-full text-2xl md:text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/100 hover:shadow-xl flex items-center justify-center"
+              title="Settings"
+            >
+              ⚙️
+            </button>
+          )}
+          {onHelpClick && (
+            <button
+              onClick={onHelpClick}
+              className="w-12 h-12 md:w-16 md:h-16 bg-white/80 backdrop-blur-lg border-2 border-white/40 rounded-full text-2xl md:text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/100 hover:shadow-xl flex items-center justify-center"
+              title="Help"
+            >
+              ❓
+            </button>
+          )}
+        </div>
       </div>
 
       {/* All Animations */}

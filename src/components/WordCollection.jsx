@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
   // World configurations
