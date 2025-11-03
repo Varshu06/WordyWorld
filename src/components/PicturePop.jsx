@@ -196,7 +196,7 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
 
   // Initialize game
   const initializeGame = () => {
-    const wordList = worldWords[world] || worldWords.jungle
+    const wordList = worldWords
     const shuffled = [...wordList].sort(() => Math.random() - 0.5)
     const selectedWords = shuffled.slice(0, config.rounds)
 

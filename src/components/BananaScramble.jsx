@@ -49,6 +49,7 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'river', hint: 'I flow from mountains to the sea!', emoji: '🌊' },
       ],
       space: [
+        // Basic Space Objects
         { word: 'moon', hint: 'I shine bright in the night sky!', emoji: '🌙' },
         { word: 'star', hint: 'I twinkle way up high!', emoji: '⭐' },
         { word: 'sun', hint: 'I give light to everyone!', emoji: '☀️' },
@@ -61,6 +62,10 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'mars', hint: 'I am the red planet!', emoji: '🪐' },
         { word: 'jupiter', hint: 'I am the biggest planet!', emoji: '🪐' },
         { word: 'neptune', hint: 'I am a blue planet far away!', emoji: '🪐' },
+        { word: 'venus', hint: 'I am a hot planet near the sun!', emoji: '🪐' },
+        { word: 'saturn', hint: 'I have beautiful rings around me!', emoji: '🪐' },
+        { word: 'mercury', hint: 'I am the closest planet to the sun!', emoji: '🪐' },
+        { word: 'uranus', hint: 'I am a blue-green planet!', emoji: '🪐' },
       ],
       food: [
         // Fruits
@@ -69,6 +74,11 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'orange', hint: 'I am round and orange!', emoji: '🍊' },
         { word: 'grape', hint: 'I grow in bunches and are purple or green!', emoji: '🍇' },
         { word: 'berry', hint: 'I am small and sweet!', emoji: '🫐' },
+        { word: 'pear', hint: 'I am green and shaped like a bell!', emoji: '🍐' },
+        { word: 'peach', hint: 'I am fuzzy and orange-pink!', emoji: '🍑' },
+        { word: 'cherry', hint: 'I am small, red, and have a pit!', emoji: '🍒' },
+        { word: 'strawberry', hint: 'I am red with seeds on the outside!', emoji: '🍓' },
+        { word: 'watermelon', hint: 'I am big, green outside, red inside!', emoji: '🍉' },
         // Basic Foods
         { word: 'bread', hint: 'I am made from flour and yummy!', emoji: '🍞' },
         { word: 'milk', hint: 'I am white and come from cows!', emoji: '🥛' },
@@ -79,6 +89,8 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'fish', hint: 'I live in water and you can eat me!', emoji: '🐟' },
         { word: 'cheese', hint: 'I am made from milk and delicious!', emoji: '🧀' },
         { word: 'butter', hint: 'I am yellow and spread on bread!', emoji: '🧈' },
+        { word: 'noodles', hint: 'I am long and made from flour!', emoji: '🍜' },
+        { word: 'potato', hint: 'I am brown outside, white inside!', emoji: '🥔' },
       ],
     },
     medium: {
@@ -118,6 +130,7 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'mountain', hint: 'I am very tall and reach the clouds!', emoji: '⛰️' },
       ],
       space: [
+        // Space Objects
         { word: 'rocket', hint: 'I fly through space and reach the stars!', emoji: '🚀' },
         { word: 'planet', hint: 'I orbit around a star and have moons!', emoji: '🪐' },
         { word: 'comet', hint: 'I have a bright tail and zoom through space!', emoji: '☄️' },
@@ -126,16 +139,29 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'satellite', hint: 'I orbit Earth and help with communication!', emoji: '🛰️' },
         { word: 'telescope', hint: 'Scientists use me to see far into space!', emoji: '🔭' },
         { word: 'astronaut', hint: 'I explore space and wear a special suit!', emoji: '👨‍🚀' },
+        { word: 'alien', hint: 'I come from another planet far away!', emoji: '👽' },
+        { word: 'nebula', hint: 'I am a colorful cloud of gas in space!', emoji: '🌌' },
+        { word: 'crater', hint: 'I am a big hole on the moon or planets!', emoji: '🌑' },
+        { word: 'orbiter', hint: 'I circle around planets and moons!', emoji: '🛰️' },
+        { word: 'lander', hint: 'I land on planets to explore them!', emoji: '🚀' },
       ],
       food: [
+        // Main Dishes
         { word: 'pizza', hint: 'I am round, cheesy, and delicious!', emoji: '🍕' },
         { word: 'burger', hint: 'I have a bun, patty, and lots of toppings!', emoji: '🍔' },
+        { word: 'sandwich', hint: 'I have bread and yummy fillings inside!', emoji: '🥪' },
+        { word: 'taco', hint: 'I am a Mexican food with a shell!', emoji: '🌮' },
+        { word: 'pasta', hint: 'I am noodles with yummy sauce!', emoji: '🍝' },
+        { word: 'soup', hint: 'I am hot and liquid with vegetables!', emoji: '🍲' },
+        // Desserts
         { word: 'cookie', hint: 'I am sweet, round, and often have chocolate chips!', emoji: '🍪' },
         { word: 'cupcake', hint: 'I am a small cake with frosting on top!', emoji: '🧁' },
         { word: 'donut', hint: 'I am a sweet ring-shaped treat with a hole!', emoji: '🍩' },
-        { word: 'sandwich', hint: 'I have bread and yummy fillings inside!', emoji: '🥪' },
         { word: 'icecream', hint: 'I am cold, sweet, and come in many flavors!', emoji: '🍦' },
+        { word: 'cake', hint: 'I am sweet and decorated for birthdays!', emoji: '🎂' },
+        { word: 'pie', hint: 'I have a crust and sweet filling!', emoji: '🥧' },
         { word: 'pancake', hint: 'I am a flat breakfast food you stack up!', emoji: '🥞' },
+        { word: 'waffle', hint: 'I am crispy with square holes!', emoji: '🧇' },
       ],
     },
     hard: {
@@ -177,6 +203,7 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'habitat', hint: 'I am where animals live naturally!', emoji: '🏡' },
       ],
       space: [
+        // Complex Space Terms
         { word: 'constellation', hint: 'I am a pattern of stars in the sky!', emoji: '⭐' },
         { word: 'astronomer', hint: 'I study space and stars!', emoji: '👨‍🔬' },
         { word: 'spacecraft', hint: 'I am a vehicle that travels in space!', emoji: '🛸' },
@@ -185,8 +212,15 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'telescope', hint: 'Scientists use me to see far into space!', emoji: '🔭' },
         { word: 'solar system', hint: 'I am the sun and all planets together!', emoji: '🌍' },
         { word: 'space station', hint: 'People live in me while in space!', emoji: '🛰️' },
+        { word: 'milky way', hint: 'I am our galaxy with billions of stars!', emoji: '🌌' },
+        { word: 'black hole', hint: 'I am so dense that light cannot escape!', emoji: '⚫' },
+        { word: 'quasar', hint: 'I am a very bright object in space!', emoji: '✨' },
+        { word: 'supernova', hint: 'I am an exploding star in space!', emoji: '💥' },
+        { word: 'cosmos', hint: 'I am the entire universe and space!', emoji: '🌌' },
+        { word: 'asteroid belt', hint: 'I am a ring of rocks between planets!', emoji: '🪨' },
       ],
       food: [
+        // Complex Food Terms
         { word: 'gastronomy', hint: 'I am the art of cooking amazing food!', emoji: '🍽️' },
         { word: 'ingredient', hint: 'I am something you use when cooking!', emoji: '🧄' },
         { word: 'restaurant', hint: 'People eat delicious food at my place!', emoji: '🍽️' },
@@ -195,6 +229,13 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
         { word: 'appetizer', hint: 'You eat me before the main meal!', emoji: '🥗' },
         { word: 'beverage', hint: 'I am a drink like juice or soda!', emoji: '🥤' },
         { word: 'nutrition', hint: 'I am about healthy food and eating right!', emoji: '🥗' },
+        { word: 'dessert', hint: 'I am the sweet course after dinner!', emoji: '🍰' },
+        { word: 'brunch', hint: 'I am a meal between breakfast and lunch!', emoji: '🥞' },
+        { word: 'breakfast', hint: 'I am the first meal of the day!', emoji: '🥓' },
+        { word: 'lunch', hint: 'I am the midday meal!', emoji: '🥪' },
+        { word: 'dinner', hint: 'I am the evening meal!', emoji: '🍽️' },
+        { word: 'recipe', hint: 'I tell you how to cook food!', emoji: '📝' },
+        { word: 'chef', hint: 'I am a professional cook!', emoji: '👨‍🍳' },
       ],
     },
   }
