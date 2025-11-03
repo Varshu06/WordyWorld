@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import BananaScramble from './components/BananaScramble'
+import DailyJungleQuest from './components/DailyJungleQuest'
 import DifficultySelector from './components/DifficultySelector'
 import FoodWorldHub from './components/FoodWorldHub'
 import Homepage from './components/Homepage'
@@ -162,6 +163,13 @@ function App() {
           difficulty={selectedDifficulty}
           world="food"
           onBackToHub={() => setCurrentScreen('food-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'daily-jungle-quest' && (
+        <DailyJungleQuest
+          difficulty={selectedDifficulty}
+          onBackToHub={() => setCurrentScreen('jungle-hub')}
           onGoHome={handleBackToHome}
         />
       )}

@@ -944,7 +944,98 @@ Builds kids' listening skills, audio memory, and word recognition through fun, a
 
 ---
 
-## 🎒 Game 5: Word Collection
+## 🌿 Game 5: Daily Jungle Quest
+
+### Purpose:
+Encourage kids to discover new words every day through fun daily mini-challenges set in the jungle world.
+Promotes habit-forming learning, word exploration, and a sense of surprise with new tasks daily! 🌞🐒
+
+*(Think of it like a daily adventure journal—every day is a new surprise waiting to be discovered!)*
+
+### Layout:
+```
+┌────────────────────────────────────────────────────────────┐
+│                                                            │
+│       🌿  Daily Jungle Quest                               │
+│                                                            │
+│   Try today's surprise: Find 3 new jungle words today! 🐾  │
+│                                                            │
+│               [ Play Game ▶️ ]                             │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+### Visual Style:
+- **Glassmorphism card** with subtle blur, rounded edges (2xl), and green jungle gradient background.
+- **Tiny vine or leaf icon** (like the one shown 🌿) at the top for a natural touch.
+- **Soft shadow** to make it float from the background.
+- **Play button pops** slightly on hover with a soft glow or ripple animation.
+
+---
+
+### 🎮 Gameplay Flow:
+
+#### **Start Screen:**
+The card appears as a daily challenge popup or section on the Jungle World map.
+
+#### **Task of the Day:**
+**Example tasks:**
+
+- 🐒 **Find 3 new words** hidden in the vines!
+- 🦜 **Match sounds** to words before time runs out!
+- 🐍 **Spell jungle animals** correctly to earn stars!
+
+#### **Completion Reward:**
+After completing, kids get:
+
+- 🌟 **3 stars**
+- 🍌 **A banana badge** or a cute animal sticker
+- A positive message: *"You discovered 3 new jungle friends!"*
+
+#### **Progress Tracking:**
+The next day unlocks a new surprise task, keeping excitement fresh daily!
+
+---
+
+### ✨ Hover / Interaction Ideas:
+
+#### **Hover Effect:**
+- Background glows softly.
+- Leaf icon sways gently.
+- Button expands with a small bounce.
+
+#### **Click Animation:**
+- A vine slides in and wraps the card before the next screen loads. 🌿✨
+
+---
+
+### 🧠 Learning Value:
+- Encourages **daily engagement** and vocabulary growth.
+- Builds a **routine** — "learn a little every day."
+- Strengthens **exploration mindset** through reward-based discovery.
+
+---
+
+### 📱 Responsive Design:
+- **Desktop/Tablet:** Card appears as part of the hub, full-width with lush jungle animation.
+- **Mobile:** Card stacks vertically, still vibrant and playful.
+- **Touch-friendly:** Big play button for easy tapping! 👆
+
+---
+
+### 💡 Implementation Notes:
+- Store completion date in localStorage to check if today's quest is already done.
+- Randomize from a pool of fun tasks to keep it exciting.
+- Show "Come back tomorrow!" if quest is already completed today.
+- Celebrate streaks — "You've played 5 days in a row! 🌟"
+
+---
+
+*Every day is a new jungle adventure waiting to be explored! 🐒🌿✨*
+
+---
+
+## 🎒 Game 6: Word Collection
 
 ### Purpose: Show all words kid has learned!
 

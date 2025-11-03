@@ -233,6 +233,8 @@ const JungleWorldHub = ({ onBackToWorlds, onGoHome, onGameSelect }) => {
                               onGameSelect('picture-pop-jungle')
                             } else if (card.id === 'sound-safari') {
                               onGameSelect('sound-safari-jungle')
+                            } else if (card.id === 'daily-quest') {
+                              onGameSelect('daily-jungle-quest')
                             }
                           }
                         }}
