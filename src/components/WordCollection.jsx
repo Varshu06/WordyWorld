@@ -10,6 +10,10 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
       backgroundGradient: 'from-green-800 via-emerald-600 to-green-400',
       floatingItems: ['🍃', '🌿', '🌾', '🦋'],
       progressMessage: 'Continue exploring to unlock more jungle words! 🌈',
+      progressBarGradient: 'from-green-400 via-emerald-400 to-yellow-400',
+      progressBarIcon: '🌿',
+      glowColor: '#4CAF50',
+      closeButtonColor: 'text-green-600',
     },
     space: {
       title: '🚀 My Word Collection',
@@ -18,6 +22,10 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
       backgroundGradient: 'from-blue-950 via-indigo-900 to-purple-950',
       floatingItems: ['⭐', '🌟', '✨', '☄️'],
       progressMessage: 'Continue exploring to unlock more space words! 🌌',
+      progressBarGradient: 'from-cyan-400 via-blue-500 to-purple-500',
+      progressBarIcon: '⭐',
+      glowColor: '#3B82F6',
+      closeButtonColor: 'text-blue-500',
     },
     food: {
       title: '🍕 My Word Collection',
@@ -26,6 +34,10 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
       backgroundGradient: 'from-orange-300 via-red-300 to-pink-300',
       floatingItems: ['🍕', '🍰', '🧁', '🎂'],
       progressMessage: 'Continue exploring to unlock more food words! 🍰',
+      progressBarGradient: 'from-orange-400 via-red-500 to-pink-500',
+      progressBarIcon: '🍰',
+      glowColor: '#F97316',
+      closeButtonColor: 'text-orange-600',
     },
   }
 
@@ -196,7 +208,7 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
               </p>
               <button
                 onClick={() => setShowDetail(false)}
-                className="px-8 py-4 bg-white text-green-600 font-bold text-xl rounded-full hover:scale-110 transition-all duration-300 shadow-xl font-playful"
+                className={`px-8 py-4 bg-white ${config.closeButtonColor} font-bold text-xl rounded-full hover:scale-110 transition-all duration-300 shadow-xl font-playful`}
               >
                 Close
               </button>
@@ -214,9 +226,6 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
               {config.title}
             </span>
           </h1>
-          <div className="flex items-center justify-center gap-2 mb-3">
-            <span className="text-3xl md:text-4xl">⭐⭐⭐</span>
-          </div>
           <p className="text-white text-xl md:text-2xl font-bold drop-shadow-lg font-playful mb-4">
             {config.subtitle}
           </p>
@@ -233,11 +242,11 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
         <div className="mb-8 mx-auto max-w-2xl">
           <div className="relative h-8 bg-white/20 rounded-full overflow-hidden border-3 border-white/40">
             <div
-              className="absolute top-0 left-0 h-full bg-gradient-to-r from-green-400 via-emerald-400 to-yellow-400 transition-all duration-700 ease-out"
+              className={`absolute top-0 left-0 h-full bg-gradient-to-r ${config.progressBarGradient} transition-all duration-700 ease-out`}
               style={{ width: `${progress}%` }}
             >
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-lg font-black">🌿</span>
+                <span className="text-lg font-black">{config.progressBarIcon}</span>
               </div>
             </div>
             <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-base drop-shadow-lg">
@@ -269,7 +278,7 @@ const WordCollection = ({ world = 'jungle', onBackToHub, onGoHome }) => {
                       </div>
                     </div>
                     {/* Glow effect for learned words */}
-                    <div className="absolute inset-0 rounded-2xl opacity-30 blur-xl" style={{ backgroundColor: '#4CAF50' }}></div>
+                    <div className="absolute inset-0 rounded-2xl opacity-30 blur-xl" style={{ backgroundColor: config.glowColor }}></div>
                   </>
                 ) : (
                   <>
