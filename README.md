@@ -1,14 +1,14 @@
-# 🌍 WordyWorld
+# 🌍 WordQuest
 
 **Explore, play, and learn new words every day!** 🎮✨
 
-WordyWorld is a fun, interactive web app designed to help children ages 5-10 discover vocabulary through themed adventures! Kids explore magical worlds (like Jungle, Space, and Food Town) while learning new words through playful, game-like activities.
+WordQuest is a fun, interactive web app designed to help children ages 5-10 discover vocabulary through themed adventures! Kids explore magical worlds (like Jungle, Space, and Food Town) while learning new words through playful, game-like activities.
 
 ---
 
-## 🎯 What is WordyWorld?
+## 🎯 What is WordQuest?
 
-Think of WordyWorld as an educational adventure game! Instead of fighting monsters, kids become **Word Explorers** who discover amazing words while having fun. It's like visiting a magical theme park where each "ride" teaches you vocabulary! 🎢
+Think of WordQuest as an educational adventure game! Instead of fighting monsters, kids become **Word Explorers** who discover amazing words while having fun. It's like visiting a magical theme park where each "ride" teaches you vocabulary! 🎢
 
 ---
 

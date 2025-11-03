@@ -41,7 +41,7 @@ function App() {
     return selectedDifficulty
   }
 
-  const handleEnterWordyWorld = () => {
+  const handleEnterWordQuest = () => {
     setCurrentScreen('difficulty-selector')
   }
 
@@ -80,7 +80,7 @@ function App() {
       <div className="App">
         {currentScreen === 'homepage' && (
           <Homepage 
-            onEnterClick={handleEnterWordyWorld}
+            onEnterClick={handleEnterWordQuest}
             onSettingsClick={() => setCurrentScreen('settings')}
             onHelpClick={() => setCurrentScreen('help')}
           />

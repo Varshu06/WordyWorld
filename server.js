@@ -1,4 +1,4 @@
-// Express Backend Server for WordyWorld
+// Express Backend Server for WordQuest
 // This server provides game data and can store/retrieve user progress
 
 import cors from 'cors'
@@ -274,14 +274,14 @@ app.get('/api/sound-safari', (req, res) => {
 app.get('/api/health', (req, res) => {
   res.json({
     success: true,
-    message: 'WordyWorld API is running! 🌍✨',
+    message: 'WordQuest API is running! 🌍✨',
     timestamp: new Date().toISOString(),
   })
 })
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`🌍 WordyWorld Server is running on http://localhost:${PORT}`)
+  console.log(`🌍 WordQuest Server is running on http://localhost:${PORT}`)
   console.log(`🎮 Ready to serve game data!`)
 })
 

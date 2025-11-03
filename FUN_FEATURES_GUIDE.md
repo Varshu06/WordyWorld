@@ -1,7 +1,7 @@
 # 🎉 Fun Features & Surprises Guide
 
 ## Overview
-This guide explains all the delightful surprises, seasonal themes, and error handling built into WordyWorld!
+This guide explains all the delightful surprises, seasonal themes, and error handling built into WordQuest!
 
 ## 🎊 Celebration Modal
 
@@ -202,5 +202,5 @@ Show empty states for collections:
 
 ---
 
-Enjoy adding delightful surprises to WordyWorld! 🎊✨
+Enjoy adding delightful surprises to WordQuest! 🎊✨
 

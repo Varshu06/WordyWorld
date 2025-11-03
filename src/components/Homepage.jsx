@@ -136,10 +136,10 @@ const Homepage = ({ onEnterClick, onSettingsClick, onHelpClick }) => {
 
       {/* Main Content */}
       <div className="relative z-20 flex flex-col items-center justify-center px-4 py-8 text-center">
-        {/* Title - WORDYWORLD */}
+        {/* Title - WORDQUEST */}
         <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 md:mb-6 drop-shadow-2xl font-playful">
           <span className="bg-gradient-to-r from-green-600 via-yellow-400 to-green-600 bg-clip-text text-transparent animate-pulse-slow">
-            WORDYWORLD
+            WORDQUEST
           </span>
         </h1>
 
@@ -148,7 +148,7 @@ const Homepage = ({ onEnterClick, onSettingsClick, onHelpClick }) => {
           Explore, play, and learn new words every day! ✨
         </p>
 
-        {/* Hero Button - ENTER WORDYWORLD */}
+        {/* Hero Button - ENTER WORDQUEST */}
         <div className="relative">
           <button
             className={`relative px-8 py-4 md:px-12 md:py-6 lg:px-16 lg:py-8 bg-gradient-to-r from-green-500 via-green-400 to-green-500 rounded-full shadow-2xl text-white font-bold text-xl md:text-2xl lg:text-3xl transform transition-all duration-300 font-playful ${
@@ -170,7 +170,7 @@ const Homepage = ({ onEnterClick, onSettingsClick, onHelpClick }) => {
           >
             <span className="flex items-center gap-3 md:gap-4 relative z-10">
               <span className="inline-flex">
-                {'ENTER WORDYWORLD'.split('').map((char, index) => (
+                {'ENTER WORDQUEST'.split('').map((char, index) => (
                   <span
                     key={index}
                     className={`inline-block transform transition-all duration-200 ${
