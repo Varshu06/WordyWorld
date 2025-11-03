@@ -105,7 +105,9 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
         { word: 'moon', emoji: '🌙', soundText: 'GLOW!', hint: 'I shine bright in the night sky!', description: 'A magical moon glow!' },
         { word: 'star', emoji: '⭐', soundText: 'TWINKLE!', hint: 'I twinkle way up high!', description: 'A magical twinkling sound!' },
         { word: 'sun', emoji: '☀️', soundText: 'SHINE!', hint: 'I give light to everyone!', description: 'Bright sunny sounds!' },
-        { word: 'ship', emoji: '🚢', soundText: 'ZOOM!', hint: 'I travel through space!', description: 'A spaceship zooming by!' },
+        { word: 'earth', emoji: '🌍', soundText: 'SPIN!', hint: 'I am the planet we live on!', description: 'Earth spinning sounds!' },
+        { word: 'mars', emoji: '🪐', soundText: 'RED!', hint: 'I am the red planet!', description: 'Mars sounds!' },
+        { word: 'rocket', emoji: '🚀', soundText: 'ZOOM!', hint: 'I travel through space!', description: 'A spaceship zooming by!' },
       ],
       food: [
         { word: 'apple', emoji: '🍎', soundText: 'CRUNCH!', hint: "I am red or green and crunchy!", description: 'A crisp apple crunch!' },
@@ -142,6 +144,8 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
         { word: 'meteor', emoji: '⭐', soundText: 'ZIP!', hint: 'A shooting star!', description: 'A meteor streaking by!' },
         { word: 'satellite', emoji: '🛰️', soundText: 'BEEP!', hint: 'It orbits Earth!', description: 'A satellite beeping signal!' },
         { word: 'astronaut', emoji: '👨‍🚀', soundText: 'HELLO!', hint: 'A person who explores space!', description: 'An astronaut greeting from space!' },
+        { word: 'alien', emoji: '👽', soundText: 'BEEP BOOP!', hint: 'I come from another planet!', description: 'Mysterious alien sounds!' },
+        { word: 'nebula', emoji: '🌌', soundText: 'HUMM!', hint: 'I am a colorful cloud of gas!', description: 'Nebula humming sounds!' },
       ],
       food: [
         { word: 'pizza', emoji: '🍕', soundText: 'SIZZLE!', hint: "It's round and cheesy!", description: 'A pizza sizzling in the oven!' },
@@ -182,6 +186,9 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
         { word: 'spacecraft', emoji: '🛸', soundText: 'WHOOSH!', hint: 'It is a vehicle that travels in space!', description: 'A spacecraft engine sound!' },
         { word: 'asteroid', emoji: '☄️', soundText: 'ZIP!', hint: 'It is a rocky object in space!', description: 'An asteroid zipping by!' },
         { word: 'observatory', emoji: '🏛️', soundText: 'BEEP!', hint: 'Scientists study space in me!', description: 'Observatory equipment sounds!' },
+        { word: 'milky way', emoji: '🌌', soundText: 'SWOOSH!', hint: 'I am our galaxy with billions of stars!', description: 'Galaxy swirling sounds!' },
+        { word: 'black hole', emoji: '⚫', soundText: 'SWOOP!', hint: 'I am so dense that light cannot escape!', description: 'Black hole sounds!' },
+        { word: 'supernova', emoji: '💥', soundText: 'BOOM!', hint: 'I am an exploding star!', description: 'Supernova explosion sounds!' },
       ],
       food: [
         { word: 'gastronomy', emoji: '🍽️', soundText: 'CHEF!', hint: 'I am the art of cooking amazing food!', description: 'A chef cooking sounds!' },
