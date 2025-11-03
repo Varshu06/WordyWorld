@@ -10,45 +10,99 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
 
   const config = gameConfig[difficulty] || gameConfig.easy
 
-  // Word lists for different worlds
-  const worldWords = {
-    jungle: [
-      { word: 'monkey', emoji: '🐵', trickEmojis: ['🍌', '🌳', '🐯'] },
-      { word: 'lion', emoji: '🦁', trickEmojis: ['🐯', '🐻', '🐒'] },
-      { word: 'elephant', emoji: '🐘', trickEmojis: ['🐭', '🐄', '🐕'] },
-      { word: 'tiger', emoji: '🐯', trickEmojis: ['🦁', '🐻', '🐒'] },
-      { word: 'parrot', emoji: '🦜', trickEmojis: ['🐦', '🦅', '🐤'] },
-      { word: 'snake', emoji: '🐍', trickEmojis: ['🐛', '🦎', '🐢'] },
-      { word: 'zebra', emoji: '🦓', trickEmojis: ['🐴', '🦄', '🐷'] },
-      { word: 'frog', emoji: '🐸', trickEmojis: ['🐊', '🦎', '🐢'] },
-      { word: 'tree', emoji: '🌳', trickEmojis: ['🌹', '🍀', '🌻'] },
-      { word: 'banana', emoji: '🍌', trickEmojis: ['🍎', '🥭', '🍇'] },
-    ],
-    space: [
-      { word: 'rocket', emoji: '🚀', trickEmojis: ['🛸', '✈️', '🛰️'] },
-      { word: 'planet', emoji: '🪐', trickEmojis: ['🌙', '⭐', '☀️'] },
-      { word: 'astronaut', emoji: '👨‍🚀', trickEmojis: ['👽', '🤖', '🦸'] },
-      { word: 'star', emoji: '⭐', trickEmojis: ['💫', '🌟', '✨'] },
-      { word: 'comet', emoji: '☄️', trickEmojis: ['💥', '⚡', '🌠'] },
-      { word: 'alien', emoji: '👽', trickEmojis: ['🤖', '👨‍🚀', '🛸'] },
-      { word: 'satellite', emoji: '🛰️', trickEmojis: ['🛸', '🚀', '✈️'] },
-      { word: 'telescope', emoji: '🔭', trickEmojis: ['📷', '📹', '📺'] },
-      { word: 'moon', emoji: '🌙', trickEmojis: ['🌞', '⭐', '🪐'] },
-      { word: 'galaxy', emoji: '🌌', trickEmojis: ['🌈', '☁️', '🌊'] },
-    ],
-    food: [
-      { word: 'pizza', emoji: '🍕', trickEmojis: ['🍔', '🥪', '🌮'] },
-      { word: 'apple', emoji: '🍎', trickEmojis: ['🍌', '🥭', '🍇'] },
-      { word: 'burger', emoji: '🍔', trickEmojis: ['🍕', '🥪', '🌮'] },
-      { word: 'cookie', emoji: '🍪', trickEmojis: ['🍩', '🧁', '🍰'] },
-      { word: 'cupcake', emoji: '🧁', trickEmojis: ['🍰', '🍪', '🍩'] },
-      { word: 'donut', emoji: '🍩', trickEmojis: ['🍰', '🧁', '🍪'] },
-      { word: 'icecream', emoji: '🍦', trickEmojis: ['🍧', '🍨', '🧁'] },
-      { word: 'banana', emoji: '🍌', trickEmojis: ['🍎', '🥭', '🍇'] },
-      { word: 'orange', emoji: '🍊', trickEmojis: ['🍋', '🍎', '🍑'] },
-      { word: 'cake', emoji: '🎂', trickEmojis: ['🍰', '🧁', '🍪'] },
-    ],
+  // Word lists organized by difficulty and world
+  const worldWordsByDifficulty = {
+    easy: {
+      jungle: [
+        { word: 'cat', emoji: '🐱', trickEmojis: ['🐶', '🐭', '🐹'] },
+        { word: 'dog', emoji: '🐶', trickEmojis: ['🐱', '🐻', '🐼'] },
+        { word: 'bird', emoji: '🐦', trickEmojis: ['🐤', '🐥', '🦅'] },
+        { word: 'tree', emoji: '🌳', trickEmojis: ['🌲', '🌴', '🌵'] },
+        { word: 'leaf', emoji: '🍃', trickEmojis: ['🍂', '🍁', '🌿'] },
+        { word: 'fish', emoji: '🐠', trickEmojis: ['🐟', '🐡', '🦈'] },
+        { word: 'rock', emoji: '🪨', trickEmojis: ['💎', '🔷', '🔹'] },
+        { word: 'hill', emoji: '⛰️', trickEmojis: ['🏔️', '🌄', '🌅'] },
+      ],
+      space: [
+        { word: 'moon', emoji: '🌙', trickEmojis: ['⭐', '✨', '🌟'] },
+        { word: 'star', emoji: '⭐', trickEmojis: ['✨', '🌟', '💫'] },
+        { word: 'sun', emoji: '☀️', trickEmojis: ['🌞', '🌟', '⭐'] },
+        { word: 'ship', emoji: '🚢', trickEmojis: ['🚤', '⛵', '🛥️'] },
+        { word: 'flag', emoji: '🚩', trickEmojis: ['🏳️', '🏴', '🎌'] },
+      ],
+      food: [
+        { word: 'apple', emoji: '🍎', trickEmojis: ['🍌', '🍊', '🍇'] },
+        { word: 'bread', emoji: '🍞', trickEmojis: ['🥖', '🥐', '🥨'] },
+        { word: 'milk', emoji: '🥛', trickEmojis: ['☕', '🍵', '🧃'] },
+        { word: 'egg', emoji: '🥚', trickEmojis: ['🍳', '🧈', '🧀'] },
+        { word: 'rice', emoji: '🍚', trickEmojis: ['🍜', '🍲', '🥣'] },
+      ],
+    },
+    medium: {
+      jungle: [
+        { word: 'monkey', emoji: '🐵', trickEmojis: ['🍌', '🌳', '🐯'] },
+        { word: 'tiger', emoji: '🐯', trickEmojis: ['🦁', '🐻', '🐒'] },
+        { word: 'parrot', emoji: '🦜', trickEmojis: ['🐦', '🦅', '🐤'] },
+        { word: 'snake', emoji: '🐍', trickEmojis: ['🐛', '🦎', '🐢'] },
+        { word: 'zebra', emoji: '🦓', trickEmojis: ['🐴', '🦄', '🐷'] },
+        { word: 'frog', emoji: '🐸', trickEmojis: ['🐊', '🦎', '🐢'] },
+        { word: 'leopard', emoji: '🐆', trickEmojis: ['🐯', '🦁', '🐻'] },
+        { word: 'giraffe', emoji: '🦒', trickEmojis: ['🐘', '🦛', '🐄'] },
+      ],
+      space: [
+        { word: 'rocket', emoji: '🚀', trickEmojis: ['🛸', '✈️', '🛰️'] },
+        { word: 'planet', emoji: '🪐', trickEmojis: ['🌙', '⭐', '☀️'] },
+        { word: 'comet', emoji: '☄️', trickEmojis: ['💥', '⚡', '🌠'] },
+        { word: 'meteor', emoji: '⭐', trickEmojis: ['💫', '🌟', '✨'] },
+        { word: 'galaxy', emoji: '🌌', trickEmojis: ['🌈', '☁️', '🌊'] },
+        { word: 'satellite', emoji: '🛰️', trickEmojis: ['🛸', '🚀', '✈️'] },
+        { word: 'telescope', emoji: '🔭', trickEmojis: ['📷', '📹', '📺'] },
+        { word: 'astronaut', emoji: '👨‍🚀', trickEmojis: ['👽', '🤖', '🦸'] },
+      ],
+      food: [
+        { word: 'pizza', emoji: '🍕', trickEmojis: ['🍔', '🥪', '🌮'] },
+        { word: 'burger', emoji: '🍔', trickEmojis: ['🍕', '🥪', '🌮'] },
+        { word: 'cookie', emoji: '🍪', trickEmojis: ['🍩', '🧁', '🍰'] },
+        { word: 'cupcake', emoji: '🧁', trickEmojis: ['🍰', '🍪', '🍩'] },
+        { word: 'donut', emoji: '🍩', trickEmojis: ['🍰', '🧁', '🍪'] },
+        { word: 'sandwich', emoji: '🥪', trickEmojis: ['🍔', '🍕', '🌮'] },
+        { word: 'icecream', emoji: '🍦', trickEmojis: ['🍧', '🍨', '🧁'] },
+        { word: 'pancake', emoji: '🥞', trickEmojis: ['🧇', '🍳', '🥓'] },
+      ],
+    },
+    hard: {
+      jungle: [
+        { word: 'elephant', emoji: '🐘', trickEmojis: ['🐭', '🐄', '🐕'] },
+        { word: 'rhinoceros', emoji: '🦏', trickEmojis: ['🐘', '🦛', '🐄'] },
+        { word: 'chameleon', emoji: '🦎', trickEmojis: ['🐍', '🐢', '🐊'] },
+        { word: 'hippopotamus', emoji: '🦛', trickEmojis: ['🐘', '🦏', '🐄'] },
+        { word: 'chimpanzee', emoji: '🦧', trickEmojis: ['🐵', '🐒', '🦍'] },
+        { word: 'crocodile', emoji: '🐊', trickEmojis: ['🐍', '🦎', '🐢'] },
+        { word: 'butterfly', emoji: '🦋', trickEmojis: ['🐝', '🐛', '🦟'] },
+        { word: 'hummingbird', emoji: '🐦', trickEmojis: ['🦅', '🦉', '🦜'] },
+      ],
+      space: [
+        { word: 'constellation', emoji: '⭐', trickEmojis: ['💫', '🌟', '✨'] },
+        { word: 'astronomer', emoji: '👨‍🔬', trickEmojis: ['👨‍🚀', '👽', '🤖'] },
+        { word: 'spacecraft', emoji: '🛸', trickEmojis: ['🚀', '🛰️', '✈️'] },
+        { word: 'asteroid', emoji: '☄️', trickEmojis: ['💥', '⚡', '🌠'] },
+        { word: 'observatory', emoji: '🏛️', trickEmojis: ['🏰', '🏯', '🏟️'] },
+        { word: 'telescope', emoji: '🔭', trickEmojis: ['📷', '📹', '📺'] },
+      ],
+      food: [
+        { word: 'gastronomy', emoji: '🍽️', trickEmojis: ['👨‍🍳', '🥄', '🍴'] },
+        { word: 'ingredient', emoji: '🧄', trickEmojis: ['🧅', '🧂', '🌶️'] },
+        { word: 'restaurant', emoji: '🍽️', trickEmojis: ['🏪', '🏬', '🏨'] },
+        { word: 'gourmet', emoji: '👨‍🍳', trickEmojis: ['🍽️', '🥄', '🍴'] },
+        { word: 'cuisine', emoji: '🍜', trickEmojis: ['🍲', '🍛', '🥘'] },
+        { word: 'appetizer', emoji: '🥗', trickEmojis: ['🥙', '🌮', '🌯'] },
+      ],
+    },
   }
+
+  // Get words based on difficulty and world
+  const difficultyWords = worldWordsByDifficulty[difficulty] || worldWordsByDifficulty.easy
+  const worldWords = difficultyWords[world] || difficultyWords.jungle
 
   // World themes
   const worldThemes = {

@@ -10,20 +10,109 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
 
   const config = gameConfig[difficulty] || gameConfig.easy
 
-  // Jungle animal words and emojis
-  const jungleAnimals = [
-    { word: 'monkey', emoji: '🐵', definition: 'A playful jungle animal that swings on trees' },
-    { word: 'lion', emoji: '🦁', definition: 'The king of the jungle with a golden mane' },
-    { word: 'tiger', emoji: '🐯', definition: 'A striped big cat that roams the jungle' },
-    { word: 'parrot', emoji: '🦜', definition: 'A colorful bird that can talk and fly' },
-    { word: 'snake', emoji: '🐍', definition: 'A slithering reptile in the jungle' },
-    { word: 'elephant', emoji: '🐘', definition: 'A huge animal with a long trunk' },
-    { word: 'frog', emoji: '🐸', definition: 'A small jumping animal that lives near water' },
-    { word: 'zebra', emoji: '🦓', definition: 'A striped horse-like animal' },
-  ]
+  // Word lists organized by difficulty and theme
+  const wordLists = {
+    easy: {
+      jungle: [
+        { word: 'cat', emoji: '🐱', definition: 'A furry pet that meows' },
+        { word: 'dog', emoji: '🐶', definition: 'A friendly pet that barks' },
+        { word: 'bird', emoji: '🐦', definition: 'An animal that flies and sings' },
+        { word: 'fish', emoji: '🐠', definition: 'An animal that swims in water' },
+        { word: 'tree', emoji: '🌳', definition: 'A tall plant with branches' },
+        { word: 'leaf', emoji: '🍃', definition: 'A green part of a tree' },
+        { word: 'rock', emoji: '🪨', definition: 'A hard stone on the ground' },
+        { word: 'hill', emoji: '⛰️', definition: 'A small mountain or raised land' },
+      ],
+      space: [
+        { word: 'moon', emoji: '🌙', definition: 'The bright light in the night sky' },
+        { word: 'star', emoji: '⭐', definition: 'A twinkling light in space' },
+        { word: 'sun', emoji: '☀️', definition: 'The bright star that gives us light' },
+        { word: 'rock', emoji: '🪨', definition: 'A space rock floating in space' },
+        { word: 'ship', emoji: '🚢', definition: 'A vehicle that travels to space' },
+        { word: 'flag', emoji: '🚩', definition: 'A flag planted on the moon' },
+        { word: 'suit', emoji: '👔', definition: 'A special suit for space' },
+        { word: 'mask', emoji: '😷', definition: 'A mask for breathing in space' },
+      ],
+      food: [
+        { word: 'apple', emoji: '🍎', definition: 'A red or green fruit' },
+        { word: 'bread', emoji: '🍞', definition: 'Food made from flour' },
+        { word: 'milk', emoji: '🥛', definition: 'A white drink from cows' },
+        { word: 'egg', emoji: '🥚', definition: 'A round food from chickens' },
+        { word: 'rice', emoji: '🍚', definition: 'Small white grains we eat' },
+        { word: 'meat', emoji: '🥩', definition: 'Food from animals' },
+        { word: 'fish', emoji: '🐟', definition: 'Sea food we can eat' },
+        { word: 'corn', emoji: '🌽', definition: 'Yellow kernels on a cob' },
+      ],
+    },
+    medium: {
+      jungle: [
+        { word: 'monkey', emoji: '🐵', definition: 'A playful jungle animal that swings on trees' },
+        { word: 'tiger', emoji: '🐯', definition: 'A striped big cat that roams the jungle' },
+        { word: 'parrot', emoji: '🦜', definition: 'A colorful bird that can talk and fly' },
+        { word: 'snake', emoji: '🐍', definition: 'A slithering reptile in the jungle' },
+        { word: 'zebra', emoji: '🦓', definition: 'A striped horse-like animal' },
+        { word: 'leopard', emoji: '🐆', definition: 'A spotted wild cat' },
+        { word: 'giraffe', emoji: '🦒', definition: 'A tall animal with a long neck' },
+        { word: 'toucan', emoji: '🦜', definition: 'A colorful bird with a big beak' },
+      ],
+      space: [
+        { word: 'rocket', emoji: '🚀', definition: 'A vehicle that flies through space' },
+        { word: 'planet', emoji: '🪐', definition: 'A large object that orbits a star' },
+        { word: 'comet', emoji: '☄️', definition: 'A space rock with a bright tail' },
+        { word: 'meteor', emoji: '⭐', definition: 'A shooting star in the sky' },
+        { word: 'galaxy', emoji: '🌌', definition: 'A huge collection of stars' },
+        { word: 'satellite', emoji: '🛰️', definition: 'A machine that orbits Earth' },
+        { word: 'telescope', emoji: '🔭', definition: 'A tool to see far into space' },
+        { word: 'astronaut', emoji: '👨‍🚀', definition: 'A person who explores space' },
+      ],
+      food: [
+        { word: 'pizza', emoji: '🍕', definition: 'A round food with cheese and toppings' },
+        { word: 'burger', emoji: '🍔', definition: 'A sandwich with meat and bun' },
+        { word: 'cookie', emoji: '🍪', definition: 'A sweet round treat with chips' },
+        { word: 'cupcake', emoji: '🧁', definition: 'A small cake with frosting' },
+        { word: 'sandwich', emoji: '🥪', definition: 'Food between two slices of bread' },
+        { word: 'icecream', emoji: '🍦', definition: 'A cold sweet frozen treat' },
+        { word: 'pancake', emoji: '🥞', definition: 'A flat breakfast food' },
+        { word: 'donut', emoji: '🍩', definition: 'A sweet ring-shaped treat' },
+      ],
+    },
+    hard: {
+      jungle: [
+        { word: 'elephant', emoji: '🐘', definition: 'A huge animal with a long trunk and big ears' },
+        { word: 'rhinoceros', emoji: '🦏', definition: 'A large gray animal with a horn' },
+        { word: 'chameleon', emoji: '🦎', definition: 'A lizard that changes colors' },
+        { word: 'hippopotamus', emoji: '🦛', definition: 'A huge water-loving animal' },
+        { word: 'chimpanzee', emoji: '🦧', definition: 'A smart ape similar to humans' },
+        { word: 'crocodile', emoji: '🐊', definition: 'A large reptile with sharp teeth' },
+        { word: 'butterfly', emoji: '🦋', definition: 'A colorful flying insect with wings' },
+        { word: 'hummingbird', emoji: '🐦', definition: 'A tiny fast-flying bird' },
+      ],
+      space: [
+        { word: 'constellation', emoji: '⭐', definition: 'A pattern of stars in the sky' },
+        { word: 'astronomer', emoji: '👨‍🔬', definition: 'A scientist who studies space' },
+        { word: 'telescope', emoji: '🔭', definition: 'An instrument to observe distant objects' },
+        { word: 'spacecraft', emoji: '🛸', definition: 'A vehicle designed for space travel' },
+        { word: 'asteroid', emoji: '☄️', definition: 'A rocky object orbiting the sun' },
+        { word: 'observatory', emoji: '🏛️', definition: 'A building for studying space' },
+        { word: 'solar system', emoji: '🌍', definition: 'The sun and all planets around it' },
+        { word: 'space station', emoji: '🛰️', definition: 'A large spacecraft where people live' },
+      ],
+      food: [
+        { word: 'gastronomy', emoji: '🍽️', definition: 'The art and science of cooking' },
+        { word: 'ingredient', emoji: '🧄', definition: 'A component used in cooking' },
+        { word: 'restaurant', emoji: '🍽️', definition: 'A place where food is served' },
+        { word: 'gourmet', emoji: '👨‍🍳', definition: 'High-quality fine food' },
+        { word: 'cuisine', emoji: '🍜', definition: 'A style of cooking from a region' },
+        { word: 'appetizer', emoji: '🥗', definition: 'A small dish before the main meal' },
+        { word: 'beverage', emoji: '🥤', definition: 'A drink like juice or soda' },
+        { word: 'nutrition', emoji: '🥗', definition: 'The science of food and health' },
+      ],
+    },
+  }
 
-  // Select animals based on difficulty
-  const selectedAnimals = jungleAnimals.slice(0, config.pairs)
+  // Get words based on difficulty (using jungle as default since this game doesn't support worlds yet)
+  const difficultyWords = wordLists[difficulty] || wordLists.easy
+  const selectedAnimals = difficultyWords.jungle.slice(0, config.pairs)
   
   // Game state
   const [pictures, setPictures] = useState([])

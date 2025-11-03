@@ -77,39 +77,84 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
     }
   }, [])
 
-  // Fallback word lists
-  const fallbackWords = {
-    jungle: [
-      { word: 'lion', emoji: '🦁', soundText: 'ROARRR!', hint: "It's the king of the jungle!", description: 'A mighty roar that shakes the trees!' },
-      { word: 'snake', emoji: '🐍', soundText: 'HISSSS!', hint: 'It slithers through the grass!', description: 'A slithering hiss in the leaves!' },
-      { word: 'bird', emoji: '🐦', soundText: 'CHIRP!', hint: 'It flies and sings beautifully!', description: 'A cheerful chirp from the trees!' },
-      { word: 'elephant', emoji: '🐘', soundText: 'TRUMPET!', hint: "It's huge with a long trunk!", description: 'A loud trumpet call!' },
-      { word: 'monkey', emoji: '🐵', soundText: 'OOH OOH!', hint: 'It swings from tree to tree!', description: 'Playful chattering sounds!' },
-      { word: 'tiger', emoji: '🐯', soundText: 'GROWL!', hint: 'It has stripes and is fierce!', description: 'A deep, powerful growl!' },
-      { word: 'frog', emoji: '🐸', soundText: 'RIBBIT!', hint: 'It jumps and lives near water!', description: 'A croaky ribbit sound!' },
-      { word: 'parrot', emoji: '🦜', soundText: 'SQUAWK!', hint: 'It can talk and is colorful!', description: 'A colorful squawk!' },
-    ],
-    space: [
-      { word: 'rocket', emoji: '🚀', soundText: 'WHOOSH!', hint: 'It flies to the stars!', description: 'A powerful rocket engine sound!' },
-      { word: 'planet', emoji: '🪐', soundText: 'ORBIT!', hint: 'It circles around a star!', description: 'A mysterious cosmic hum!' },
-      { word: 'star', emoji: '⭐', soundText: 'TWINKLE!', hint: 'It shines in the night sky!', description: 'A magical twinkling sound!' },
-      { word: 'comet', emoji: '☄️', soundText: 'SWOOSH!', hint: 'It has a bright tail!', description: 'A comet zipping through space!' },
-      { word: 'alien', emoji: '👽', soundText: 'BEEP BOOP!', hint: 'It comes from another planet!', description: 'Mysterious alien sounds!' },
-      { word: 'satellite', emoji: '🛰️', soundText: 'BEEP!', hint: 'It orbits Earth!', description: 'A satellite beeping signal!' },
-      { word: 'astronaut', emoji: '👨‍🚀', soundText: 'HELLO!', hint: 'A person who explores space!', description: 'An astronaut greeting from space!' },
-      { word: 'meteor', emoji: '⭐', soundText: 'ZIP!', hint: 'A shooting star!', description: 'A meteor streaking by!' },
-    ],
-    food: [
-      { word: 'pizza', emoji: '🍕', soundText: 'SIZZLE!', hint: "It's round and cheesy!", description: 'A pizza sizzling in the oven!' },
-      { word: 'cookie', emoji: '🍪', soundText: 'CRUNCH!', hint: "It's sweet with chocolate chips!", description: 'A satisfying cookie crunch!' },
-      { word: 'burger', emoji: '🍔', soundText: 'YUMMY!', hint: 'It has a bun and patty!', description: 'A delicious burger sound!' },
-      { word: 'cupcake', emoji: '🧁', soundText: 'POP!', hint: "It's a small cake with frosting!", description: 'A fun cupcake pop!' },
-      { word: 'donut', emoji: '🍩', soundText: 'MUNCH!', hint: "It's a sweet ring-shaped treat!", description: 'A yummy donut munch!' },
-      { word: 'icecream', emoji: '🍦', soundText: 'SLURP!', hint: "It's cold and sweet!", description: 'A refreshing ice cream slurp!' },
-      { word: 'apple', emoji: '🍎', soundText: 'CRUNCH!', hint: "It's a red or green fruit!", description: 'A crisp apple crunch!' },
-      { word: 'cake', emoji: '🎂', soundText: 'YAY!', hint: "It's a birthday treat!", description: 'A celebration cake sound!' },
-    ],
+  // Fallback word lists organized by difficulty and world
+  const fallbackWordsByDifficulty = {
+    easy: {
+      jungle: [
+        { word: 'cat', emoji: '🐱', soundText: 'MEOW!', hint: 'I am a furry pet that meows!', description: 'A friendly meow sound!' },
+        { word: 'dog', emoji: '🐶', soundText: 'WOOF!', hint: 'I am a friendly pet that barks!', description: 'A happy bark sound!' },
+        { word: 'bird', emoji: '🐦', soundText: 'CHIRP!', hint: 'I fly and sing beautiful songs!', description: 'A cheerful chirp from the trees!' },
+        { word: 'fish', emoji: '🐠', soundText: 'BUBBLE!', hint: 'I swim in water all day!', description: 'Bubbling water sounds!' },
+        { word: 'tree', emoji: '🌳', soundText: 'SWAY!', hint: 'I am tall with green leaves!', description: 'Leaves rustling in the wind!' },
+      ],
+      space: [
+        { word: 'moon', emoji: '🌙', soundText: 'GLOW!', hint: 'I shine bright in the night sky!', description: 'A magical moon glow!' },
+        { word: 'star', emoji: '⭐', soundText: 'TWINKLE!', hint: 'I twinkle way up high!', description: 'A magical twinkling sound!' },
+        { word: 'sun', emoji: '☀️', soundText: 'SHINE!', hint: 'I give light to everyone!', description: 'Bright sunny sounds!' },
+        { word: 'ship', emoji: '🚢', soundText: 'ZOOM!', hint: 'I travel through space!', description: 'A spaceship zooming by!' },
+      ],
+      food: [
+        { word: 'apple', emoji: '🍎', soundText: 'CRUNCH!', hint: "I am red or green and crunchy!", description: 'A crisp apple crunch!' },
+        { word: 'bread', emoji: '🍞', soundText: 'TEAR!', hint: 'I am made from flour and yummy!', description: 'Tearing bread sounds!' },
+        { word: 'milk', emoji: '🥛', soundText: 'POUR!', hint: 'I am white and come from cows!', description: 'Milk pouring sounds!' },
+        { word: 'egg', emoji: '🥚', soundText: 'CRACK!', hint: 'I am round and come from chickens!', description: 'An egg cracking sound!' },
+      ],
+    },
+    medium: {
+      jungle: [
+        { word: 'lion', emoji: '🦁', soundText: 'ROARRR!', hint: "It's the king of the jungle!", description: 'A mighty roar that shakes the trees!' },
+        { word: 'snake', emoji: '🐍', soundText: 'HISSSS!', hint: 'It slithers through the grass!', description: 'A slithering hiss in the leaves!' },
+        { word: 'monkey', emoji: '🐵', soundText: 'OOH OOH!', hint: 'It swings from tree to tree!', description: 'Playful chattering sounds!' },
+        { word: 'tiger', emoji: '🐯', soundText: 'GROWL!', hint: 'It has stripes and is fierce!', description: 'A deep, powerful growl!' },
+        { word: 'frog', emoji: '🐸', soundText: 'RIBBIT!', hint: 'It jumps and lives near water!', description: 'A croaky ribbit sound!' },
+        { word: 'parrot', emoji: '🦜', soundText: 'SQUAWK!', hint: 'It can talk and is colorful!', description: 'A colorful squawk!' },
+        { word: 'zebra', emoji: '🦓', soundText: 'NEIGH!', hint: 'It has black and white stripes!', description: 'A zebra neighing sound!' },
+      ],
+      space: [
+        { word: 'rocket', emoji: '🚀', soundText: 'WHOOSH!', hint: 'It flies to the stars!', description: 'A powerful rocket engine sound!' },
+        { word: 'planet', emoji: '🪐', soundText: 'ORBIT!', hint: 'It circles around a star!', description: 'A mysterious cosmic hum!' },
+        { word: 'comet', emoji: '☄️', soundText: 'SWOOSH!', hint: 'It has a bright tail!', description: 'A comet zipping through space!' },
+        { word: 'meteor', emoji: '⭐', soundText: 'ZIP!', hint: 'A shooting star!', description: 'A meteor streaking by!' },
+        { word: 'satellite', emoji: '🛰️', soundText: 'BEEP!', hint: 'It orbits Earth!', description: 'A satellite beeping signal!' },
+        { word: 'astronaut', emoji: '👨‍🚀', soundText: 'HELLO!', hint: 'A person who explores space!', description: 'An astronaut greeting from space!' },
+      ],
+      food: [
+        { word: 'pizza', emoji: '🍕', soundText: 'SIZZLE!', hint: "It's round and cheesy!", description: 'A pizza sizzling in the oven!' },
+        { word: 'cookie', emoji: '🍪', soundText: 'CRUNCH!', hint: "It's sweet with chocolate chips!", description: 'A satisfying cookie crunch!' },
+        { word: 'burger', emoji: '🍔', soundText: 'YUMMY!', hint: 'It has a bun and patty!', description: 'A delicious burger sound!' },
+        { word: 'cupcake', emoji: '🧁', soundText: 'POP!', hint: "It's a small cake with frosting!", description: 'A fun cupcake pop!' },
+        { word: 'donut', emoji: '🍩', soundText: 'MUNCH!', hint: "It's a sweet ring-shaped treat!", description: 'A yummy donut munch!' },
+        { word: 'icecream', emoji: '🍦', soundText: 'SLURP!', hint: "It's cold and sweet!", description: 'A refreshing ice cream slurp!' },
+      ],
+    },
+    hard: {
+      jungle: [
+        { word: 'elephant', emoji: '🐘', soundText: 'TRUMPET!', hint: "It's huge with a long trunk!", description: 'A loud trumpet call!' },
+        { word: 'rhinoceros', emoji: '🦏', soundText: 'GRUNT!', hint: 'It is large and gray with a horn!', description: 'A deep rhino grunt!' },
+        { word: 'chameleon', emoji: '🦎', soundText: 'HISS!', hint: 'It can change colors to hide!', description: 'A chameleon hissing sound!' },
+        { word: 'hippopotamus', emoji: '🦛', soundText: 'GRUNT!', hint: 'It is huge and loves water!', description: 'A hippo grunting loudly!' },
+        { word: 'chimpanzee', emoji: '🦧', soundText: 'HOOT!', hint: 'It is a smart ape like humans!', description: 'Chimp hooting sounds!' },
+        { word: 'crocodile', emoji: '🐊', soundText: 'ROAR!', hint: 'It is a large reptile with sharp teeth!', description: 'A crocodile roar!' },
+      ],
+      space: [
+        { word: 'constellation', emoji: '⭐', soundText: 'SPARKLE!', hint: 'It is a pattern of stars in the sky!', description: 'Sparkling constellation sounds!' },
+        { word: 'astronomer', emoji: '👨‍🔬', soundText: 'HELLO!', hint: 'I study space and stars!', description: 'An astronomer speaking!' },
+        { word: 'spacecraft', emoji: '🛸', soundText: 'WHOOSH!', hint: 'It is a vehicle that travels in space!', description: 'A spacecraft engine sound!' },
+        { word: 'asteroid', emoji: '☄️', soundText: 'ZIP!', hint: 'It is a rocky object in space!', description: 'An asteroid zipping by!' },
+        { word: 'observatory', emoji: '🏛️', soundText: 'BEEP!', hint: 'Scientists study space in me!', description: 'Observatory equipment sounds!' },
+      ],
+      food: [
+        { word: 'gastronomy', emoji: '🍽️', soundText: 'CHEF!', hint: 'I am the art of cooking amazing food!', description: 'A chef cooking sounds!' },
+        { word: 'ingredient', emoji: '🧄', soundText: 'CHOP!', hint: 'I am something you use when cooking!', description: 'Chopping ingredient sounds!' },
+        { word: 'restaurant', emoji: '🍽️', soundText: 'DING!', hint: 'People eat delicious food at my place!', description: 'Restaurant bell sounds!' },
+        { word: 'gourmet', emoji: '👨‍🍳', soundText: 'YUMMY!', hint: 'I am high-quality fancy food!', description: 'Gourmet food sounds!' },
+      ],
+    },
   }
+
+  // Get fallback words based on difficulty and world
+  const difficultyFallbacks = fallbackWordsByDifficulty[difficulty] || fallbackWordsByDifficulty.easy
+  const fallbackWords = difficultyFallbacks[world] || difficultyFallbacks.jungle
 
   // Fetch words from backend API
   useEffect(() => {

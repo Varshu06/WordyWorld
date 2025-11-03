@@ -11,38 +11,109 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
   const config = gameConfig[difficulty] || gameConfig.easy
 
   // Word lists for different worlds
-  const worldWords = {
-    jungle: [
-      { word: 'monkey', hint: 'I swing from tree to tree and love bananas!', emoji: '🐵' },
-      { word: 'lion', hint: 'I am the king of the jungle with a golden mane!', emoji: '🦁' },
-      { word: 'tiger', hint: 'I have stripes and roar loudly!', emoji: '🐯' },
-      { word: 'parrot', hint: 'I am colorful and can talk!', emoji: '🦜' },
-      { word: 'snake', hint: 'I slither through the jungle grass!', emoji: '🐍' },
-      { word: 'elephant', hint: 'I have a long trunk and big ears!', emoji: '🐘' },
-      { word: 'frog', hint: 'I jump and live near water!', emoji: '🐸' },
-      { word: 'zebra', hint: 'I have black and white stripes!', emoji: '🦓' },
-    ],
-    space: [
-      { word: 'rocket', hint: 'I fly through space and reach the stars!', emoji: '🚀' },
-      { word: 'planet', hint: 'I orbit around a star and have moons!', emoji: '🪐' },
-      { word: 'astronaut', hint: 'I explore space and wear a special suit!', emoji: '👨‍🚀' },
-      { word: 'comet', hint: 'I have a bright tail and zoom through space!', emoji: '☄️' },
-      { word: 'galaxy', hint: 'I am a huge collection of stars in space!', emoji: '🌌' },
-      { word: 'meteor', hint: 'I am a shooting star that streaks across the sky!', emoji: '⭐' },
-      { word: 'telescope', hint: 'Scientists use me to see far into space!', emoji: '🔭' },
-      { word: 'satellite', hint: 'I orbit Earth and help with communication!', emoji: '🛸' },
-    ],
-    food: [
-      { word: 'pizza', hint: 'I am round, cheesy, and delicious!', emoji: '🍕' },
-      { word: 'burger', hint: 'I have a bun, patty, and lots of toppings!', emoji: '🍔' },
-      { word: 'cookie', hint: 'I am sweet, round, and often have chocolate chips!', emoji: '🍪' },
-      { word: 'cupcake', hint: 'I am a small cake with frosting on top!', emoji: '🧁' },
-      { word: 'donut', hint: 'I am a sweet ring-shaped treat with a hole!', emoji: '🍩' },
-      { word: 'sandwich', hint: 'I have bread and yummy fillings inside!', emoji: '🥪' },
-      { word: 'icecream', hint: 'I am cold, sweet, and come in many flavors!', emoji: '🍦' },
-      { word: 'pancake', hint: 'I am a flat breakfast food you stack up!', emoji: '🥞' },
-    ],
+  // Word lists organized by difficulty and world
+  const worldWordsByDifficulty = {
+    easy: {
+      jungle: [
+        { word: 'cat', hint: 'I am a furry pet that meows!', emoji: '🐱' },
+        { word: 'dog', hint: 'I am a friendly pet that barks!', emoji: '🐶' },
+        { word: 'bird', hint: 'I fly and sing beautiful songs!', emoji: '🐦' },
+        { word: 'tree', hint: 'I am tall with green leaves!', emoji: '🌳' },
+        { word: 'leaf', hint: 'I am green and fall from trees!', emoji: '🍃' },
+        { word: 'fish', hint: 'I swim in water all day!', emoji: '🐠' },
+        { word: 'rock', hint: 'I am hard and gray!', emoji: '🪨' },
+        { word: 'hill', hint: 'I am a small mountain!', emoji: '⛰️' },
+      ],
+      space: [
+        { word: 'moon', hint: 'I shine bright in the night sky!', emoji: '🌙' },
+        { word: 'star', hint: 'I twinkle way up high!', emoji: '⭐' },
+        { word: 'sun', hint: 'I give light to everyone!', emoji: '☀️' },
+        { word: 'rock', hint: 'I float in outer space!', emoji: '🪨' },
+        { word: 'ship', hint: 'I travel through space!', emoji: '🚢' },
+        { word: 'flag', hint: 'I was on the moon!', emoji: '🚩' },
+        { word: 'suit', hint: 'People wear me in space!', emoji: '👔' },
+        { word: 'mask', hint: 'I help you breathe in space!', emoji: '😷' },
+      ],
+      food: [
+        { word: 'apple', hint: 'I am red or green and crunchy!', emoji: '🍎' },
+        { word: 'bread', hint: 'I am made from flour and yummy!', emoji: '🍞' },
+        { word: 'milk', hint: 'I am white and come from cows!', emoji: '🥛' },
+        { word: 'egg', hint: 'I am round and come from chickens!', emoji: '🥚' },
+        { word: 'rice', hint: 'I am small white grains!', emoji: '🍚' },
+        { word: 'meat', hint: 'I come from animals and taste good!', emoji: '🥩' },
+        { word: 'fish', hint: 'I live in water and you can eat me!', emoji: '🐟' },
+        { word: 'corn', hint: 'I am yellow on a cob!', emoji: '🌽' },
+      ],
+    },
+    medium: {
+      jungle: [
+        { word: 'monkey', hint: 'I swing from tree to tree and love bananas!', emoji: '🐵' },
+        { word: 'tiger', hint: 'I have stripes and roar loudly!', emoji: '🐯' },
+        { word: 'parrot', hint: 'I am colorful and can talk!', emoji: '🦜' },
+        { word: 'snake', hint: 'I slither through the jungle grass!', emoji: '🐍' },
+        { word: 'zebra', hint: 'I have black and white stripes!', emoji: '🦓' },
+        { word: 'leopard', hint: 'I have spots and am very fast!', emoji: '🐆' },
+        { word: 'giraffe', hint: 'I am tall with a long neck!', emoji: '🦒' },
+        { word: 'toucan', hint: 'I am a colorful bird with a big beak!', emoji: '🦜' },
+      ],
+      space: [
+        { word: 'rocket', hint: 'I fly through space and reach the stars!', emoji: '🚀' },
+        { word: 'planet', hint: 'I orbit around a star and have moons!', emoji: '🪐' },
+        { word: 'comet', hint: 'I have a bright tail and zoom through space!', emoji: '☄️' },
+        { word: 'meteor', hint: 'I am a shooting star that streaks across the sky!', emoji: '⭐' },
+        { word: 'galaxy', hint: 'I am a huge collection of stars in space!', emoji: '🌌' },
+        { word: 'satellite', hint: 'I orbit Earth and help with communication!', emoji: '🛰️' },
+        { word: 'telescope', hint: 'Scientists use me to see far into space!', emoji: '🔭' },
+        { word: 'astronaut', hint: 'I explore space and wear a special suit!', emoji: '👨‍🚀' },
+      ],
+      food: [
+        { word: 'pizza', hint: 'I am round, cheesy, and delicious!', emoji: '🍕' },
+        { word: 'burger', hint: 'I have a bun, patty, and lots of toppings!', emoji: '🍔' },
+        { word: 'cookie', hint: 'I am sweet, round, and often have chocolate chips!', emoji: '🍪' },
+        { word: 'cupcake', hint: 'I am a small cake with frosting on top!', emoji: '🧁' },
+        { word: 'donut', hint: 'I am a sweet ring-shaped treat with a hole!', emoji: '🍩' },
+        { word: 'sandwich', hint: 'I have bread and yummy fillings inside!', emoji: '🥪' },
+        { word: 'icecream', hint: 'I am cold, sweet, and come in many flavors!', emoji: '🍦' },
+        { word: 'pancake', hint: 'I am a flat breakfast food you stack up!', emoji: '🥞' },
+      ],
+    },
+    hard: {
+      jungle: [
+        { word: 'elephant', hint: 'I have a long trunk and big ears!', emoji: '🐘' },
+        { word: 'rhinoceros', hint: 'I am large and gray with a horn!', emoji: '🦏' },
+        { word: 'chameleon', hint: 'I can change my colors to hide!', emoji: '🦎' },
+        { word: 'hippopotamus', hint: 'I am huge and love water!', emoji: '🦛' },
+        { word: 'chimpanzee', hint: 'I am a smart ape like humans!', emoji: '🦧' },
+        { word: 'crocodile', hint: 'I am a large reptile with sharp teeth!', emoji: '🐊' },
+        { word: 'butterfly', hint: 'I have colorful wings and fly!', emoji: '🦋' },
+        { word: 'hummingbird', hint: 'I am tiny and fly very fast!', emoji: '🐦' },
+      ],
+      space: [
+        { word: 'constellation', hint: 'I am a pattern of stars in the sky!', emoji: '⭐' },
+        { word: 'astronomer', hint: 'I study space and stars!', emoji: '👨‍🔬' },
+        { word: 'spacecraft', hint: 'I am a vehicle that travels in space!', emoji: '🛸' },
+        { word: 'asteroid', hint: 'I am a rocky object in space!', emoji: '☄️' },
+        { word: 'observatory', hint: 'Scientists study space in me!', emoji: '🏛️' },
+        { word: 'telescope', hint: 'Scientists use me to see far into space!', emoji: '🔭' },
+        { word: 'solar system', hint: 'I am the sun and all planets together!', emoji: '🌍' },
+        { word: 'space station', hint: 'People live in me while in space!', emoji: '🛰️' },
+      ],
+      food: [
+        { word: 'gastronomy', hint: 'I am the art of cooking amazing food!', emoji: '🍽️' },
+        { word: 'ingredient', hint: 'I am something you use when cooking!', emoji: '🧄' },
+        { word: 'restaurant', hint: 'People eat delicious food at my place!', emoji: '🍽️' },
+        { word: 'gourmet', hint: 'I am high-quality fancy food!', emoji: '👨‍🍳' },
+        { word: 'cuisine', hint: 'I am a style of cooking from a place!', emoji: '🍜' },
+        { word: 'appetizer', hint: 'You eat me before the main meal!', emoji: '🥗' },
+        { word: 'beverage', hint: 'I am a drink like juice or soda!', emoji: '🥤' },
+        { word: 'nutrition', hint: 'I am about healthy food and eating right!', emoji: '🥗' },
+      ],
+    },
   }
+
+  // Get words based on difficulty and world
+  const difficultyWords = worldWordsByDifficulty[difficulty] || worldWordsByDifficulty.easy
+  const worldWords = difficultyWords[world] || difficultyWords.jungle
 
   // World themes
   const worldThemes = {
