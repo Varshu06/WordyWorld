@@ -420,6 +420,12 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
       calculateStars()
       setGameComplete(true)
       setShowVictory(true)
+      // Save learned words
+      const learned = words.map(w => w.word)
+      const saved = localStorage.getItem(`learnedWords_${world}`)
+      const existing = saved ? JSON.parse(saved) : []
+      const updated = Array.from(new Set([...existing, ...learned]))
+      localStorage.setItem(`learnedWords_${world}`, JSON.stringify(updated))
       if (synthRef.current) {
         synthRef.current.cancel()
       }

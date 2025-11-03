@@ -450,6 +450,12 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
             calculateStars(newWords.length)
             setGameComplete(true)
             setShowVictory(true)
+            // Save learned words
+            const learned = newWords.map(w => w.word)
+            const saved = localStorage.getItem(`learnedWords_${world}`)
+            const existing = saved ? JSON.parse(saved) : []
+            const updated = Array.from(new Set([...existing, ...learned]))
+            localStorage.setItem(`learnedWords_${world}`, JSON.stringify(updated))
           }
           
           return newWords

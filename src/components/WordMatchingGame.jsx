@@ -246,12 +246,23 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
     return () => clearInterval(timer)
   }, [isPaused, gameComplete])
 
+  // Helper function to save learned words
+  const saveLearnedWords = (wordsList) => {
+    const learned = wordsList.map(w => w.word)
+    const saved = localStorage.getItem(`learnedWords_jungle`)
+    const existing = saved ? JSON.parse(saved) : []
+    const updated = Array.from(new Set([...existing, ...learned]))
+    localStorage.setItem(`learnedWords_jungle`, JSON.stringify(updated))
+  }
+
   // Check for game completion
   useEffect(() => {
     if (matchedCount === config.pairs) {
       calculateStars()
       setGameComplete(true)
       setCelebration(true)
+      // Save learned words
+      saveLearnedWords(selectedAnimals)
     }
   }, [matchedCount, config.pairs])
 

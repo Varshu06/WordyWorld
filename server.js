@@ -106,51 +106,7 @@ app.get('/api/progress/:userId', (req, res) => {
   })
 })
 
-// Get all game words (for collection view)
-app.get('/api/all-words', (req, res) => {
-  const { world } = req.query
-  
-  const words = world
-    ? jungleAnimals.filter(animal => animal.category === world)
-    : jungleAnimals
-  
-  res.json({
-    success: true,
-    words,
-    total: words.length,
-  })
-})
-
-// Get Banana Scramble words with hints
-app.get('/api/banana-scramble', (req, res) => {
-  const { world = 'jungle', difficulty = 'easy' } = req.query
-  
-  // Filter animals by world
-  const worldAnimals = jungleAnimals.filter(animal => animal.category === world)
-  
-  // Get count based on difficulty
-  const countMap = { easy: 4, medium: 6, hard: 8 }
-  const count = countMap[difficulty] || 4
-  
-  // Shuffle and return requested count with scrambled versions
-  const shuffled = [...worldAnimals].sort(() => Math.random() - 0.5)
-  const selected = shuffled.slice(0, count).map(animal => ({
-    word: animal.word,
-    emoji: animal.emoji,
-    hint: animal.hint,
-    scrambled: scrambleWord(animal.word),
-  }))
-  
-  res.json({
-    success: true,
-    words: selected,
-    difficulty,
-    world,
-    totalWords: count,
-  })
-})
-
-// Picture Pop game words with trick emojis
+// Picture Pop game words with trick emojis (define before /api/all-words)
 const picturePopWords = {
   jungle: [
     { word: 'monkey', emoji: '🐵', trickEmojis: ['🍌', '🌳', '🐯'] },
@@ -189,6 +145,102 @@ const picturePopWords = {
     { word: 'cake', emoji: '🎂', trickEmojis: ['🍰', '🧁', '🍪'] },
   ],
 }
+
+// Get all game words (for collection view)
+app.get('/api/all-words', (req, res) => {
+  const { world = 'jungle' } = req.query
+  
+  // Combine all word lists for the requested world
+  const allWords = []
+  
+  // Add jungle animals (they're already in the jungleAnimals array)
+  if (world === 'jungle') {
+    allWords.push(...jungleAnimals)
+    // Also add from picturePopWords for more variety
+    if (picturePopWords.jungle) {
+      picturePopWords.jungle.forEach(word => {
+        if (!allWords.find(w => w.word === word.word)) {
+          allWords.push({
+            word: word.word,
+            emoji: word.emoji,
+            definition: `A ${word.word} found in the jungle`,
+            example: `The ${word.word} lives in the jungle!`,
+            category: 'jungle',
+            hint: `It's in the jungle!`
+          })
+        }
+      })
+    }
+  }
+  
+  // Add space words if they exist (from picturePopWords)
+  if (world === 'space' && picturePopWords.space) {
+    picturePopWords.space.forEach(word => {
+      allWords.push({
+        word: word.word,
+        emoji: word.emoji,
+        definition: `A ${word.word} found in space`,
+        example: `The ${word.word} is in space!`,
+        category: 'space',
+        hint: `It's in space!`
+      })
+    })
+  }
+  
+  // Add food words if they exist (from picturePopWords)
+  if (world === 'food' && picturePopWords.food) {
+    picturePopWords.food.forEach(word => {
+      allWords.push({
+        word: word.word,
+        emoji: word.emoji,
+        definition: `A ${word.word} is food`,
+        example: `I love to eat ${word.word}!`,
+        category: 'food',
+        hint: `It's food!`
+      })
+    })
+  }
+  
+  // If no words found, use fallback
+  if (allWords.length === 0) {
+    allWords.push(...jungleAnimals)
+  }
+  
+  res.json({
+    success: true,
+    words: allWords,
+    total: allWords.length,
+  })
+})
+
+// Get Banana Scramble words with hints
+app.get('/api/banana-scramble', (req, res) => {
+  const { world = 'jungle', difficulty = 'easy' } = req.query
+  
+  // Filter animals by world
+  const worldAnimals = jungleAnimals.filter(animal => animal.category === world)
+  
+  // Get count based on difficulty
+  const countMap = { easy: 4, medium: 6, hard: 8 }
+  const count = countMap[difficulty] || 4
+  
+  // Shuffle and return requested count with scrambled versions
+  const shuffled = [...worldAnimals].sort(() => Math.random() - 0.5)
+  const selected = shuffled.slice(0, count).map(animal => ({
+    word: animal.word,
+    emoji: animal.emoji,
+    hint: animal.hint,
+    scrambled: scrambleWord(animal.word),
+  }))
+  
+  res.json({
+    success: true,
+    words: selected,
+    difficulty,
+    world,
+    totalWords: count,
+  })
+})
 
 // Get Picture Pop words
 app.get('/api/picture-pop', (req, res) => {
