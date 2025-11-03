@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import Achievements from './components/Achievements'
 import BananaScramble from './components/BananaScramble'
+import CelebrationModal from './components/CelebrationModal'
 import DailyQuest from './components/DailyQuest'
 import DifficultySelector from './components/DifficultySelector'
+import EmptyState from './components/EmptyState'
+import ErrorScreen from './components/ErrorScreen'
 import FoodWorldHub from './components/FoodWorldHub'
 import HelpScreen from './components/HelpScreen'
 import Homepage from './components/Homepage'
 import JungleWorldHub from './components/JungleWorldHub'
 import PicturePop from './components/PicturePop'
+import SeasonalTheme from './components/SeasonalTheme'
 import SettingsScreen from './components/SettingsScreen'
 import SoundSafari from './components/SoundSafari'
 import SpaceWorldHub from './components/SpaceWorldHub'
@@ -54,14 +58,15 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {currentScreen === 'homepage' && (
-        <Homepage 
-          onEnterClick={handleEnterWordyWorld}
-          onSettingsClick={() => setCurrentScreen('settings')}
-          onHelpClick={() => setCurrentScreen('help')}
-        />
-      )}
+    <SeasonalTheme>
+      <div className="App">
+        {currentScreen === 'homepage' && (
+          <Homepage 
+            onEnterClick={handleEnterWordyWorld}
+            onSettingsClick={() => setCurrentScreen('settings')}
+            onHelpClick={() => setCurrentScreen('help')}
+          />
+        )}
       {currentScreen === 'difficulty-selector' && (
         <DifficultySelector
           onDifficultySelect={handleDifficultySelect}
@@ -249,7 +254,15 @@ function App() {
       {currentScreen === 'settings' && (
         <SettingsScreen onBack={() => setCurrentScreen('homepage')} />
       )}
-    </div>
+      {currentScreen === 'error' && (
+        <ErrorScreen 
+          errorType="generic"
+          onTryAgain={() => window.location.reload()}
+          onBackToHome={handleBackToHome}
+        />
+      )}
+      </div>
+    </SeasonalTheme>
   )
 }
 
