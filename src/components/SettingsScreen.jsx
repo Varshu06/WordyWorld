@@ -5,7 +5,6 @@ const SettingsScreen = ({ onBack }) => {
   const [musicEnabled, setMusicEnabled] = useState(true)
   const [soundVolume, setSoundVolume] = useState(80)
   const [musicVolume, setMusicVolume] = useState(60)
-  const [difficulty, setDifficulty] = useState('easy')
 
   useEffect(() => {
     // Load saved settings from localStorage
@@ -13,13 +12,11 @@ const SettingsScreen = ({ onBack }) => {
     const savedMusic = localStorage.getItem('musicEnabled')
     const savedSoundVol = localStorage.getItem('soundVolume')
     const savedMusicVol = localStorage.getItem('musicVolume')
-    const savedDifficulty = localStorage.getItem('selectedDifficulty')
 
     if (savedSound !== null) setSoundEnabled(savedSound === 'true')
     if (savedMusic !== null) setMusicEnabled(savedMusic === 'true')
     if (savedSoundVol !== null) setSoundVolume(parseInt(savedSoundVol, 10))
     if (savedMusicVol !== null) setMusicVolume(parseInt(savedMusicVol, 10))
-    if (savedDifficulty) setDifficulty(savedDifficulty)
   }, [])
 
   const handleSoundToggle = () => {
@@ -42,11 +39,6 @@ const SettingsScreen = ({ onBack }) => {
   const handleMusicVolumeChange = (value) => {
     setMusicVolume(value)
     localStorage.setItem('musicVolume', value)
-  }
-
-  const handleDifficultyChange = (value) => {
-    setDifficulty(value)
-    localStorage.setItem('selectedDifficulty', value)
   }
 
   const handleResetProgress = () => {
@@ -176,35 +168,6 @@ const SettingsScreen = ({ onBack }) => {
                 className="w-full h-4 bg-white/50 rounded-lg appearance-none cursor-pointer slider-thumb"
                 disabled={!musicEnabled}
               />
-            </div>
-          </div>
-        </div>
-
-        {/* Game Settings */}
-        <div className="bg-white/30 backdrop-blur-lg border-4 border-white/50 rounded-3xl p-8 mb-6">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6 drop-shadow-xl text-center font-playful">
-            🎮 Game Settings
-          </h2>
-          
-          {/* Difficulty Selector */}
-          <div>
-            <span className="text-white text-2xl md:text-3xl font-bold drop-shadow-lg block mb-4">
-              Default Difficulty
-            </span>
-            <div className="grid grid-cols-3 gap-4">
-              {['easy', 'medium', 'hard'].map((level) => (
-                <button
-                  key={level}
-                  onClick={() => handleDifficultyChange(level)}
-                  className={`py-4 px-6 rounded-2xl font-black text-xl md:text-2xl transition-all duration-300 ${
-                    difficulty === level
-                      ? 'bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 border-4 border-white scale-110 shadow-2xl'
-                      : 'bg-white/30 backdrop-blur-lg border-4 border-white/50'
-                  } text-white drop-shadow-lg hover:scale-105`}
-                >
-                  {level.charAt(0).toUpperCase() + level.slice(1)}
-                </button>
-              ))}
             </div>
           </div>
         </div>
