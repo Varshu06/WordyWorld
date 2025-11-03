@@ -96,6 +96,17 @@ const DifficultySelector = ({ onDifficultySelect, onBack }) => {
 
       {/* Main Content Container */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4">
+        {/* Back Button - Top Left */}
+        <div className="absolute top-4 left-4 md:top-8 md:left-8 z-20">
+          <button
+            onClick={onBack}
+            className="w-12 h-12 md:w-16 md:h-16 bg-white/80 backdrop-blur-lg border-2 border-white/40 rounded-full text-2xl md:text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/100 hover:shadow-xl flex items-center justify-center"
+            title="Back to Home"
+          >
+            ←
+          </button>
+        </div>
+
         {/* Title Section */}
         <div className="text-center mb-8 md:mb-12">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4 drop-shadow-2xl font-playful">
@@ -223,14 +234,6 @@ const DifficultySelector = ({ onDifficultySelect, onBack }) => {
             )
           })}
         </div>
-
-        {/* Back Button - Glass Style! */}
-        <button
-          onClick={onBack}
-          className="px-6 py-3 md:px-8 md:py-4 bg-white/25 backdrop-blur-lg border-2 border-white/40 rounded-full text-gray-800 font-bold text-base md:text-xl font-playful transition-all duration-300 hover:scale-110 hover:bg-white/35 hover:shadow-xl hover:border-white/60 active:scale-95"
-        >
-          ← Back to Home 🏠
-        </button>
       </div>
 
       {/* All the Magical Animations - The Secret Sauce! */}
