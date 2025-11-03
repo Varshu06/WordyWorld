@@ -269,25 +269,48 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     while (trickEmojis.length < trickEmojisNeeded) {
       trickEmojis.push(...currentWord.trickEmojis)
     }
+    
+    // Helper function to check if position is too close to existing bubbles
+    const isTooClose = (newPos, existingBubbles, minDistance) => {
+      return existingBubbles.some(bubble => {
+        const dx = newPos.x - bubble.position.x
+        const dy = newPos.y - bubble.position.y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        return distance < minDistance
+      })
+    }
+
+    // Generate bubbles with minimum spacing to avoid overlap
     const bubbleEmojis = [
       currentWord.emoji, // Correct one
       ...trickEmojis.slice(0, trickEmojisNeeded), // Trick ones
     ]
       .sort(() => Math.random() - 0.5)
-      .map((emoji, index) => ({
-        id: `bubble-${currentRound}-${index}`,
-        emoji,
-        isCorrect: emoji === currentWord.emoji,
-        position: {
-          x: Math.random() * 80 + 10, // 10% to 90% - within bounds
-          y: Math.random() * 70 + 15, // 15% to 85% - within bounds
-        },
-        velocity: {
-          x: (Math.random() - 0.5) * 1.5, // Slower initial velocity
-          y: (Math.random() - 0.5) * 1.5,
-        },
-        size: 80 + Math.random() * 40, // 80-120px
-      }))
+      .map((emoji, index) => {
+        let position
+        let attempts = 0
+        const minDistance = 15 // Minimum distance between bubble centers (in %)
+        
+        do {
+          position = {
+            x: Math.random() * 80 + 10, // 10% to 90% - within bounds
+            y: Math.random() * 70 + 15, // 15% to 85% - within bounds
+          }
+          attempts++
+        } while (isTooClose(position, bubbleEmojis.slice(0, index), minDistance) && attempts < 50)
+        
+        return {
+          id: `bubble-${currentRound}-${index}`,
+          emoji,
+          isCorrect: emoji === currentWord.emoji,
+          position,
+          velocity: {
+            x: (Math.random() - 0.5) * 1.5, // Slower initial velocity
+            y: (Math.random() - 0.5) * 1.5,
+          },
+          size: 80 + Math.random() * 40, // 80-120px
+        }
+      })
 
     setBubbles(bubbleEmojis)
     setTimeRemaining(config.timeLimit)
@@ -328,7 +351,7 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
 
     const interval = setInterval(() => {
       setBubbles((prev) =>
-        prev.map((bubble) => {
+        prev.map((bubble, index) => {
           let newX = bubble.position.x + bubble.velocity.x
           let newY = bubble.position.y + bubble.velocity.y
           let newVelX = bubble.velocity.x
@@ -374,6 +397,30 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
               newVelY = -Math.abs(newVelY) * 0.8 // Gentle bounce
             }
           }
+
+          // Collision detection - push bubbles apart when they get too close
+          const minDistance = 12 // Minimum distance between bubble centers
+          prev.forEach((otherBubble, otherIndex) => {
+            if (index === otherIndex) return
+            
+            const dx = newX - otherBubble.position.x
+            const dy = newY - otherBubble.position.y
+            const distance = Math.sqrt(dx * dx + dy * dy)
+            
+            if (distance > 0 && distance < minDistance) {
+              // Push bubbles apart
+              const pushStrength = (minDistance - distance) / minDistance * 0.5
+              const pushX = (dx / distance) * pushStrength
+              const pushY = (dy / distance) * pushStrength
+              
+              newX += pushX
+              newY += pushY
+              
+              // Adjust velocity to push away
+              newVelX += pushX * 0.1
+              newVelY += pushY * 0.1
+            }
+          })
 
           return {
             ...bubble,
