@@ -206,9 +206,9 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
     if (words.length === 0 || gameComplete || isPaused || isLoading) return
     const currentWord = words[currentRound]
     if (currentWord && !showFeedback) {
-      // Auto-play sound description when round starts
+      // Auto-play the sound text when round starts (e.g., "ROARR!", "HISSS!")
       setTimeout(() => {
-        playSound(currentWord.description)
+        playSound(currentWord.soundText)
       }, 500)
     }
   }, [currentRound, words, gameComplete, isPaused])
@@ -313,7 +313,7 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
     setReplayUsed(true)
     const currentWord = words[currentRound]
     if (currentWord) {
-      playSound(currentWord.description)
+      playSound(currentWord.soundText)
     }
   }
 
