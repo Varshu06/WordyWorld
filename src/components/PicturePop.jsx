@@ -248,6 +248,7 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
   const [showHint, setShowHint] = useState(false)
   const [starsEarned, setStarsEarned] = useState(0)
   const [showVictory, setShowVictory] = useState(false)
+  const [hoveredBubbleId, setHoveredBubbleId] = useState(null)
 
   // Initialize on mount or when world/difficulty changes
   useEffect(() => {
@@ -683,26 +684,35 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
             <button
               key={bubble.id}
               onClick={() => handleBubblePop(bubble)}
+              onMouseEnter={() => setHoveredBubbleId(bubble.id)}
+              onMouseLeave={() => setHoveredBubbleId(null)}
               disabled={roundComplete || gameComplete}
-              className="absolute hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="absolute hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
               style={{
                 left: `${bubble.position.x}%`,
                 top: `${bubble.position.y}%`,
                 width: `${bubble.size}px`,
                 height: `${bubble.size}px`,
                 transform: 'translate(-50%, -50%)',
-                willChange: 'transform', // Optimize for smooth animation
+                willChange: 'transform',
+                zIndex: hoveredBubbleId === bubble.id ? 50 : bubbles.length - bubbles.findIndex(b => b.id === bubble.id), // Bring hovered bubble to front
               }}
             >
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* Bubble glow effect */}
+                {/* Bubble glow effect - stronger when hovered */}
                 <div
                   className={`absolute inset-0 rounded-full ${
                     bubble.isCorrect ? 'bg-green-400/30' : 'bg-red-400/20'
-                  } blur-xl animate-pulse-slow`}
+                  } blur-xl animate-pulse-slow ${hoveredBubbleId === bubble.id ? 'opacity-100 scale-125' : 'opacity-60'}`}
                 ></div>
+                {/* Highlight ring when hovered */}
+                {hoveredBubbleId === bubble.id && (
+                  <div className="absolute inset-0 rounded-full border-4 border-yellow-400 shadow-lg animate-pulse pointer-events-none"></div>
+                )}
                 {/* Bubble */}
-                <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/90 to-white/70 border-4 border-white shadow-2xl flex items-center justify-center backdrop-blur-sm hover:shadow-3xl transition-all duration-200">
+                <div className={`relative w-full h-full rounded-full bg-gradient-to-br from-white/90 to-white/70 border-4 border-white shadow-2xl flex items-center justify-center backdrop-blur-sm transition-all duration-200 ${
+                  hoveredBubbleId === bubble.id ? 'shadow-3xl ring-4 ring-yellow-300 ring-opacity-50' : 'hover:shadow-3xl'
+                }`}>
                   <span className="text-4xl md:text-5xl">{bubble.emoji}</span>
                 </div>
               </div>
