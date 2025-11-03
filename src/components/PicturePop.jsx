@@ -278,8 +278,8 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
         emoji,
         isCorrect: emoji === currentWord.emoji,
         position: {
-          x: Math.random() * 80 + 10, // 10% to 90%
-          y: Math.random() * 60 + 20, // 20% to 80%
+          x: Math.random() * 100, // 0% to 100% - full screen
+          y: Math.random() * 100, // 0% to 100% - full screen
         },
         velocity: {
           x: (Math.random() - 0.5) * 2,
@@ -331,13 +331,11 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
           let newX = bubble.position.x + bubble.velocity.x
           let newY = bubble.position.y + bubble.velocity.y
 
-          // Bounce off edges
-          if (newX <= 0 || newX >= 100) bubble.velocity.x *= -1
-          if (newY <= 0 || newY >= 100) bubble.velocity.y *= -1
-
-          // Keep in bounds
-          newX = Math.max(5, Math.min(95, newX))
-          newY = Math.max(5, Math.min(95, newY))
+          // Wrap around edges - allow full screen roaming
+          if (newX < 0) newX = 100
+          if (newX > 100) newX = 0
+          if (newY < 0) newY = 100
+          if (newY > 100) newY = 0
 
           return {
             ...bubble,
@@ -641,20 +639,19 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
           </div>
         )}
 
-        {/* Bubble Area */}
-        <div className="relative w-full h-[400px] md:h-[500px] mb-6 bg-white/10 backdrop-blur-lg rounded-3xl border-4 border-white/30 overflow-hidden">
+        {/* Bubble Area - Full Screen */}
+        <div className="relative w-full h-[400px] md:h-[500px] mb-6 bg-white/10 backdrop-blur-lg rounded-3xl border-4 border-white/30 overflow-visible">
           {bubbles.map((bubble) => (
             <button
               key={bubble.id}
               onClick={() => handleBubblePop(bubble)}
               disabled={roundComplete || gameComplete}
-              className="absolute transition-all duration-200 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="fixed transition-all duration-200 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed z-20"
               style={{
-                left: `${bubble.position.x}%`,
-                top: `${bubble.position.y}%`,
+                left: `calc(${bubble.position.x}vw - ${bubble.size / 2}px)`,
+                top: `calc(${bubble.position.y}vh - ${bubble.size / 2}px)`,
                 width: `${bubble.size}px`,
                 height: `${bubble.size}px`,
-                transform: 'translate(-50%, -50%)',
               }}
             >
               <div className="relative w-full h-full flex items-center justify-center">
