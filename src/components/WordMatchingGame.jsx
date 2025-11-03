@@ -477,7 +477,7 @@ const WordMatchingGame = ({ difficulty = 'easy', world = 'jungle', onBackToHub, 
               animationDuration: `${6 + Math.random() * 6}s`,
             }}
           >
-            {['🍃', '🌿', '🌾'][Math.floor(Math.random() * 3)]}
+            {theme.floatingItems[Math.floor(Math.random() * theme.floatingItems.length)]}
           </div>
         ))}
       </div>
@@ -496,7 +496,7 @@ const WordMatchingGame = ({ difficulty = 'easy', world = 'jungle', onBackToHub, 
                 animationDuration: `${2 + Math.random() * 2}s`,
               }}
             >
-              {['🍃', '🌿', '⭐', '✨', '🎉'][Math.floor(Math.random() * 5)]}
+              {theme.floatingItems[Math.floor(Math.random() * theme.floatingItems.length)]}
             </div>
           ))}
         </div>
@@ -715,7 +715,7 @@ const WordMatchingGame = ({ difficulty = 'easy', world = 'jungle', onBackToHub, 
                       {/* Leaf trail effect when dragging */}
                       {draggedWord?.id === word.id && (
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                          <span className="text-4xl animate-pulse">🍃</span>
+                          <span className="text-4xl animate-pulse">{theme.floatingItems[0]}</span>
                         </div>
                       )}
                     </div>
