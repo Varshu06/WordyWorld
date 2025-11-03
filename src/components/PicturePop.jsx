@@ -341,33 +341,47 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
       }
     }
     
-    // Create final array with correct emoji + unique trick emojis
-    const allBubbleEmojis = [currentWord.emoji, ...selectedTrickEmojis]
+    // Create final array with correct emoji + unique trick emojis - FORCE UNIQUENESS
+    const uniqueFinalEmojis = [currentWord.emoji]
+    const usedEmojisSet = new Set([currentWord.emoji])
     
-    // Final check - ensure all are unique
-    const finalEmojiSet = new Set(allBubbleEmojis)
-    if (finalEmojiSet.size !== allBubbleEmojis.length) {
-      // Remove duplicates by using Set
-      const uniqueFinal = [currentWord.emoji]
-      selectedTrickEmojis.forEach(emoji => {
-        if (!uniqueFinal.includes(emoji)) {
-          uniqueFinal.push(emoji)
-        }
-      })
-      // Fill remaining slots with unique emojis
-      while (uniqueFinal.length < config.bubbles) {
-        const remainingEmojis = worldEmojis.filter(emoji => !uniqueFinal.includes(emoji))
-        if (remainingEmojis.length > 0) {
-          uniqueFinal.push(remainingEmojis[Math.floor(Math.random() * remainingEmojis.length)])
-        } else {
-          break // Can't add more unique ones
-        }
+    // Add trick emojis one by one, ensuring no duplicates
+    for (const emoji of selectedTrickEmojis) {
+      if (!usedEmojisSet.has(emoji)) {
+        uniqueFinalEmojis.push(emoji)
+        usedEmojisSet.add(emoji)
+        if (uniqueFinalEmojis.length >= config.bubbles) break
       }
-      allBubbleEmojis.length = 0
-      allBubbleEmojis.push(...uniqueFinal.slice(0, config.bubbles))
     }
     
-    const bubbleEmojis = allBubbleEmojis
+    // Fill remaining slots with unique emojis from world pool
+    while (uniqueFinalEmojis.length < config.bubbles) {
+      const remainingEmojis = worldEmojis.filter(emoji => !usedEmojisSet.has(emoji))
+      if (remainingEmojis.length > 0) {
+        const randomEmoji = remainingEmojis[Math.floor(Math.random() * remainingEmojis.length)]
+        uniqueFinalEmojis.push(randomEmoji)
+        usedEmojisSet.add(randomEmoji)
+      } else {
+        // Last resort: use ANY emoji that's not in the list
+        break
+      }
+    }
+    
+    // Final verification - create Set to remove any duplicates (shouldn't happen but safety check)
+    const verifiedUnique = Array.from(new Set(uniqueFinalEmojis))
+    
+    // If we somehow lost emojis, fill again
+    while (verifiedUnique.length < config.bubbles) {
+      const allEmojis = Array.from(new Set([...uniqueTrickEmojis, ...worldEmojis]))
+      const missing = allEmojis.find(emoji => !verifiedUnique.includes(emoji) && emoji !== currentWord.emoji)
+      if (missing) {
+        verifiedUnique.push(missing)
+      } else {
+        break
+      }
+    }
+    
+    const bubbleEmojis = verifiedUnique.slice(0, config.bubbles)
       .sort(() => Math.random() - 0.5)
       .map((emoji, index) => {
         let position

@@ -288,7 +288,18 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
   // Initialize game
   const initializeGame = () => {
     const wordList = worldWords
-    const selectedWords = [...wordList]
+    
+    // Ensure no duplicate words - use Set to track unique words
+    const uniqueWordsSet = new Set()
+    const uniqueWordList = []
+    for (const wordObj of wordList) {
+      if (!uniqueWordsSet.has(wordObj.word)) {
+        uniqueWordList.push(wordObj)
+        uniqueWordsSet.add(wordObj.word)
+      }
+    }
+    
+    const selectedWords = [...uniqueWordList]
       .sort(() => Math.random() - 0.5)
       .slice(0, config.words)
       .map((wordObj) => ({

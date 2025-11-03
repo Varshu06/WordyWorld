@@ -317,17 +317,55 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
       ? words 
       : (fallbackWords[world] || fallbackWords.jungle)
 
-    const wrongOptions = wordPool
+    // Ensure no duplicate words - use Set to track used words
+    const usedWords = new Set([currentWord.word])
+    const wrongOptions = []
+    
+    // Filter and shuffle, then pick unique ones
+    const shuffledPool = wordPool
       .filter((w) => w.word !== currentWord.word)
       .sort(() => Math.random() - 0.5)
-      .slice(0, config.options - 1)
+    
+    // Select unique wrong options
+    for (const wordObj of shuffledPool) {
+      if (!usedWords.has(wordObj.word) && wrongOptions.length < config.options - 1) {
+        wrongOptions.push(wordObj)
+        usedWords.add(wordObj.word)
+      }
+    }
+    
+    // Fill remaining slots if needed
+    if (wrongOptions.length < config.options - 1) {
+      const fallbackPool = fallbackWords[world] || fallbackWords.jungle
+      for (const wordObj of fallbackPool) {
+        if (!usedWords.has(wordObj.word) && wrongOptions.length < config.options - 1) {
+          wrongOptions.push(wordObj)
+          usedWords.add(wordObj.word)
+        }
+      }
+    }
 
     const allOptions = [
       { ...currentWord, isCorrect: true },
       ...wrongOptions.map((w) => ({ ...w, isCorrect: false })),
     ].sort(() => Math.random() - 0.5)
+    
+    // Final verification - ensure all options have unique words
+    const finalOptions = []
+    const finalUsedWords = new Set()
+    for (const option of allOptions) {
+      if (!finalUsedWords.has(option.word)) {
+        finalOptions.push(option)
+        finalUsedWords.add(option.word)
+      }
+    }
+    
+    // If we lost the correct answer, add it back
+    if (!finalOptions.find(o => o.isCorrect)) {
+      finalOptions[0] = { ...currentWord, isCorrect: true }
+    }
 
-    setOptions(allOptions)
+    setOptions(finalOptions)
     setSelectedAnswer(null)
     setShowFeedback(false)
     setReplayUsed(false)

@@ -202,7 +202,16 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
 
   // Get words based on difficulty (using jungle as default since this game doesn't support worlds yet)
   const difficultyWords = wordLists[difficulty] || wordLists.easy
-  const selectedAnimals = difficultyWords.jungle.slice(0, config.pairs)
+  
+  // Ensure no duplicate words - use Set to track unique words
+  const uniqueWordsSet = new Set()
+  const selectedAnimals = []
+  for (const animal of difficultyWords.jungle) {
+    if (!uniqueWordsSet.has(animal.word) && selectedAnimals.length < config.pairs) {
+      selectedAnimals.push(animal)
+      uniqueWordsSet.add(animal.word)
+    }
+  }
   
   // Game state
   const [pictures, setPictures] = useState([])
