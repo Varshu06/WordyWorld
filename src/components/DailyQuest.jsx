@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const DailyQuest = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHome }) => {
+const DailyQuest = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHome, onGameSelect }) => {
   // World configurations
   const worldConfigs = {
     jungle: {
@@ -148,26 +148,28 @@ const DailyQuest = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
 
   const config = worldConfigs[world] || worldConfigs.jungle
 
-  // Get today's quest based on date
-  const getTodayQuest = () => {
-    const today = new Date().toDateString()
-    const storageKey = `dailyQuestDate_${world}`
-    const storedDate = localStorage.getItem(storageKey)
-    
-    if (storedDate === today) {
-      return null
-    }
-    
-    const dayOfWeek = new Date().getDay()
-    const taskIndex = dayOfWeek % config.tasks.length
-    return config.tasks[taskIndex]
-  }
-
   const [todayQuest, setTodayQuest] = useState(null)
   const [streak, setStreak] = useState(0)
   const [hovered, setHovered] = useState(false)
 
   useEffect(() => {
+    const config = worldConfigs[world] || worldConfigs.jungle
+    
+    // Get today's quest based on date
+    const getTodayQuest = () => {
+      const today = new Date().toDateString()
+      const storageKey = `dailyQuestDate_${world}`
+      const storedDate = localStorage.getItem(storageKey)
+      
+      if (storedDate === today) {
+        return null
+      }
+      
+      const dayOfWeek = new Date().getDay()
+      const taskIndex = dayOfWeek % config.tasks.length
+      return config.tasks[taskIndex]
+    }
+    
     const quest = getTodayQuest()
     setTodayQuest(quest)
     
