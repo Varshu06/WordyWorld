@@ -278,12 +278,12 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
         emoji,
         isCorrect: emoji === currentWord.emoji,
         position: {
-          x: Math.random() * 100, // 0% to 100% - full screen
-          y: Math.random() * 100, // 0% to 100% - full screen
+          x: Math.random() * 80 + 10, // 10% to 90% - within bounds
+          y: Math.random() * 70 + 15, // 15% to 85% - within bounds
         },
         velocity: {
-          x: (Math.random() - 0.5) * 2,
-          y: (Math.random() - 0.5) * 2,
+          x: (Math.random() - 0.5) * 1.5, // Slower initial velocity
+          y: (Math.random() - 0.5) * 1.5,
         },
         size: 80 + Math.random() * 40, // 80-120px
       }))
@@ -330,20 +330,58 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
         prev.map((bubble) => {
           let newX = bubble.position.x + bubble.velocity.x
           let newY = bubble.position.y + bubble.velocity.y
+          let newVelX = bubble.velocity.x
+          let newVelY = bubble.velocity.y
 
-          // Wrap around edges - allow full screen roaming
-          if (newX < 0) newX = 100
-          if (newX > 100) newX = 0
-          if (newY < 0) newY = 100
-          if (newY > 100) newY = 0
+          // Smooth boundary checking with gentle bounce and damping zone
+          const minX = 5
+          const maxX = 95
+          const minY = 5
+          const maxY = 95
+          const dampingZone = 10 // Distance from edge where slowdown starts
+
+          // Smooth damping near X boundaries - gradual slowdown as approaching edge
+          if (newX < minX + dampingZone) {
+            const factor = Math.max(0, Math.min(1, (newX - minX) / dampingZone)) // 0 at edge, 1 at dampingZone
+            newVelX *= 0.7 + (factor * 0.3) // Slow down more when closer to edge (70% to 100% speed)
+            if (newX <= minX) {
+              newX = minX
+              newVelX = Math.abs(newVelX) * 0.8 // Gentle bounce
+            }
+          } else if (newX > maxX - dampingZone) {
+            const factor = Math.max(0, Math.min(1, (maxX - newX) / dampingZone)) // 0 at edge, 1 at dampingZone
+            newVelX *= 0.7 + (factor * 0.3) // Slow down more when closer to edge
+            if (newX >= maxX) {
+              newX = maxX
+              newVelX = -Math.abs(newVelX) * 0.8 // Gentle bounce
+            }
+          }
+
+          // Smooth damping near Y boundaries - gradual slowdown as approaching edge
+          if (newY < minY + dampingZone) {
+            const factor = Math.max(0, Math.min(1, (newY - minY) / dampingZone)) // 0 at edge, 1 at dampingZone
+            newVelY *= 0.7 + (factor * 0.3) // Slow down more when closer to edge (70% to 100% speed)
+            if (newY <= minY) {
+              newY = minY
+              newVelY = Math.abs(newVelY) * 0.8 // Gentle bounce
+            }
+          } else if (newY > maxY - dampingZone) {
+            const factor = Math.max(0, Math.min(1, (maxY - newY) / dampingZone)) // 0 at edge, 1 at dampingZone
+            newVelY *= 0.7 + (factor * 0.3) // Slow down more when closer to edge
+            if (newY >= maxY) {
+              newY = maxY
+              newVelY = -Math.abs(newVelY) * 0.8 // Gentle bounce
+            }
+          }
 
           return {
             ...bubble,
             position: { x: newX, y: newY },
+            velocity: { x: newVelX, y: newVelY },
           }
         })
       )
-    }, 50) // Update every 50ms for smooth movement
+    }, 30) // Update more frequently for smoother movement
 
     return () => clearInterval(interval)
   }, [isPaused, gameComplete, roundComplete, bubbles.length])
@@ -639,19 +677,21 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
           </div>
         )}
 
-        {/* Bubble Area - Full Screen */}
-        <div className="relative w-full h-[400px] md:h-[500px] mb-6 bg-white/10 backdrop-blur-lg rounded-3xl border-4 border-white/30 overflow-visible">
+        {/* Bubble Area */}
+        <div className="relative w-full h-[400px] md:h-[500px] mb-6 bg-white/10 backdrop-blur-lg rounded-3xl border-4 border-white/30 overflow-hidden">
           {bubbles.map((bubble) => (
             <button
               key={bubble.id}
               onClick={() => handleBubblePop(bubble)}
               disabled={roundComplete || gameComplete}
-              className="fixed transition-all duration-200 hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed z-20"
+              className="absolute hover:scale-110 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
-                left: `calc(${bubble.position.x}vw - ${bubble.size / 2}px)`,
-                top: `calc(${bubble.position.y}vh - ${bubble.size / 2}px)`,
+                left: `${bubble.position.x}%`,
+                top: `${bubble.position.y}%`,
                 width: `${bubble.size}px`,
                 height: `${bubble.size}px`,
+                transform: 'translate(-50%, -50%)',
+                willChange: 'transform', // Optimize for smooth animation
               }}
             >
               <div className="relative w-full h-full flex items-center justify-center">
