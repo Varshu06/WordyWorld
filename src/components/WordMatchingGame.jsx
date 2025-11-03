@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
+const WordMatchingGame = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHome }) => {
   // Game configuration based on difficulty
   const gameConfig = {
     easy: { pairs: 4, timeBonus: 60 },
@@ -78,11 +78,11 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
     medium: {
       jungle: [
         // Medium Animals
-        { word: 'monkey', emoji: '🐵', definition: 'A playful jungle animal that swings on trees' },
+    { word: 'monkey', emoji: '🐵', definition: 'A playful jungle animal that swings on trees' },
         { word: 'tiger', emoji: '🐯', definition: 'A striped big cat that roams the jungle' },
-        { word: 'lion', emoji: '🦁', definition: 'The king of the jungle with a golden mane' },
-        { word: 'snake', emoji: '🐍', definition: 'A slithering reptile in the jungle' },
-        { word: 'zebra', emoji: '🦓', definition: 'A striped horse-like animal' },
+    { word: 'lion', emoji: '🦁', definition: 'The king of the jungle with a golden mane' },
+    { word: 'snake', emoji: '🐍', definition: 'A slithering reptile in the jungle' },
+    { word: 'zebra', emoji: '🦓', definition: 'A striped horse-like animal' },
         { word: 'leopard', emoji: '🐆', definition: 'A spotted wild cat' },
         { word: 'giraffe', emoji: '🦒', definition: 'A tall animal with a long neck' },
         { word: 'panda', emoji: '🐼', definition: 'A black and white bear that loves bamboo' },
@@ -200,18 +200,46 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
     },
   }
 
-  // Get words based on difficulty (using jungle as default since this game doesn't support worlds yet)
+  // Get words based on difficulty and world
   const difficultyWords = wordLists[difficulty] || wordLists.easy
+  const worldWords = difficultyWords[world] || difficultyWords.jungle
   
   // Ensure no duplicate words - use Set to track unique words
   const uniqueWordsSet = new Set()
   const selectedAnimals = []
-  for (const animal of difficultyWords.jungle) {
+  for (const animal of worldWords) {
     if (!uniqueWordsSet.has(animal.word) && selectedAnimals.length < config.pairs) {
       selectedAnimals.push(animal)
       uniqueWordsSet.add(animal.word)
     }
   }
+  
+  // World themes
+  const worldThemes = {
+    jungle: {
+      backgroundGradient: 'from-green-800 via-emerald-600 to-green-400',
+      cardGradient: 'from-yellow-400 via-green-400 to-emerald-500',
+      floatingItems: ['🍃', '🌿', '🌾', '🦋', '🐛'],
+      celebrationMessage: "You matched all jungle words perfectly!",
+      characterMessage: "🐒 \"You're the jungle word champion!\" 🦜",
+    },
+    space: {
+      backgroundGradient: 'from-blue-950 via-indigo-900 to-purple-950',
+      cardGradient: 'from-cyan-400 via-blue-500 to-purple-500',
+      floatingItems: ['⭐', '🌟', '✨', '☄️', '💫'],
+      celebrationMessage: "You matched all space words perfectly!",
+      characterMessage: "🚀 \"You're a space word explorer!\" 👽",
+    },
+    food: {
+      backgroundGradient: 'from-orange-300 via-red-300 to-pink-300',
+      cardGradient: 'from-orange-400 via-red-500 to-pink-500',
+      floatingItems: ['🍕', '🍰', '🧁', '🎂', '🍪'],
+      celebrationMessage: "You matched all food words perfectly!",
+      characterMessage: "🍕 \"You're a food word master!\" 🍰",
+    },
+  }
+
+  const theme = worldThemes[world] || worldThemes.jungle
   
   // Game state
   const [pictures, setPictures] = useState([])
@@ -249,10 +277,10 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
   // Helper function to save learned words
   const saveLearnedWords = (wordsList) => {
     const learned = wordsList.map(w => w.word)
-    const saved = localStorage.getItem(`learnedWords_jungle`)
+    const saved = localStorage.getItem(`learnedWords_${world}`)
     const existing = saved ? JSON.parse(saved) : []
     const updated = Array.from(new Set([...existing, ...learned]))
-    localStorage.setItem(`learnedWords_jungle`, JSON.stringify(updated))
+    localStorage.setItem(`learnedWords_${world}`, JSON.stringify(updated))
   }
 
   // Check for game completion
@@ -305,10 +333,10 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
     } else {
       // Medium/Hard: Time-based bonus still applies
       const timeBonus = config.timeBonus - timeElapsed
-      if (timeBonus > config.timeBonus * 0.6) stars = 5
-      else if (timeBonus > config.timeBonus * 0.4) stars = 4
-      else if (timeBonus > config.timeBonus * 0.2) stars = 3
-      else if (timeBonus > 0) stars = 2
+    if (timeBonus > config.timeBonus * 0.6) stars = 5
+    else if (timeBonus > config.timeBonus * 0.4) stars = 4
+    else if (timeBonus > config.timeBonus * 0.2) stars = 3
+    else if (timeBonus > 0) stars = 2
     }
     
     setStarsEarned(stars)
@@ -433,14 +461,14 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
 
   return (
     <div className="min-h-screen w-full overflow-hidden relative flex flex-col items-center justify-center px-4 py-8">
-      {/* Animated Jungle Background */}
+      {/* Animated Background */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 bg-gradient-to-b from-green-800 via-emerald-600 to-green-400"></div>
+        <div className={`absolute inset-0 bg-gradient-to-b ${theme.backgroundGradient}`}></div>
         
-        {/* Floating jungle elements */}
+        {/* Floating elements */}
         {[...Array(20)].map((_, i) => (
           <div
-            key={`leaf-${i}`}
+            key={`float-${i}`}
             className="absolute text-2xl opacity-30 animate-float-jungle pointer-events-none"
             style={{
               left: `${Math.random() * 100}%`,
@@ -477,13 +505,13 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
       {/* Victory Screen */}
       {gameComplete && (
         <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="relative bg-gradient-to-br from-yellow-400 via-green-400 to-emerald-500 rounded-3xl p-8 md:p-12 max-w-2xl w-full mx-4 shadow-2xl border-4 border-white animate-victory-pop">
+          <div className={`relative bg-gradient-to-br ${theme.cardGradient} rounded-3xl p-8 md:p-12 max-w-2xl w-full mx-4 shadow-2xl border-4 border-white animate-victory-pop`}>
             <div className="text-center">
               <h2 className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-2xl font-playful">
                 🎉 AMAZING JOB! 🎉
               </h2>
               <p className="text-2xl md:text-3xl text-white font-bold mb-6 drop-shadow-lg font-playful">
-                You matched all jungle words perfectly!
+                {theme.celebrationMessage}
               </p>
               <div className="text-4xl md:text-6xl mb-6">
                 {'⭐'.repeat(starsEarned)}
@@ -492,7 +520,7 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
                 {starsEarned} Stars Earned!
               </p>
               <p className="text-xl md:text-2xl text-white mb-8 drop-shadow-lg font-playful">
-                🐒 "You're the jungle word champion!" 🦜
+                {theme.characterMessage}
               </p>
               <div className="flex flex-col md:flex-row gap-4 justify-center">
                 <button

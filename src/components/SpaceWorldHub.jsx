@@ -254,7 +254,7 @@ const SpaceWorldHub = ({ onBackToWorlds, onGoHome, onGameSelect }) => {
                         onClick={() => {
                           if (onGameSelect) {
                             if (card.id === 'word-match') {
-                              onGameSelect('word-matching-game')
+                              onGameSelect('word-matching-game-space')
                             } else if (card.id === 'banana-scramble') {
                               onGameSelect('banana-scramble-space')
                             } else if (card.id === 'picture-pop') {

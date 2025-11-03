@@ -145,10 +145,27 @@ function App() {
           onGameSelect={(game) => setCurrentScreen(game)}
         />
       )}
-      {currentScreen === 'word-matching-game' && (
+      {currentScreen === 'word-matching-game-jungle' && (
         <WordMatchingGame
           difficulty={getDifficultyForGame()}
+          world="jungle"
           onBackToHub={() => setCurrentScreen('jungle-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'word-matching-game-space' && (
+        <WordMatchingGame
+          difficulty={getDifficultyForGame()}
+          world="space"
+          onBackToHub={() => setCurrentScreen('space-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'word-matching-game-food' && (
+        <WordMatchingGame
+          difficulty={getDifficultyForGame()}
+          world="food"
+          onBackToHub={() => setCurrentScreen('food-hub')}
           onGoHome={handleBackToHome}
         />
       )}
