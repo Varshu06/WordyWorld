@@ -153,8 +153,6 @@ const DailyQuest = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
   const [hovered, setHovered] = useState(false)
 
   useEffect(() => {
-    const config = worldConfigs[world] || worldConfigs.jungle
-    
     // Get today's quest based on date
     const getTodayQuest = () => {
       const today = new Date().toDateString()
@@ -178,7 +176,7 @@ const DailyQuest = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     if (savedStreak) {
       setStreak(parseInt(savedStreak, 10))
     }
-  }, [world])
+  }, [world, config])
 
   const handlePlayQuest = () => {
     if (!todayQuest) return
