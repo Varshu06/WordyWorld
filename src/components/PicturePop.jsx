@@ -262,14 +262,6 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     const currentWord = words[currentRound]
     if (!currentWord) return
 
-    // Create bubbles with correct and trick emojis
-    // Repeat trick emojis if we need more bubbles
-    const trickEmojisNeeded = config.bubbles - 1
-    const trickEmojis = []
-    while (trickEmojis.length < trickEmojisNeeded) {
-      trickEmojis.push(...currentWord.trickEmojis)
-    }
-    
     // Helper function to check if position is too close to existing bubbles
     const isTooClose = (newPos, existingBubbles, minDistance) => {
       return existingBubbles.some(bubble => {
@@ -280,11 +272,102 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
       })
     }
 
-    // Generate bubbles with minimum spacing to avoid overlap
-    const bubbleEmojis = [
-      currentWord.emoji, // Correct one
-      ...trickEmojis.slice(0, trickEmojisNeeded), // Trick ones
-    ]
+    // Get all unique emojis from all words to use as trick options
+    const allAvailableEmojis = new Set()
+    words.forEach((word, idx) => {
+      if (idx !== currentRound && word.emoji && word.emoji !== currentWord.emoji) {
+        allAvailableEmojis.add(word.emoji)
+      }
+      if (word.trickEmojis) {
+        word.trickEmojis.forEach(emoji => {
+          if (emoji !== currentWord.emoji) {
+            allAvailableEmojis.add(emoji)
+          }
+        })
+      }
+    })
+    
+    // Add more world-themed emojis as backup pool
+    const trickEmojisNeeded = config.bubbles - 1
+    const additionalEmojis = {
+      jungle: ['🌳', '🌴', '🍌', '🦁', '🐯', '🐍', '🦓', '🦒', '🐆', '🐘', '🦏', '🦛', '🦧', '🦍', '🐊', '🦎', '🐦', '🦅', '🦜', '🦩', '🦚', '🦉', '🐧', '🐼', '🐨', '🐰', '🐿️', '🦝', '🐺', '🦦', '🦇', '🦊', '🐝', '🐜', '🦉', '🐻', '🦆', '🦌'],
+      space: ['🌙', '⭐', '☀️', '🌍', '🪐', '🚀', '🛸', '🛰️', '🔭', '👽', '🤖', '🌌', '☄️', '💫', '🌟', '✨', '🌠', '⚡', '💥', '🌑', '🌕', '🌗', '🌓', '🌔', '🌖'],
+      food: ['🍕', '🍔', '🍟', '🌭', '🍿', '🧂', '🥓', '🥩', '🍗', '🍖', '🧆', '🥙', '🌮', '🌯', '🥗', '🥘', '🥫', '🍝', '🍜', '🍲', '🍛', '🍣', '🍱', '🥟', '🦪', '🍤', '🍙', '🍚', '🍘', '🍥'],
+    }
+    
+    // Add world emojis to the pool
+    const worldEmojis = additionalEmojis[world] || additionalEmojis.jungle
+    worldEmojis.forEach(emoji => {
+      if (emoji !== currentWord.emoji) {
+        allAvailableEmojis.add(emoji)
+      }
+    })
+    
+    // Convert to array and shuffle
+    let uniqueTrickEmojis = Array.from(allAvailableEmojis).sort(() => Math.random() - 0.5)
+    
+    // Ensure we have enough unique emojis for all bubbles
+    while (uniqueTrickEmojis.length < trickEmojisNeeded) {
+      const randomEmoji = worldEmojis[Math.floor(Math.random() * worldEmojis.length)]
+      if (!uniqueTrickEmojis.includes(randomEmoji) && randomEmoji !== currentWord.emoji) {
+        uniqueTrickEmojis.push(randomEmoji)
+      }
+    }
+    
+    // Select unique trick emojis (no duplicates) - shuffle and take unique ones
+    const selectedTrickEmojis = []
+    const usedEmojis = new Set([currentWord.emoji]) // Start with the correct emoji
+    
+    // Shuffle the available emojis again
+    const shuffledAvailable = [...uniqueTrickEmojis].sort(() => Math.random() - 0.5)
+    
+    for (const emoji of shuffledAvailable) {
+      if (selectedTrickEmojis.length >= trickEmojisNeeded) break
+      if (!usedEmojis.has(emoji) && emoji !== currentWord.emoji) {
+        selectedTrickEmojis.push(emoji)
+        usedEmojis.add(emoji)
+      }
+    }
+    
+    // If we still need more, add from world emojis
+    while (selectedTrickEmojis.length < trickEmojisNeeded) {
+      const remainingEmojis = worldEmojis.filter(emoji => !usedEmojis.has(emoji) && emoji !== currentWord.emoji)
+      if (remainingEmojis.length > 0) {
+        const randomEmoji = remainingEmojis[Math.floor(Math.random() * remainingEmojis.length)]
+        selectedTrickEmojis.push(randomEmoji)
+        usedEmojis.add(randomEmoji)
+      } else {
+        break // No more unique emojis available
+      }
+    }
+    
+    // Create final array with correct emoji + unique trick emojis
+    const allBubbleEmojis = [currentWord.emoji, ...selectedTrickEmojis]
+    
+    // Final check - ensure all are unique
+    const finalEmojiSet = new Set(allBubbleEmojis)
+    if (finalEmojiSet.size !== allBubbleEmojis.length) {
+      // Remove duplicates by using Set
+      const uniqueFinal = [currentWord.emoji]
+      selectedTrickEmojis.forEach(emoji => {
+        if (!uniqueFinal.includes(emoji)) {
+          uniqueFinal.push(emoji)
+        }
+      })
+      // Fill remaining slots with unique emojis
+      while (uniqueFinal.length < config.bubbles) {
+        const remainingEmojis = worldEmojis.filter(emoji => !uniqueFinal.includes(emoji))
+        if (remainingEmojis.length > 0) {
+          uniqueFinal.push(remainingEmojis[Math.floor(Math.random() * remainingEmojis.length)])
+        } else {
+          break // Can't add more unique ones
+        }
+      }
+      allBubbleEmojis.length = 0
+      allBubbleEmojis.push(...uniqueFinal.slice(0, config.bubbles))
+    }
+    
+    const bubbleEmojis = allBubbleEmojis
       .sort(() => Math.random() - 0.5)
       .map((emoji, index) => {
         let position
