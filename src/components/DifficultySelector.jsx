@@ -97,10 +97,10 @@ const DifficultySelector = ({ onDifficultySelect, onBack }) => {
       {/* Main Content Container */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full max-w-7xl px-4">
         {/* Back Button - Top Left */}
-        <div className="absolute top-4 left-4 md:top-8 md:left-8 z-20">
+        <div className="absolute top-0 left-0 m-4 z-20">
           <button
             onClick={onBack}
-            className="w-12 h-12 md:w-16 md:h-16 bg-white/80 backdrop-blur-lg border-2 border-white/40 rounded-full text-2xl md:text-3xl transition-all duration-300 hover:scale-110 hover:bg-white/100 hover:shadow-xl flex items-center justify-center"
+            className="px-4 py-4 bg-white/25 backdrop-blur-lg border-2 border-white/40 rounded-full text-white font-bold text-2xl md:text-3xl font-playful transition-all duration-300 hover:scale-110 hover:bg-white/35 hover:shadow-xl hover:border-white/60 active:scale-95 w-14 h-14 md:w-16 md:h-16 flex items-center justify-center"
             title="Back to Home"
           >
             ←
