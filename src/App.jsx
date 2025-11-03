@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Achievements from './components/Achievements'
 import BananaScramble from './components/BananaScramble'
 import DailyQuest from './components/DailyQuest'
 import DifficultySelector from './components/DifficultySelector'
@@ -8,6 +9,7 @@ import JungleWorldHub from './components/JungleWorldHub'
 import PicturePop from './components/PicturePop'
 import SoundSafari from './components/SoundSafari'
 import SpaceWorldHub from './components/SpaceWorldHub'
+import WordCollection from './components/WordCollection'
 import WordMatchingGame from './components/WordMatchingGame'
 import WorldSelector from './components/WorldSelector'
 
@@ -188,6 +190,48 @@ function App() {
       {currentScreen === 'sound-safari-food' && (
         <SoundSafari
           difficulty={selectedDifficulty}
+          world="food"
+          onBackToHub={() => setCurrentScreen('food-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'word-collection-jungle' && (
+        <WordCollection
+          world="jungle"
+          onBackToHub={() => setCurrentScreen('jungle-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'word-collection-space' && (
+        <WordCollection
+          world="space"
+          onBackToHub={() => setCurrentScreen('space-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'word-collection-food' && (
+        <WordCollection
+          world="food"
+          onBackToHub={() => setCurrentScreen('food-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'achievements-jungle' && (
+        <Achievements
+          world="jungle"
+          onBackToHub={() => setCurrentScreen('jungle-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'achievements-space' && (
+        <Achievements
+          world="space"
+          onBackToHub={() => setCurrentScreen('space-hub')}
+          onGoHome={handleBackToHome}
+        />
+      )}
+      {currentScreen === 'achievements-food' && (
+        <Achievements
           world="food"
           onBackToHub={() => setCurrentScreen('food-hub')}
           onGoHome={handleBackToHome}

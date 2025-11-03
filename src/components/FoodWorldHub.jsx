@@ -140,6 +140,15 @@ const FoodWorldHub = ({ onBackToWorlds, onGoHome, onGameSelect }) => {
           {topButtons.map((btn) => (
             <button
               key={btn.id}
+              onClick={() => {
+                if (onGameSelect) {
+                  if (btn.id === 'collection') {
+                    onGameSelect('word-collection-food')
+                  } else if (btn.id === 'achievements') {
+                    onGameSelect('achievements-food')
+                  }
+                }
+              }}
               className="px-4 py-3 bg-white/25 backdrop-blur-lg border-2 border-white/40 rounded-full text-white font-bold text-lg transition-all duration-300 hover:scale-110 hover:bg-white/35 hover:shadow-xl flex items-center gap-2"
             >
               <span className="text-xl">{btn.icon}</span>
