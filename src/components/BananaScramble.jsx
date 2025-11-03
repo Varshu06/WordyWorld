@@ -253,13 +253,23 @@ const BananaScramble = ({ difficulty = 'easy', world = 'jungle', onBackToHub, on
 
   // Calculate stars based on time and performance
   const calculateStars = (totalWords) => {
-    const timeBonus = config.timeBonus - timeElapsed
+    // For easy difficulty, no time pressure - just focus on accuracy
     let stars = 1
 
-    if (totalWords === config.words && timeBonus > config.timeBonus * 0.5) stars = 5
-    else if (totalWords === config.words && timeBonus > config.timeBonus * 0.3) stars = 4
-    else if (totalWords === config.words) stars = 3
-    else if (totalWords >= config.words * 0.7) stars = 2
+    if (difficulty === 'easy') {
+      // Easy: Simple star calculation without time pressure
+      if (totalWords === config.words) stars = 5
+      else if (totalWords >= config.words * 0.75) stars = 4
+      else if (totalWords >= config.words * 0.5) stars = 3
+      else if (totalWords >= config.words * 0.25) stars = 2
+    } else {
+      // Medium/Hard: Time-based bonus still applies
+      const timeBonus = config.timeBonus - timeElapsed
+      if (totalWords === config.words && timeBonus > config.timeBonus * 0.5) stars = 5
+      else if (totalWords === config.words && timeBonus > config.timeBonus * 0.3) stars = 4
+      else if (totalWords === config.words) stars = 3
+      else if (totalWords >= config.words * 0.7) stars = 2
+    }
 
     setStarsEarned(stars)
   }

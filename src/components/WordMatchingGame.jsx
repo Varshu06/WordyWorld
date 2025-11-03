@@ -98,13 +98,19 @@ const WordMatchingGame = ({ difficulty = 'easy', onBackToHub, onGoHome }) => {
   }
 
   const calculateStars = () => {
-    const timeBonus = config.timeBonus - timeElapsed
     let stars = 1
     
-    if (timeBonus > config.timeBonus * 0.6) stars = 5
-    else if (timeBonus > config.timeBonus * 0.4) stars = 4
-    else if (timeBonus > config.timeBonus * 0.2) stars = 3
-    else if (timeBonus > 0) stars = 2
+    // For easy difficulty, no time pressure - just focus on accuracy
+    if (difficulty === 'easy') {
+      stars = 5 // Always max stars for completing on easy!
+    } else {
+      // Medium/Hard: Time-based bonus still applies
+      const timeBonus = config.timeBonus - timeElapsed
+      if (timeBonus > config.timeBonus * 0.6) stars = 5
+      else if (timeBonus > config.timeBonus * 0.4) stars = 4
+      else if (timeBonus > config.timeBonus * 0.2) stars = 3
+      else if (timeBonus > 0) stars = 2
+    }
     
     setStarsEarned(stars)
   }

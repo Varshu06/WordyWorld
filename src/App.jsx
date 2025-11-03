@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Achievements from './components/Achievements'
 import BananaScramble from './components/BananaScramble'
 import CelebrationModal from './components/CelebrationModal'
@@ -22,6 +22,24 @@ import WorldSelector from './components/WorldSelector'
 function App() {
   const [currentScreen, setCurrentScreen] = useState('homepage')
   const [selectedDifficulty, setSelectedDifficulty] = useState('easy')
+
+  // Load saved difficulty from localStorage on mount
+  useEffect(() => {
+    const savedDifficulty = localStorage.getItem('difficulty') || localStorage.getItem('selectedDifficulty')
+    if (savedDifficulty) {
+      setSelectedDifficulty(savedDifficulty)
+    }
+  }, [])
+
+  // Helper function to get difficulty - check for quest difficulty first, then normal difficulty
+  const getDifficultyForGame = () => {
+    const questDifficulty = localStorage.getItem('questDifficulty')
+    if (questDifficulty) {
+      localStorage.removeItem('questDifficulty') // Clear it after use
+      return questDifficulty
+    }
+    return selectedDifficulty
+  }
 
   const handleEnterWordyWorld = () => {
     setCurrentScreen('difficulty-selector')
@@ -129,14 +147,14 @@ function App() {
       )}
       {currentScreen === 'word-matching-game' && (
         <WordMatchingGame
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           onBackToHub={() => setCurrentScreen('jungle-hub')}
           onGoHome={handleBackToHome}
         />
       )}
       {currentScreen === 'banana-scramble' && (
         <BananaScramble
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="jungle"
           onBackToHub={() => setCurrentScreen('jungle-hub')}
           onGoHome={handleBackToHome}
@@ -144,7 +162,7 @@ function App() {
       )}
       {currentScreen === 'banana-scramble-space' && (
         <BananaScramble
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="space"
           onBackToHub={() => setCurrentScreen('space-hub')}
           onGoHome={handleBackToHome}
@@ -152,7 +170,7 @@ function App() {
       )}
       {currentScreen === 'banana-scramble-food' && (
         <BananaScramble
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="food"
           onBackToHub={() => setCurrentScreen('food-hub')}
           onGoHome={handleBackToHome}
@@ -160,7 +178,7 @@ function App() {
       )}
       {currentScreen === 'picture-pop-jungle' && (
         <PicturePop
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="jungle"
           onBackToHub={() => setCurrentScreen('jungle-hub')}
           onGoHome={handleBackToHome}
@@ -168,7 +186,7 @@ function App() {
       )}
       {currentScreen === 'picture-pop-space' && (
         <PicturePop
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="space"
           onBackToHub={() => setCurrentScreen('space-hub')}
           onGoHome={handleBackToHome}
@@ -176,7 +194,7 @@ function App() {
       )}
       {currentScreen === 'picture-pop-food' && (
         <PicturePop
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="food"
           onBackToHub={() => setCurrentScreen('food-hub')}
           onGoHome={handleBackToHome}
@@ -184,7 +202,7 @@ function App() {
       )}
       {currentScreen === 'sound-safari-jungle' && (
         <SoundSafari
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="jungle"
           onBackToHub={() => setCurrentScreen('jungle-hub')}
           onGoHome={handleBackToHome}
@@ -192,7 +210,7 @@ function App() {
       )}
       {currentScreen === 'sound-safari-space' && (
         <SoundSafari
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="space"
           onBackToHub={() => setCurrentScreen('space-hub')}
           onGoHome={handleBackToHome}
@@ -200,7 +218,7 @@ function App() {
       )}
       {currentScreen === 'sound-safari-food' && (
         <SoundSafari
-          difficulty={selectedDifficulty}
+          difficulty={getDifficultyForGame()}
           world="food"
           onBackToHub={() => setCurrentScreen('food-hub')}
           onGoHome={handleBackToHome}

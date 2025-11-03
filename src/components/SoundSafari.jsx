@@ -261,7 +261,8 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
 
     if (option.isCorrect) {
       // Correct answer! 🎉
-      const timeBonus = Math.max(0, config.timeBonus - timeElapsed)
+      // For easy difficulty, give fixed score. For others, bonus based on time
+      const timeBonus = difficulty === 'easy' ? 0 : Math.max(0, config.timeBonus - timeElapsed)
       const roundScore = 10 + Math.floor(timeBonus / 10)
       setScore((prev) => prev + roundScore)
       setCorrectAnswers((prev) => prev + 1)
@@ -299,10 +300,19 @@ const SoundSafari = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoH
     const accuracy = correctAnswers / config.rounds
     let stars = 1
 
-    if (accuracy >= 0.9 && timeElapsed < config.timeBonus * 0.7) stars = 5
-    else if (accuracy >= 0.8) stars = 4
-    else if (accuracy >= 0.6) stars = 3
-    else if (accuracy >= 0.4) stars = 2
+    // For easy difficulty, no time pressure - just focus on accuracy
+    if (difficulty === 'easy') {
+      if (accuracy >= 0.8) stars = 5
+      else if (accuracy >= 0.6) stars = 4
+      else if (accuracy >= 0.4) stars = 3
+      else if (accuracy >= 0.2) stars = 2
+    } else {
+      // Medium/Hard: Time-based bonus still applies
+      if (accuracy >= 0.9 && timeElapsed < config.timeBonus * 0.7) stars = 5
+      else if (accuracy >= 0.8) stars = 4
+      else if (accuracy >= 0.6) stars = 3
+      else if (accuracy >= 0.4) stars = 2
+    }
 
     setStarsEarned(stars)
   }

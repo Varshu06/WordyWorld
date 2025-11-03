@@ -159,8 +159,9 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     setShowHint(false)
   }, [currentRound, words, difficulty])
 
-  // Timer countdown
+  // Timer countdown - disabled for easy difficulty
   useEffect(() => {
+    if (difficulty === 'easy') return // No timer for easy!
     if (isPaused || gameComplete || roundComplete || timeRemaining <= 0) return
 
     const timer = setInterval(() => {
@@ -182,7 +183,7 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [isPaused, gameComplete, roundComplete, timeRemaining, hearts])
+  }, [isPaused, gameComplete, roundComplete, timeRemaining, hearts, difficulty])
 
   // Move bubbles
   useEffect(() => {
@@ -219,7 +220,11 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
 
     if (bubble.isCorrect) {
       // Correct pop! 🎉
-      setScore((prev) => prev + 10 * (Math.floor(timeRemaining / 10) + 1))
+      // For easy difficulty, give fixed score. For others, bonus based on time remaining
+      const points = difficulty === 'easy' 
+        ? 10 
+        : 10 * (Math.floor(timeRemaining / 10) + 1)
+      setScore((prev) => prev + points)
       setRoundComplete(true)
       setCelebration(true)
 
@@ -466,12 +471,16 @@ const PicturePop = ({ difficulty = 'easy', world = 'jungle', onBackToHub, onGoHo
                 Word: {currentWord.emoji} {currentWord.word.toUpperCase()}
               </p>
               <p className="text-white text-lg md:text-xl font-bold drop-shadow-lg font-playful mb-2">
-                Pop the correct picture bubble before time runs out! ⏳
+                {difficulty === 'easy' 
+                  ? 'Pop the correct picture bubble! 🎈' 
+                  : 'Pop the correct picture bubble before time runs out! ⏳'}
               </p>
               <div className="flex items-center justify-center gap-4">
-                <span className="text-white text-xl md:text-2xl font-bold drop-shadow-lg">
-                  Time: {timeRemaining}s
-                </span>
+                {difficulty !== 'easy' && (
+                  <span className="text-white text-xl md:text-2xl font-bold drop-shadow-lg">
+                    Time: {timeRemaining}s
+                  </span>
+                )}
                 <span className="text-white text-xl md:text-2xl font-bold drop-shadow-lg">
                   Round: {currentRound + 1}/{config.rounds}
                 </span>
