@@ -252,6 +252,8 @@ const SpaceWorldHub = ({ onBackToWorlds, onGoHome, onGameSelect }) => {
                               onGameSelect('picture-pop-space')
                             } else if (card.id === 'sound-safari') {
                               onGameSelect('sound-safari-space')
+                            } else if (card.id === 'daily-quest') {
+                              onGameSelect('daily-space-quest')
                             }
                           }
                         }}

@@ -246,6 +246,8 @@ const FoodWorldHub = ({ onBackToWorlds, onGoHome, onGameSelect }) => {
                               onGameSelect('picture-pop-food')
                             } else if (card.id === 'sound-safari') {
                               onGameSelect('sound-safari-food')
+                            } else if (card.id === 'daily-quest') {
+                              onGameSelect('daily-food-quest')
                             }
                           }
                         }}

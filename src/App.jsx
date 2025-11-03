@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import BananaScramble from './components/BananaScramble'
-import DailyJungleQuest from './components/DailyJungleQuest'
+import DailyQuest from './components/DailyQuest'
 import DifficultySelector from './components/DifficultySelector'
 import FoodWorldHub from './components/FoodWorldHub'
 import Homepage from './components/Homepage'
@@ -87,6 +87,33 @@ function App() {
           onGameSelect={(game) => setCurrentScreen(game)}
         />
       )}
+      {currentScreen === 'daily-jungle-quest' && (
+        <DailyQuest
+          difficulty={selectedDifficulty}
+          world="jungle"
+          onBackToHub={() => setCurrentScreen('jungle-hub')}
+          onGoHome={handleBackToHome}
+          onGameSelect={(game) => setCurrentScreen(game)}
+        />
+      )}
+      {currentScreen === 'daily-space-quest' && (
+        <DailyQuest
+          difficulty={selectedDifficulty}
+          world="space"
+          onBackToHub={() => setCurrentScreen('space-hub')}
+          onGoHome={handleBackToHome}
+          onGameSelect={(game) => setCurrentScreen(game)}
+        />
+      )}
+      {currentScreen === 'daily-food-quest' && (
+        <DailyQuest
+          difficulty={selectedDifficulty}
+          world="food"
+          onBackToHub={() => setCurrentScreen('food-hub')}
+          onGoHome={handleBackToHome}
+          onGameSelect={(game) => setCurrentScreen(game)}
+        />
+      )}
       {currentScreen === 'word-matching-game' && (
         <WordMatchingGame
           difficulty={selectedDifficulty}
@@ -163,13 +190,6 @@ function App() {
           difficulty={selectedDifficulty}
           world="food"
           onBackToHub={() => setCurrentScreen('food-hub')}
-          onGoHome={handleBackToHome}
-        />
-      )}
-      {currentScreen === 'daily-jungle-quest' && (
-        <DailyJungleQuest
-          difficulty={selectedDifficulty}
-          onBackToHub={() => setCurrentScreen('jungle-hub')}
           onGoHome={handleBackToHome}
         />
       )}

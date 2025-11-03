@@ -1037,154 +1037,168 @@ The next day unlocks a new surprise task, keeping excitement fresh daily!
 
 ## 🎒 Game 6: Word Collection
 
-### Purpose: Show all words kid has learned!
+### Purpose:
+
+Let kids see, celebrate, and revisit all the jungle words they’ve learned through different games!  
+This helps boost memory—kind of like finding secret treasures in the jungle every day—and gives kiddos a big sense of accomplishment as their word garden grows. 🌿✨
 
 ### Layout:
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│  🌴 My Word Collection          ⭐⭐⭐                   │
-│                                                          │
-│  Look at all the awesome words you've learned!          │
-│                                                          │
-│  Total Words: 12/20                                      │
-│                                                          │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐             │
-│  │          │  │          │  │          │             │
-│  │   cat    │  │   tree   │  │  happy   │             │
-│  │          │  │          │  │          │             │
-│  │    🐱    │  │    🌳    │  │   😊     │             │
-│  │          │  │          │  │          │             │
-│  └──────────┘  └──────────┘  └──────────┘             │
-│                                                          │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐             │
-│  │          │  │          │  │          │             │
-│  │  jump    │  │  monkey  │  │  roar    │             │
-│  │          │  │          │  │          │             │
-│  │    🦘    │  │    🐵    │  │   🦁     │             │
-│  │          │  │          │  │          │             │
-│  └──────────┘  └──────────┘  └──────────┘             │
-│                                                          │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐             │
-│  │          │  │          │  │          │             │
-│  │  tiger   │  │  forest  │  │   den    │             │
-│  │          │  │          │  │          │             │
-│  │    🐯    │  │    🌲    │  │   🕳️     │             │
-│  │          │  │          │  │          │             │
-│  └──────────┘  └──────────┘  └──────────┘             │
-│                                                          │
-│  Continue learning to unlock more words! ✨             │
-│                                                          │
-│                        [Back to Hub]                    │
-│                                                          │
+│                                                         │
+│   🌴 My Word Collection          ⭐⭐⭐                 │
+│                                                         │
+│   Look at all the amazing words you’ve discovered!      │
+│                                                         │
+│   Total Words: 12 / 20                                  │
+│                                                         │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐             │
+│   │          │  │          │  │          │             │
+│   │  tiger   │  │  forest  │  │  roar    │             │
+│   │          │  │          │  │          │             │
+│   │   🐯     │  │   🌲     │  │   🦁     │             │
+│   │          │  │          │  │          │             │
+│   └──────────┘  └──────────┘  └──────────┘             │
+│                                                         │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐             │
+│   │          │  │          │  │          │             │
+│   │  monkey  │  │  leaf    │  │  jump    │             │
+│   │          │  │          │  │          │             │
+│   │   🐵     │  │   🍃     │  │   🦘     │             │
+│   │          │  │          │  │          │             │
+│   └──────────┘  └──────────┘  └──────────┘             │
+│                                                         │
+│   Continue exploring to unlock more jungle words! 🌈    │
+│                                                         │
+│                        [Back to Hub]                   │
+│                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ### Elements:
-- **Title**: "My Word Collection"
-- **Counter**: "Total Words: 12/20"
-- **Word cards**: Grid of learned words
-- **Empty slots**: Show grayed-out cards for unlearned words
-- **Back button**: Return to world hub
+
+- **Title:** “My Word Collection”
+- **Counter:** “Total Words: 12/20”
+- **Word Cards:** Colorful grid of learned words
+- **Locked Words:** Grayed-out with “???” placeholder (ooh, mysterious!)
+- **Back Button:** Returns to Jungle Hub screen
 
 ### Visual Design:
-- **Word cards**: 120x140px each
-- **Grid**: 3 columns (tablet), 2 columns (mobile)
-- **Learned words**: Colorful, full design
-- **Unlearned words**: Gray, "???" placeholder
-- **Progress**: Maybe a progress bar or circle
 
-### Interactions:
-- **Click word**: Show popup with definition
-- **Scroll**: If many words, allow scrolling
-- **Hover**: Cards lift slightly (desktop)
-- **Animation**: New words fade in when added!
+- **Word Cards:** 120x140px with soft shadows and big, friendly super-rounded corners (2xl)
+- **Grid:** 3 columns on tablets; 2 on mobile (so it always looks jungle-fresh)
+- **Learned Words:** Colorful, big emoji, glowing border (like “Yay! You got it!”)
+- **Unlearned Words:** Gray tint, faint outline, and “???” so you wonder what’s inside!
+- **Progress:** Add a progress bar (like a vine that fills up: 12/20 grows with leaves and wiggles 🌿)
+
+### Interactions (aka: fun stuff!):
+
+- **Tap Word:** Opens a popup with the word’s definition + cute emoji. “Aha! Now you REALLY know what tiger means!”
+- **Scroll:** Smooth vertical scroll for long word lists. Race your finger down the list!
+- **Hover (desktop):** Card lifts up and glows like “Wheeee!” (yep, fun for grown-ups too)
+- **New Words:** When you learn a word, it pops in with a fade and a sparkle animation like “Shazam!” ✨
 
 ### Word Popup:
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│                  WORD DETAIL                             │
-│                                                          │
-│                     HABITAT                              │
-│                      🦜🦋🌳                              │
-│                                                          │
-│          A home for animals and plants                   │
-│                                                          │
-│          Example: The forest is the habitat              │
-│          for many wild animals.                          │
-│                                                          │
-│              [Close]                                     │
-│                                                          │
+│                                                         │
+│                    WORD DETAIL                          │
+│                                                         │
+│                      TIGER                              │
+│                        🐯                               │
+│                                                         │
+│         A large wild cat found in jungles.              │
+│                                                         │
+│         Example: The tiger roared loudly in the forest. │
+│                                                         │
+│                    [Close]                              │
+│                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ### Responsive:
-- Adjust grid columns based on screen
-- Cards scale proportionally
-- Smooth scrolling
-- Popup is modal overlay
+
+- The grid layout auto-adjusts for your device—whether you’re on a banana phone, tablet, or a fancy desktop.
+- Cards grow or shrink nicely—no squished tigers here!
+- The word popup jumps to the center (vertically and horizontally) and looks great everywhere.
+- Works seamlessly on all screens—even your grandma’s tablet!
 
 ---
 
-## 🏆 Achievements & Progress Screen
+## 🏆 Achievements & Progress
 
-### Purpose: Show badges and overall progress!
+### Purpose:
+
+Celebrate kids’ learning milestones with badges, stars, and progress stats!  
+It’s like collecting jungle medals, but with less mud and more sparkle.  
+Encourages them to keep exploring and earning rewards in the jungle world. 🌴🎖️
 
 ### Layout:
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                                                          │
-│  🏆 Your Achievements          ⭐⭐⭐                    │
-│                                                          │
-│  Look at all the awesome badges you've earned!          │
-│                                                          │
-│  ┌─────────────────────────────────────────────────┐    │
-│  │   EARNED BADGES                                 │    │
-│  │                                                  │    │
-│  │  ┌──────┐  ┌──────┐  ┌──────┐                 │    │
-│  │  │ 🌴   │  │ 🎒   │  │ ⚡   │                 │    │
-│  │  │      │  │      │  │      │                 │    │
-│  │  │Jungle│  │ Word │  │Speed │                 │    │
-│  │  │Explore│ │Collect│ │Learn │                 │    │
-│  │  └──────┘  └──────┘  └──────┘                 │    │
-│  └─────────────────────────────────────────────────┘    │
-│                                                          │
-│  ┌─────────────────────────────────────────────────┐    │
-│  │   LOCKED BADGES                                 │    │
-│  │                                                  │    │
-│  │  ┌──────┐  ┌──────┐  ┌──────┐                 │    │
-│  │  │ 🔒   │  │ 🔒   │  │ 🔒   │                 │    │
-│  │  │      │  │      │  │      │                 │    │
-│  │  │Space │  │Master│  │Super │                 │    │
-│  │  │Hero  │  │ofAll │  │Star  │                 │    │
-│  │  │      │  │      │  │      │                 │    │
-│  │  │15⭐  │  │100w  │  │50⭐  │                 │    │
-│  │  └──────┘  └──────┘  └──────┘                 │    │
-│  └─────────────────────────────────────────────────┘    │
-│                                                          │
-│                        [Back to Hub]                    │
-│                                                          │
+│                                                         │
+│   🏆 Your Achievements          ⭐⭐⭐                   │
+│                                                         │
+│   Look at all the awesome badges you’ve earned!         │
+│                                                         │
+│   ┌─────────────────────────────────────────────────┐   │
+│   │   EARNED BADGES                                │   │
+│   │                                               │   │
+│   │  ┌──────┐  ┌──────┐  ┌──────┐                │   │
+│   │  │ 🌴   │  │ 🎒   │  │ ⚡   │                │   │
+│   │  │Jungle│  │ Word │  │ Speed│                │   │
+│   │  │Scout │  │Collector│Learner│                │   │
+│   │  └──────┘  └──────┘  └──────┘                │   │
+│   └─────────────────────────────────────────────────┘   │
+│                                                         │
+│   ┌─────────────────────────────────────────────────┐   │
+│   │   LOCKED BADGES                                │   │
+│   │                                               │   │
+│   │  ┌──────┐  ┌──────┐  ┌──────┐                │   │
+│   │  │ 🔒   │  │ 🔒   │  │ 🔒   │                │   │
+│   │  │Sound │  │Banana│  │Star  │                │   │
+│   │  │Master│  │Hero  │  │Learner│                │   │
+│   │  │(5x)  │  │(10x) │  │(50⭐) │                │   │
+│   │  └──────┘  └──────┘  └──────┘                │   │
+│   └─────────────────────────────────────────────────┘   │
+│                                                         │
+│                        [Back to Hub]                   │
+│                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ### Progress Stats:
-- Total stars earned across all worlds
-- Total words learned across all worlds
-- Worlds completed
-- Games played
-- Perfect scores achieved
+
+- 🌟 **Total Stars:** 38
+- 📚 **Total Words Learned:** 12
+- 🎮 **Games Completed:** 6
+- 🏅 **Perfect Scores:** 3
+- 🌍 **Jungle World Progress:** 85%
 
 ### Badge Types:
 
-1. **🌴 Jungle Explorer** - Complete all Jungle games
-2. **🎒 Word Collector** - Learn 10 words total
-3. **⚡ Speed Learner** - Complete a game under 2 minutes
-4. **🚀 Space Hero** - Complete all Space games
-5. **🏆 Master of All Worlds** - Complete all 3 worlds
-6. **⭐ Super Star** - Earn 50 stars total
-7. **🎯 Perfect Score** - Get 100% on any game
-8. **📚 Word Master** - Learn 100 words total
+- 🌴 **Jungle Scout** – Complete all Jungle games
+- 🎒 **Word Collector** – Learn 10 jungle words
+- ⚡ **Speed Learner** – Finish a game in under 2 minutes
+- 🐵 **Banana Hero** – Score full stars in Banana Scramble
+- 🔊 **Sound Master** – Match 5 animal sounds correctly
+- ⭐ **Star Learner** – Earn 50 total stars
+- 🎯 **Perfect Player** – 100% in any game
+- 🏆 **Jungle Champion** – Finish the whole Jungle World!
+
+### Visual Design:
+
+- Soft green gradient background, like lying under leafy trees. 🌿
+- Badges chill out on wooden tiles or leafy vines.🪵
+- Locked badges are all grayed-out and have a “Nope!” 🔒 icon.
+- Earned badges glow and do a quick happy dance when you unlock them.
+- When you unlock something new, confetti and sparkles fly everywhere. 🎉
+
+### Responsive:
+
+- The badge grid auto-adjusts for mobile screens (2 badges per row so they don’t bump heads).
+- If you tap and hold, a little tooltip pops up to tell you what the badge means (and maybe a silly tip).
+- Stats area politely folds away if there’s not much room. No crowding!
 
 ---
 
