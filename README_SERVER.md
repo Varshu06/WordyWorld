@@ -1,4 +1,4 @@
-# 🎮 WordyWorld - Word Matching Game
+# 🎮 WordQuest - Server Documentation
 
 Hey there! 👋 So you want to play the Word Matching Puzzle game? Awesome! Let me tell you how to get everything running like a well-oiled jungle swing! 🦍🌿
 
@@ -108,7 +108,7 @@ Want to add more features? The code is organized and ready for:
 - Achievement system
 - Sound effects (if you want!)
 
-Have fun playing WordyWorld! Remember - every word you learn makes you smarter! 🧠✨
+Have fun playing WordQuest! Remember - every word you learn makes you smarter! 🧠✨
 
 ---
 
